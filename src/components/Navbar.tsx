@@ -56,7 +56,7 @@ export function Navbar({
             : 'border-b border-transparent bg-gradient-to-b from-espresso/80 via-espresso/35 to-transparent'
         }`}
       >
-        <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-4 sm:px-6 md:h-20">
+        <div className="mx-auto flex h-20 md:h-24 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link href="/" className="group flex items-center" aria-label="River Bank Jungle Resort — Home">
             <Image
               src={logoUrl}
@@ -119,7 +119,7 @@ export function Navbar({
       </header>
 
       <div
-        className={`mobile-menu fixed inset-0 top-[4.5rem] z-[90] flex flex-col overflow-y-auto bg-espresso md:top-20 ${
+        className={`mobile-menu fixed inset-0 top-20 z-[90] flex flex-col overflow-y-auto bg-espresso md:top-24 ${
           open ? 'pointer-events-auto opacity-100 visible' : 'pointer-events-none opacity-0 invisible'
         }`}
         data-open={open}

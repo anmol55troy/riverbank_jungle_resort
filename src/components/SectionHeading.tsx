@@ -30,7 +30,7 @@ export function SectionHeading({
 
   if (align === 'center') {
     return (
-      <div className="mb-12 text-center md:mb-16">
+      <div className="mb-12 text-center md:mb-20">
         {label && <p className={dark ? 'kicker-light mb-4' : 'kicker mb-4'}>{label}</p>}
         <Tag
           className={`display text-balance text-[clamp(2rem,4.2vw,3.4rem)] ${dark ? '!text-ivory' : ''}`}
@@ -52,7 +52,7 @@ export function SectionHeading({
   }
 
   return (
-    <div className="mb-12 md:mb-16">
+    <div className="mb-12 md:mb-20">
       <div className="grid gap-x-10 gap-y-5 md:grid-cols-12">
         <div className={intro || aside ? 'md:col-span-7' : 'max-w-3xl md:col-span-12'}>
           {label && <p className={dark ? 'kicker-light mb-4' : 'kicker mb-4'}>{label}</p>}

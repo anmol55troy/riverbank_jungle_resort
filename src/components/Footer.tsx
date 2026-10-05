@@ -42,7 +42,7 @@ export async function Footer({ settings, logoUrl = '/logo.png' }: Props) {
   return (
     <footer className="grain grain-dark relative overflow-hidden bg-espresso pb-16 text-ivory md:pb-0">
       <PalmMotif className="absolute -right-10 -top-8 hidden h-80 rotate-180 text-gold opacity-[0.08] lg:block" />
-      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:py-20">
+      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 sm:py-20 md:grid-cols-2 lg:grid-cols-4 lg:py-24">
         <div>
           <Image
             src={logoUrl}

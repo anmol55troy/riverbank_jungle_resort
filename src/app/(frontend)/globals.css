@@ -5,23 +5,23 @@
  * Swap these variables to restyle the whole site.
  */
 @theme {
-  --color-ivory: #f7f5ee;
-  --color-cream: #ede7dc;
-  --color-espresso: #1a2e24;
-  --color-espresso-light: #2a4336;
-  --color-forest: #1a2e24;
-  --color-sage: #bac8b6;
-  --color-sage-dark: #6c8572;
-  --color-gold: #c59b58;
-  --color-gold-dark: #9e7432;
-  --color-clay: #b36844;
-  --color-slate: #4e6760;
+  --color-ivory: #faf9f5;
+  --color-cream: #f2efe9;
+  --color-espresso: #121c16;
+  --color-espresso-light: #1f3026;
+  --color-forest: #0d1a13;
+  --color-sage: #a3b8ad;
+  --color-sage-dark: #5c7566;
+  --color-gold: #d4af37;
+  --color-gold-dark: #aa8c2c;
+  --color-clay: #b86a44;
+  --color-slate: #4b665c;
 
   --font-serif: var(--font-display), 'Marcellus', Georgia, serif;
   --font-sans: var(--font-inter), 'Plus Jakarta Sans', system-ui, sans-serif;
 
-  --shadow-card: 0 6px 24px -8px rgb(26 46 36 / 0.12);
-  --shadow-card-hover: 0 14px 40px -10px rgb(26 46 36 / 0.2);
+  --shadow-card: 0 8px 30px -10px rgb(18 28 22 / 0.15);
+  --shadow-card-hover: 0 18px 45px -12px rgb(18 28 22 / 0.25);
 }
 
 html {

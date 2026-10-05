@@ -73,10 +73,10 @@ export function GalleryGrid({ items }: { items: GalleryItem[] }) {
               setLightbox(null)
             }}
             aria-pressed={filter === cat}
-            className={`min-h-11 rounded-sm px-5 text-xs font-semibold uppercase tracking-[0.14em] transition-colors duration-300 ${
+            className={`min-h-12 border px-6 text-[11px] font-semibold uppercase tracking-[0.18em] transition-colors duration-300 ${
               filter === cat
-                ? 'bg-espresso text-gold'
-                : 'bg-cream text-espresso/70 hover:bg-espresso/10'
+                ? 'border-gold bg-gold text-espresso shadow-md'
+                : 'border-espresso/10 bg-transparent text-espresso/70 hover:border-gold hover:text-gold-dark'
             }`}
           >
             {CATEGORY_LABELS[cat] ?? cat}

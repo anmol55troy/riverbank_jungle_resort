@@ -78,7 +78,7 @@ export function Hero({
   return (
     <section
       className={`relative flex items-center justify-center overflow-hidden bg-espresso ${
-        size === 'full' ? 'min-h-svh' : 'min-h-[58svh] pt-24'
+        size === 'full' ? 'min-h-svh' : 'min-h-[58svh] pt-28 md:pt-32'
       }`}
     >
       <div className="absolute inset-0 overflow-hidden">

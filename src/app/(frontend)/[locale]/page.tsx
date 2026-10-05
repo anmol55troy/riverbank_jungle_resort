@@ -115,7 +115,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </Hero>
 
       <section className="grain relative z-20 -mt-1 border-y border-sage-dark/30 bg-ivory shadow-[0_12px_30px_-24px_rgba(32,55,45,0.6)]">
-        <div className="mx-auto grid max-w-7xl gap-5 px-4 py-6 sm:px-6 md:grid-cols-[1.25fr_1fr_1fr] md:items-center md:gap-8 md:py-7">
+        <div className="mx-auto grid max-w-7xl gap-6 px-4 py-10 sm:px-6 md:grid-cols-[1.25fr_1fr_1fr] md:items-center md:gap-10 md:py-14">
           <div>
             <p className="kicker mb-2">Plan your stay</p>
             <h2 className="display text-2xl sm:text-3xl">Your time by the Rapti starts here.</h2>
@@ -127,7 +127,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </section>
 
-      <section aria-label="Awards and guest review certificates" className="grain relative overflow-hidden border-y border-sage/40 bg-cream py-16 sm:py-20">
+      <section aria-label="Awards and guest review certificates" className="grain relative overflow-hidden border-y border-sage/40 bg-cream py-20 sm:py-24 lg:py-32">
         {/* Left top botanical leaf accent framing the section header without encroaching on carousel */}
         <div
           aria-hidden="true"
@@ -170,7 +170,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </section>
 
       {/* The property — asymmetric editorial spread with automatic image slider */}
-      <section className="grain relative overflow-hidden bg-ivory pt-20 pb-32 sm:pt-24 sm:pb-40 md:pt-32 md:pb-48">
+      <section className="grain relative overflow-hidden bg-ivory py-20 sm:py-24 lg:py-32">
         <SalBranchMotif className="absolute -top-6 right-0 hidden h-44 text-gold opacity-[0.14] lg:block" />
         <div className="relative mx-auto grid max-w-7xl min-w-0 gap-10 px-4 sm:gap-12 sm:px-6 lg:grid-cols-12 lg:items-stretch lg:gap-14">
           <FadeUp className="flex flex-col justify-center min-w-0 max-w-full lg:col-span-5 lg:pr-4">
@@ -291,7 +291,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       {/* The Experience — 4 highlighted visual panels matching the reference image */}
       <section aria-label="Resort Experiences" className="relative w-full overflow-hidden">
         {/* Section Header with authentic Nepali Lokta Kagaz texture */}
-        <div className="grain relative w-full bg-ivory pt-20 pb-12 sm:pt-28 sm:pb-16 md:pt-32">
+        <div className="grain relative w-full bg-ivory pt-20 pb-16 sm:pt-24 lg:pt-32">
           <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6">
             <SectionHeading
               label="The Park"
@@ -359,7 +359,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
 
         {/* Discover More CTA Button with authentic Nepali Lokta Kagaz texture */}
-        <div className="grain relative flex items-center justify-center bg-ivory py-12 sm:py-16">
+        <div className="grain relative flex items-center justify-center bg-ivory pt-16 pb-20 sm:pb-24 lg:pb-32">
           <div className="relative z-10">
             <Link
               href="/experiences"
@@ -372,7 +372,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </section>
 
       {/* Commitment to Greener Tomorrow — Full-bleed Sustainability Banner */}
-      <section aria-label="Sustainability" className="relative w-full overflow-hidden bg-espresso py-28 sm:py-36 md:py-44 flex items-center justify-center">
+      <section aria-label="Sustainability" className="relative w-full overflow-hidden bg-espresso py-24 sm:py-32 lg:py-40 flex items-center justify-center">
         {/* Background Image */}
         <Image
           src="/media/sustanibility.webp"
@@ -399,7 +399,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </section>
 
       {/* White Nepali Kagaz Divider Band with Golden Learn More Button */}
-      <div className="grain relative flex items-center justify-center bg-ivory py-12 sm:py-16">
+      <div className="grain relative flex items-center justify-center bg-ivory py-16 sm:py-20">
         <div className="relative z-10 flex justify-center">
           <Link
             href="/sustainability"
@@ -412,7 +412,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       {/* Guest book */}
       {testimonials.length > 0 && (
-        <section className="relative overflow-hidden bg-espresso py-24 md:py-32">
+        <section className="relative overflow-hidden bg-espresso py-20 sm:py-24 lg:py-32">
           <Image
             src={PLACEHOLDER.sunset}
             alt=""
@@ -441,7 +441,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       )}
 
       {/* Closing CTA */}
-      <section className="relative overflow-hidden bg-espresso py-28 text-center md:py-36">
+      <section className="relative overflow-hidden bg-espresso py-24 sm:py-32 lg:py-40 text-center">
         <Image
           src={PLACEHOLDER.terrace}
           alt=""

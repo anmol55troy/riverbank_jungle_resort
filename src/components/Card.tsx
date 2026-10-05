@@ -46,7 +46,7 @@ export function Card({
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-forest/25 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-within:opacity-100" />
           {tag && (
-            <span className="absolute left-0 top-4 bg-espresso/85 px-3 py-1.5 text-[9px] font-medium uppercase tracking-[0.24em] text-gold">
+            <span className="absolute left-4 top-4 bg-espresso/90 px-3.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.24em] text-gold backdrop-blur-sm">
               {tag}
             </span>
           )}

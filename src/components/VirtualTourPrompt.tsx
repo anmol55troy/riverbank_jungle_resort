@@ -13,6 +13,8 @@ export function VirtualTourPrompt({ url }: Props) {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
+    if (!url) return
+
     try {
       if (window.sessionStorage.getItem('river-bank-tour-seen')) return
     } catch {
@@ -21,7 +23,7 @@ export function VirtualTourPrompt({ url }: Props) {
 
     const timer = window.setTimeout(() => setOpen(true), 25000)
     return () => window.clearTimeout(timer)
-  }, [])
+  }, [url])
 
   useEffect(() => {
     if (!open) return
@@ -38,7 +40,7 @@ export function VirtualTourPrompt({ url }: Props) {
     return () => document.removeEventListener('keydown', onKeyDown)
   }, [open])
 
-  if (!open) return null
+  if (!open || !url) return null
 
   return (
     <div className="fixed inset-0 z-[60] flex items-end justify-center bg-forest/45 p-4 sm:items-center" role="presentation">

@@ -51,7 +51,7 @@ export default async function RoomDetailPage({ params }: Props) {
   ])
   if (!room) notFound()
 
-  const bookingUrl = settings?.bookingUrl ?? DEFAULTS.bookingUrl
+  const bookingUrl = settings?.bookingUrl || DEFAULTS.bookingUrl
   const heroImage = resolveMedia(room.gallery?.[0]?.image, 'hero') ?? {
     url: PLACEHOLDER.room,
     alt: room.title,

@@ -32,7 +32,7 @@ export default async function OffersPage({ params }: { params: Promise<{ locale:
   const { locale } = await params
   setRequestLocale(locale)
 const [offers, settings] = await Promise.all([getActiveOffers(), getSiteSettings().catch(() => null)])
-  const bookingUrl = settings?.bookingUrl ?? DEFAULTS.bookingUrl
+  const bookingUrl = settings?.bookingUrl || DEFAULTS.bookingUrl
 
   return (
     <>

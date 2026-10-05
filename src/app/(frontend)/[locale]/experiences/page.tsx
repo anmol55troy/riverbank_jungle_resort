@@ -41,7 +41,7 @@ const [experiences, settings] = await Promise.all([
     getExperiences(),
     getSiteSettings().catch(() => null),
   ])
-  const bookingUrl = settings?.bookingUrl ?? DEFAULTS.bookingUrl
+  const bookingUrl = settings?.bookingUrl || DEFAULTS.bookingUrl
 
   return (
     <>

@@ -102,8 +102,8 @@ export default async function LocaleLayout({ children, params }: Props) {
     getTranslations('common'),
   ])
 
-  const bookingUrl = settings?.bookingUrl ?? DEFAULTS.bookingUrl
-  const virtualTourUrl = settings?.virtualTourUrl ?? DEFAULTS.virtualTourUrl
+  const bookingUrl = settings?.bookingUrl || DEFAULTS.bookingUrl
+  const virtualTourUrl = settings?.virtualTourUrl || DEFAULTS.virtualTourUrl
   const whatsapp = settings?.whatsapp ?? DEFAULTS.whatsapp
   const logoUrl = resolveMedia(settings?.logo, 'original')?.url ?? '/logo.png'
 

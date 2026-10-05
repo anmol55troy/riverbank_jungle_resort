@@ -24,8 +24,8 @@ export async function Footer({ settings, logoUrl = '/logo.png' }: Props) {
   const salesOffice = settings?.salesOffice ?? DEFAULTS.salesOffice
   const mapUrl = settings?.mapUrl ?? DEFAULTS.mapUrl
   const mapEmbedUrl = DEFAULTS.mapEmbedUrl
-  const bookingUrl = settings?.bookingUrl ?? DEFAULTS.bookingUrl
-  const virtualTourUrl = settings?.virtualTourUrl ?? DEFAULTS.virtualTourUrl
+  const bookingUrl = settings?.bookingUrl || DEFAULTS.bookingUrl
+  const virtualTourUrl = settings?.virtualTourUrl || DEFAULTS.virtualTourUrl
 
   const socials = [
     { href: settings?.facebook ?? DEFAULTS.facebook, label: 'Facebook', icon: FacebookIcon },

@@ -42,7 +42,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   setRequestLocale(locale)
 
   const settings = await getSiteSettings().catch(() => null)
-  const virtualTourUrl = settings?.virtualTourUrl ?? DEFAULTS.virtualTourUrl
+  const virtualTourUrl = settings?.virtualTourUrl || DEFAULTS.virtualTourUrl
 
   return (
     <>

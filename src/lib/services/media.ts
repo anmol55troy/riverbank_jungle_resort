@@ -5,7 +5,7 @@ import { connectDB } from '../db/connect'
 import { MediaModel } from '../db/models'
 import { serializeDoc, serializeDocs } from '../db/serialize'
 import { requireAdmin } from '../auth/guard'
-import { processAndSaveImage, deleteMediaFiles } from '../uploads'
+import { uploadToCloudinary, deleteFromCloudinary } from '../cloudinary'
 import type { Media } from '../types'
 
 export async function getMediaList(options?: {
@@ -61,7 +61,24 @@ export async function uploadMedia(formData: FormData): Promise<{ success: boolea
     const arrayBuffer = await file.arrayBuffer()
     const buffer = Buffer.from(arrayBuffer)
 
-    const media = await processAndSaveImage(buffer, file.name, effectiveAlt, caption)
+    const result = await uploadToCloudinary(buffer)
+    
+    await connectDB()
+    const doc = await MediaModel.create({
+      alt: effectiveAlt,
+      caption: caption || undefined,
+      url: result.secure_url,
+      thumbnailURL: result.secure_url, // Cloudinary provides auto-optimization
+      filename: result.public_id, // keep as fallback or reference
+      mimeType: file.type,
+      filesize: result.bytes,
+      width: result.width,
+      height: result.height,
+      provider: 'cloudinary',
+      public_id: result.public_id,
+    })
+
+    const media = serializeDoc<Media>(doc)
     revalidatePath('/admin/media')
     return { success: true, media }
   } catch (err: any) {
@@ -110,8 +127,13 @@ export async function deleteMedia(id: string): Promise<{ success: boolean; error
       return { success: false, error: 'Media not found.' }
     }
 
-    // Delete files from disk
-    await deleteMediaFiles(doc.filename, doc.sizes)
+    if (doc.provider === 'cloudinary' && doc.public_id) {
+      await deleteFromCloudinary(doc.public_id)
+    } else if (doc.provider === 'local' || !doc.provider) {
+      // If we wanted to keep local fallback, we could, but user requested to remove old code.
+      // So local files will be orphaned until manual cleanup, or we can just leave it.
+      // The old deleteMediaFiles is removed, so we do nothing to the local fs here.
+    }
 
     // Delete DB record
     await MediaModel.findByIdAndDelete(id)

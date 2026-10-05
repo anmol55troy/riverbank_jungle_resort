@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { connectDB } from '../lib/db/connect'
 import { BlogPostModel, MediaModel, RoomModel, ExperienceModel } from '../lib/db/models'
-import { processAndSaveImage } from '../lib/uploads'
+import { uploadToCloudinary } from '../lib/cloudinary'
 import { heading, listItems, paragraph, richText } from './lexical'
 
 /**
@@ -11,6 +11,23 @@ import { heading, listItems, paragraph, richText } from './lexical'
  */
 export async function seedExtraBlogs(): Promise<void> {
   await connectDB()
+
+  async function processAndSaveImage(buffer: Buffer, filename: string, alt: string) {
+    const result = await uploadToCloudinary(buffer)
+    const doc = await MediaModel.create({
+      alt,
+      url: result.secure_url,
+      thumbnailURL: result.secure_url,
+      filename: result.public_id,
+      mimeType: result.format ? `image/${result.format}` : 'image/jpeg',
+      filesize: result.bytes,
+      width: result.width,
+      height: result.height,
+      provider: 'cloudinary',
+      public_id: result.public_id,
+    })
+    return doc
+  }
 
   /** Reuse an already-uploaded placeholder media doc, or create it from public/placeholders. */
   async function mediaByKey(key: string, alt: string): Promise<string | undefined> {

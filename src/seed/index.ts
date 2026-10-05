@@ -21,8 +21,9 @@ import {
   FaqModel,
   GalleryImageModel,
   SiteSettingModel,
+  MediaModel,
 } from '../lib/db/models'
-import { processAndSaveImage } from '../lib/uploads'
+import { uploadToCloudinary } from '../lib/cloudinary'
 import { hashPassword } from '../lib/auth/password'
 import { PLACEHOLDER } from '../lib/images'
 import { seedExtraBlogs } from './extra-blogs'
@@ -92,6 +93,23 @@ async function run(): Promise<void> {
   }
 
   // ---------- Media ----------
+  async function processAndSaveImage(buffer: Buffer, filename: string, alt: string) {
+    const result = await uploadToCloudinary(buffer)
+    const doc = await MediaModel.create({
+      alt,
+      url: result.secure_url,
+      thumbnailURL: result.secure_url,
+      filename: result.public_id,
+      mimeType: result.format ? `image/${result.format}` : 'image/jpeg',
+      filesize: result.bytes,
+      width: result.width,
+      height: result.height,
+      provider: 'cloudinary',
+      public_id: result.public_id,
+    })
+    return doc
+  }
+
   const mediaCache = new Map<string, string>()
   async function media(key: keyof typeof PLACEHOLDER, alt: string): Promise<string> {
     const cached = mediaCache.get(key)
@@ -308,54 +326,63 @@ async function run(): Promise<void> {
   const experiencesSeed = [
     {
       title: 'Jeep Safari',
+      slug: 'jeep-safari',
       duration: 'Half or full day',
       shortDescription:
         'Roll into the park at first light in an open 4x4 with a licensed naturalist, tracking one-horned rhinos through the grasslands, watching for sloth bears in the sal forest, and — with luck on your side — crossing paths with a Bengal tiger.',
     },
     {
       title: 'Canoe Safari',
+      slug: 'canoe-safari',
       duration: '1.5–2 hours',
       shortDescription:
         'Drift down the Rapti in a traditional dugout canoe, eye-level with the river: gharial and mugger crocodiles bask on the sandbanks, kingfishers dive beside you, and the only engine is the boatman’s pole.',
     },
     {
       title: 'Jungle Walk',
+      slug: 'jungle-walk',
       duration: '2–4 hours',
       shortDescription:
         'On foot the jungle changes scale — two naturalists lead you along animal trails to read pugmarks, termite cities and alarm calls, the safest and most intimate way to feel how the forest actually breathes.',
     },
     {
       title: 'Bird Watching',
+      slug: 'bird-watching',
       duration: 'Early morning',
       shortDescription:
         'Chitwan shelters over 540 recorded species; with binoculars and a patient guide you can tick hornbills, paradise flycatchers, storks and — in winter — migratory waterfowl crowding the oxbow lakes.',
     },
     {
       title: 'Crocodile Breeding Center',
+      slug: 'crocodile-breeding-center',
       duration: '2 hours',
       shortDescription:
         'Visit the conservation hatchery that pulled the fish-eating gharial back from the brink — see hatchlings up close and learn how each release day sends young crocodiles back into the Rapti and Narayani rivers.',
     },
     {
       title: 'Tharu Cultural Dance',
+      slug: 'tharu-cultural-dance',
       duration: 'Evening',
       shortDescription:
         'After dinner, drummers from Patihani village take the stage for the stick dance — a whirling, percussive tradition the Tharu have carried for generations, performed by the community itself, not a hotel troupe.',
     },
     {
       title: 'Village Tour',
+      slug: 'village-tour',
       duration: '2–3 hours',
       shortDescription:
         'Cycle or walk into Patihani village to see Tharu longhouses painted with rice-flour murals, meet farmers working buffalo carts, and understand how people and the park have shared this floodplain for centuries.',
     },
     {
       title: 'Sundowner on the Riverbank',
+      slug: 'sundowner-on-the-riverbank',
       duration: '1 hour',
       shortDescription:
         'A table on the sand, a cold drink in hand, and the sun dropping behind the far bank of the Rapti — the simplest experience we offer, and the one guests talk about longest.',
     },
     {
       title: 'Pool & Yoga',
+      slug: 'pool-and-yoga',
       duration: 'Anytime',
       shortDescription:
         'Between safaris, the resort slows down: morning yoga on the lawn as mist lifts off the river, and long afternoons at the pool with the jungle canopy for a fence line.',

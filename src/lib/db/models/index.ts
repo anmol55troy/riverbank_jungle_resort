@@ -20,13 +20,15 @@ const mediaSchema = new Schema(
     caption: String,
     url: String,
     thumbnailURL: String,
-    filename: { type: String, required: true, unique: true },
+    filename: { type: String, unique: true, sparse: true }, // sparse so nulls don't collide
     mimeType: String,
     filesize: Number,
     width: Number,
     height: Number,
     focalX: Number,
     focalY: Number,
+    provider: { type: String, default: 'local' },
+    public_id: String,
     sizes: {
       thumbnail: mediaSizeSchema,
       card: mediaSizeSchema,

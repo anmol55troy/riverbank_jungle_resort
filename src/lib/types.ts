@@ -80,6 +80,8 @@ export interface Media {
   focalX?: number | null
   focalY?: number | null
   sizes?: MediaSizes
+  provider?: string | null
+  public_id?: string | null
   createdAt: string
   updatedAt: string
 }

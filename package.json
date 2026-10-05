@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8000\" next build",
-    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
-    "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev --turbo",
+    "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev --turbo",
     "lint": "cross-env NODE_OPTIONS=--no-deprecation eslint .",
     "seed": "tsx --env-file=.env src/seed/index.ts",
     "seed:blogs": "tsx --env-file=.env src/seed/add-blogs.ts",

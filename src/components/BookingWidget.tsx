@@ -19,14 +19,20 @@ export function BookingWidget({ bookingUrl }: Props) {
   const [checkOut, setCheckOut] = useState(tomorrow)
 
   const href = (() => {
-    const url = new URL(bookingUrl)
-    url.searchParams.set('checkInDate', checkIn)
-    url.searchParams.set('checkOutDate', checkOut)
-    url.searchParams.set('items[0][adults]', '2')
-    url.searchParams.set('items[0][children]', '0')
-    url.searchParams.set('items[0][infants]', '0')
-    url.searchParams.set('currency', 'USD')
-    return url.toString()
+    if (!bookingUrl) return '#'
+    try {
+      const url = new URL(bookingUrl)
+      url.searchParams.set('checkInDate', checkIn)
+      url.searchParams.set('checkOutDate', checkOut)
+      url.searchParams.set('items[0][adults]', '2')
+      url.searchParams.set('items[0][children]', '0')
+      url.searchParams.set('items[0][infants]', '0')
+      url.searchParams.set('currency', 'USD')
+      return url.toString()
+    } catch (e) {
+      // If it's a relative path or invalid URL, fallback gracefully
+      return bookingUrl
+    }
   })()
 
   return (

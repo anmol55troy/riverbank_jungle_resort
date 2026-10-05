@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { Modal } from '../ui/Modal'
 import { Button } from '../ui/Button'
@@ -70,24 +70,36 @@ export function MediaPicker({
     if (onChange) onChange(null)
   }
 
-  const handleUploadSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setUploadError('')
-    const form = e.currentTarget
-    const formData = new FormData(form)
-    const file = formData.get('file') as File
+  const uploadDivRef = useRef<HTMLDivElement>(null)
 
+  const handleUploadClick = async () => {
+    setUploadError('')
+    if (!uploadDivRef.current) return
+    
+    const fileInput = uploadDivRef.current.querySelector('input[name="file"]') as HTMLInputElement
+    const altInput = uploadDivRef.current.querySelector('input[name="alt"]') as HTMLInputElement
+    const captionInput = uploadDivRef.current.querySelector('input[name="caption"]') as HTMLInputElement
+    
+    const file = fileInput?.files?.[0]
+    
     if (!file || file.size === 0) {
       setUploadError('Please select a file to upload.')
       return
     }
+
+    const formData = new FormData()
+    formData.append('file', file)
+    if (altInput?.value) formData.append('alt', altInput.value)
+    if (captionInput?.value) formData.append('caption', captionInput.value)
 
     setUploading(true)
     try {
       const res = await uploadMedia(formData)
       if (res.success && res.media) {
         handleSelect(res.media)
-        form.reset()
+        if (fileInput) fileInput.value = ''
+        if (altInput) altInput.value = ''
+        if (captionInput) captionInput.value = ''
       } else {
         setUploadError(res.error || 'Upload failed.')
       }
@@ -228,7 +240,7 @@ export function MediaPicker({
               )}
             </div>
           ) : (
-            <form onSubmit={handleUploadSubmit} className="space-y-4 max-w-lg mx-auto py-4">
+            <div ref={uploadDivRef} className="space-y-4 max-w-lg mx-auto py-4">
               {uploadError && <div className="p-3 text-xs text-rose-700 bg-rose-50 border border-rose-200 rounded-lg">{uploadError}</div>}
               <div>
                 <label className="block text-xs font-semibold text-espresso mb-1">Choose Image File</label>
@@ -265,11 +277,11 @@ export function MediaPicker({
                 <Button type="button" variant="ghost" size="sm" onClick={() => setActiveTab('browse')}>
                   Cancel
                 </Button>
-                <Button type="submit" variant="primary" size="sm" isLoading={uploading}>
+                <Button type="button" variant="primary" size="sm" isLoading={uploading} onClick={handleUploadClick}>
                   Upload & Select
                 </Button>
               </div>
-            </form>
+            </div>
           )}
         </div>
       </Modal>

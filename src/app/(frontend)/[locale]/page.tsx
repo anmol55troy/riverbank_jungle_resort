@@ -59,8 +59,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     getSiteSettings().catch(() => null),
   ])
 
-  const bookingUrl = settings?.bookingUrl ?? DEFAULTS.bookingUrl
-  const virtualTourUrl = settings?.virtualTourUrl ?? DEFAULTS.virtualTourUrl
+  const bookingUrl = settings?.bookingUrl || DEFAULTS.bookingUrl
+  const virtualTourUrl = settings?.virtualTourUrl || DEFAULTS.virtualTourUrl
 
   const [featured, ...restExperiences] = experiences
 

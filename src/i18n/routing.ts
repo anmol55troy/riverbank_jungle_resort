@@ -9,4 +9,4 @@ export const routing = defineRouting({
   localePrefix: 'as-needed',
 })
 
-type Locale = (typeof routing.locales)[number]
+export type Locale = (typeof routing.locales)[number]

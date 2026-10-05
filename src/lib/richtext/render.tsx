@@ -10,7 +10,21 @@ const IS_CODE = 1 << 4
 const IS_SUBSCRIPT = 1 << 5
 const IS_SUPERSCRIPT = 1 << 6
 
-function renderTextNode(node: SerializedLexicalNode, key: number | string): React.ReactNode {
+interface LexicalNodeBase extends SerializedLexicalNode {
+  text?: string
+  format?: number
+  children?: LexicalNodeBase[]
+  tag?: string
+  listType?: string
+  url?: string
+  newTab?: boolean
+  fields?: {
+    url?: string
+    newTab?: boolean
+  }
+}
+
+function renderTextNode(node: LexicalNodeBase, key: number | string): React.ReactNode {
   let content: React.ReactNode = node.text || ''
 
   if (node.format) {
@@ -27,12 +41,12 @@ function renderTextNode(node: SerializedLexicalNode, key: number | string): Reac
   return <React.Fragment key={key}>{content}</React.Fragment>
 }
 
-function renderChildren(children?: SerializedLexicalNode[]): React.ReactNode {
+function renderChildren(children?: LexicalNodeBase[]): React.ReactNode {
   if (!children || !Array.isArray(children)) return null
   return children.map((child, idx) => renderNode(child, idx))
 }
 
-function renderNode(node: SerializedLexicalNode, index: number | string): React.ReactNode {
+function renderNode(node: LexicalNodeBase, index: number | string): React.ReactNode {
   if (!node || typeof node !== 'object') return null
 
   switch (node.type) {

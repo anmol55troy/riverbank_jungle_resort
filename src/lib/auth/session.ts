@@ -1,7 +1,7 @@
 import crypto from 'crypto'
 import { cookies } from 'next/headers'
 import { connectDB } from '../db/connect'
-import { AdminSessionModel, UserModel } from '../db/models'
+import { AdminSessionModel } from '../db/models'
 import { serializeDoc } from '../db/serialize'
 import type { User } from '../types'
 

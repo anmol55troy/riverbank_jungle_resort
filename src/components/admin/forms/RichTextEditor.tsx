@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
@@ -181,10 +181,11 @@ export function RichTextEditor({ name, defaultValue, error }: RichTextEditorProp
       quote: 'border-l-2 border-gold pl-3 italic text-espresso/70 my-2 text-sm',
     },
     nodes: [HeadingNode, QuoteNode, ListNode, ListItemNode],
-    editorState: defaultValue ? (editor: any) => {
+    editorState: defaultValue ? (editor: unknown) => {
       try {
-        const parsed = editor.parseEditorState(defaultValue)
-        editor.setEditorState(parsed)
+        const lexicalEditor = editor as { parseEditorState: (s: unknown) => unknown, setEditorState: (s: unknown) => void }
+        const parsed = lexicalEditor.parseEditorState(defaultValue)
+        lexicalEditor.setEditorState(parsed)
       } catch (e) {
         console.error('Error parsing initial editor state:', e)
       }

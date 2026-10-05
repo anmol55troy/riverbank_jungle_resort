@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation'
 import { connectDB } from '../db/connect'
 import { UserModel } from '../db/models'
 import { verifyPassword, hashPassword } from '../auth/password'
-import { createSession, destroySession, getSessionUser } from '../auth/session'
+import { createSession, destroySession } from '../auth/session'
 
 export type AuthState = {
   success?: boolean
@@ -40,7 +40,7 @@ export async function loginAction(_prevState: AuthState, formData: FormData): Pr
 
   if (!valid) {
     const attempts = (user.loginAttempts || 0) + 1
-    const updates: Record<string, any> = { loginAttempts: attempts }
+    const updates: Record<string, unknown> = { loginAttempts: attempts }
 
     if (attempts >= 5) {
       updates.lockUntil = new Date(Date.now() + 10 * 60 * 1000) // 10 minutes lock
@@ -51,7 +51,7 @@ export async function loginAction(_prevState: AuthState, formData: FormData): Pr
   }
 
   // Reset login attempts on success
-  const successUpdates: Record<string, any> = {
+  const successUpdates: Record<string, unknown> = {
     loginAttempts: 0,
     lockUntil: null,
   }

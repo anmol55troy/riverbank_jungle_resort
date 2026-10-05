@@ -20,7 +20,7 @@ export async function getAdminExperiences(options?: {
   const limit = Math.max(1, Math.min(100, options?.limit || 20))
   const skip = (page - 1) * limit
 
-  const query: Record<string, any> = {}
+  const query: Record<string, unknown> = {}
   if (options?.search && options.search.trim()) {
     query.title = { $regex: options.search.trim(), $options: 'i' }
   }
@@ -86,7 +86,7 @@ export async function saveExperience(
     }
   }
 
-  const data: Record<string, any> = {
+  const data: Record<string, unknown> = {
     title,
     slug,
     shortDescription,

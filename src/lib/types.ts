@@ -1,7 +1,7 @@
 export type SerializedLexicalNode = {
   type: string
   version: number
-  [key: string]: any
+  [key: string]: unknown
 }
 
 export type SerializedEditorState = {
@@ -12,9 +12,9 @@ export type SerializedEditorState = {
     format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | ''
     indent: number
     version: number
-    [key: string]: any
+    [key: string]: unknown
   }
-  [key: string]: any
+  [key: string]: unknown
 }
 
 export interface User {
@@ -269,13 +269,3 @@ export interface SiteSetting {
   updatedAt?: string | null
 }
 
-interface AdminSession {
-  id: string
-  tokenHash: string
-  userId: string
-  expiresAt: Date
-  ip?: string | null
-  userAgent?: string | null
-  createdAt: string
-  updatedAt: string
-}

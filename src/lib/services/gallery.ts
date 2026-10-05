@@ -20,7 +20,7 @@ export async function getAdminGalleryImages(options?: {
   const limit = Math.max(1, Math.min(100, options?.limit || 24))
   const skip = (page - 1) * limit
 
-  const query: Record<string, any> = {}
+  const query: Record<string, unknown> = {}
   if (options?.category && options.category !== 'all') {
     query.category = options.category
   }

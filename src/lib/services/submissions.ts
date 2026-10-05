@@ -2,7 +2,7 @@
 
 import { connectDB } from '../db/connect'
 import { FormSubmissionModel, NewsletterSignupModel } from '../db/models'
-import { serializeDoc, serializeDocs } from '../db/serialize'
+import { serializeDocs } from '../db/serialize'
 import { requireAdmin } from '../auth/guard'
 import type { FormSubmission, NewsletterSignup } from '../types'
 
@@ -19,7 +19,7 @@ export async function getAdminSubmissions(options?: {
   const limit = Math.max(1, Math.min(100, options?.limit || 20))
   const skip = (page - 1) * limit
 
-  const query: Record<string, any> = {}
+  const query: Record<string, unknown> = {}
   if (options?.formType && options.formType !== 'all') {
     query.formType = options.formType
   }
@@ -51,8 +51,8 @@ export async function deleteSubmission(id: string): Promise<{ success: boolean; 
   try {
     await FormSubmissionModel.findByIdAndDelete(id)
     return { success: true }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to delete submission.' }
+  } catch (err: unknown) {
+    return { success: false, error: err instanceof Error ? err.message : 'Failed to delete submission.' }
   }
 }
 
@@ -68,7 +68,7 @@ export async function getAdminNewsletterSignups(options?: {
   const limit = Math.max(1, Math.min(100, options?.limit || 50))
   const skip = (page - 1) * limit
 
-  const query: Record<string, any> = {}
+  const query: Record<string, unknown> = {}
   if (options?.search && options.search.trim()) {
     query.email = { $regex: options.search.trim(), $options: 'i' }
   }
@@ -91,7 +91,7 @@ export async function deleteNewsletterSignup(id: string): Promise<{ success: boo
   try {
     await NewsletterSignupModel.findByIdAndDelete(id)
     return { success: true }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to delete signup.' }
+  } catch (err: unknown) {
+    return { success: false, error: err instanceof Error ? err.message : 'Failed to delete signup.' }
   }
 }

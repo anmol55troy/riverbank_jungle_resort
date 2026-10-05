@@ -18,7 +18,7 @@ export async function getMediaList(options?: {
   const limit = Math.max(1, Math.min(100, options?.limit || 24))
   const skip = (page - 1) * limit
 
-  const query: Record<string, any> = {}
+  const query: Record<string, unknown> = {}
   if (options?.search && options.search.trim()) {
     const s = options.search.trim()
     query.$or = [

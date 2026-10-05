@@ -21,7 +21,7 @@ export async function getAdminUsers(options?: {
   const limit = Math.max(1, Math.min(100, options?.limit || 20))
   const skip = (page - 1) * limit
 
-  const query: Record<string, any> = {}
+  const query: Record<string, unknown> = {}
   if (options?.search && options.search.trim()) {
     const s = options.search.trim()
     query.$or = [
@@ -75,7 +75,7 @@ export async function saveAdminUser(
     return { success: false, error: 'Password must be at least 8 characters long.' }
   }
 
-  const data: Record<string, any> = {
+  const data: Record<string, unknown> = {
     name: name || undefined,
     email,
     role: 'admin',

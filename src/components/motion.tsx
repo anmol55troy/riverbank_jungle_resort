@@ -9,8 +9,6 @@ type WrapperProps = {
   delay?: number
 }
 
-const cx = (...parts: (string | undefined)[]) => parts.filter(Boolean).join(' ')
-
 export function FadeUp({ children, className, delay = 0 }: WrapperProps) {
   return (
     <motion.div

@@ -1,5 +1,13 @@
 import React from 'react'
 
+const getBaseInputClasses = (error?: boolean, className = '') => {
+  return `w-full rounded-lg bg-white px-3.5 py-2 text-sm text-espresso border transition-colors focus:outline-none focus:ring-2 focus:ring-espresso/20 ${
+    error
+      ? 'border-rose-400 focus:border-rose-600 focus:ring-rose-200'
+      : 'border-espresso/20 focus:border-espresso'
+  } ${className}`.trim()
+}
+
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: boolean
 }
@@ -8,11 +16,7 @@ export function TextInput({ error, className = '', ...props }: InputProps) {
   return (
     <input
       type="text"
-      className={`w-full rounded-lg bg-white px-3.5 py-2 text-sm text-espresso border transition-colors focus:outline-none focus:ring-2 focus:ring-espresso/20 ${
-        error
-          ? 'border-rose-400 focus:border-rose-600 focus:ring-rose-200'
-          : 'border-espresso/20 focus:border-espresso'
-      } ${className}`.trim()}
+      className={getBaseInputClasses(error, className)}
       {...props}
     />
   )
@@ -22,11 +26,7 @@ export function NumberInput({ error, className = '', ...props }: InputProps) {
   return (
     <input
       type="number"
-      className={`w-full rounded-lg bg-white px-3.5 py-2 text-sm text-espresso border transition-colors focus:outline-none focus:ring-2 focus:ring-espresso/20 ${
-        error
-          ? 'border-rose-400 focus:border-rose-600 focus:ring-rose-200'
-          : 'border-espresso/20 focus:border-espresso'
-      } ${className}`.trim()}
+      className={getBaseInputClasses(error, className)}
       {...props}
     />
   )
@@ -36,11 +36,7 @@ export function DateInput({ error, className = '', ...props }: InputProps) {
   return (
     <input
       type="date"
-      className={`w-full rounded-lg bg-white px-3.5 py-2 text-sm text-espresso border transition-colors focus:outline-none focus:ring-2 focus:ring-espresso/20 ${
-        error
-          ? 'border-rose-400 focus:border-rose-600 focus:ring-rose-200'
-          : 'border-espresso/20 focus:border-espresso'
-      } ${className}`.trim()}
+      className={getBaseInputClasses(error, className)}
       {...props}
     />
   )
@@ -54,11 +50,7 @@ export function Textarea({ error, className = '', rows = 3, ...props }: Textarea
   return (
     <textarea
       rows={rows}
-      className={`w-full rounded-lg bg-white px-3.5 py-2 text-sm text-espresso border transition-colors focus:outline-none focus:ring-2 focus:ring-espresso/20 ${
-        error
-          ? 'border-rose-400 focus:border-rose-600 focus:ring-rose-200'
-          : 'border-espresso/20 focus:border-espresso'
-      } ${className}`.trim()}
+      className={getBaseInputClasses(error, className)}
       {...props}
     />
   )
@@ -77,11 +69,7 @@ export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElemen
 export function Select({ options, error, className = '', ...props }: SelectProps) {
   return (
     <select
-      className={`w-full rounded-lg bg-white px-3.5 py-2 text-sm text-espresso border transition-colors focus:outline-none focus:ring-2 focus:ring-espresso/20 cursor-pointer ${
-        error
-          ? 'border-rose-400 focus:border-rose-600 focus:ring-rose-200'
-          : 'border-espresso/20 focus:border-espresso'
-      } ${className}`.trim()}
+      className={`${getBaseInputClasses(error, className)} cursor-pointer`.trim()}
       {...props}
     >
       {options.map((opt) => (
@@ -104,7 +92,7 @@ export function Checkbox({ label, className = '', id, ...props }: CheckboxProps)
       <input
         type="checkbox"
         id={inputId}
-        className={`rounded border-espresso/30 text-espresso focus:ring-espresso/20 h-4 w-4 transition-colors ${className}`}
+        className={`rounded border-espresso/30 text-espresso focus:ring-espresso/20 h-4 w-4 transition-colors ${className}`.trim()}
         {...props}
       />
       {label && <span>{label}</span>}

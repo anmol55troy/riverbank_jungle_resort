@@ -77,7 +77,7 @@ export async function saveSiteSettings(formData: FormData): Promise<{ success: b
   const eventsBanner = String(formData.get('eventsBanner') || '').trim()
   const sustainabilityBanner = String(formData.get('sustainabilityBanner') || '').trim()
 
-  const data: Record<string, any> = {
+  const data: Record<string, unknown> = {
     globalType: 'site-settings',
     siteName,
     tagline,

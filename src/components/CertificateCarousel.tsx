@@ -13,7 +13,6 @@ export type CertificateItem = {
   outOf: string
   awardTitle: string
   description: string
-  accentColor?: string
 }
 
 const CERTIFICATES: CertificateItem[] = [
@@ -25,7 +24,6 @@ const CERTIFICATES: CertificateItem[] = [
     outOf: '/10',
     awardTitle: 'Traveller Review Awards 2026',
     description: 'Recognized for consistent 9+ ratings from international wildlife travellers.',
-    accentColor: '#003580',
   },
   {
     src: '/awards/trip.jpg',
@@ -35,7 +33,6 @@ const CERTIFICATES: CertificateItem[] = [
     outOf: '/10',
     awardTitle: 'Amazing · Verified Reviews 2026',
     description: 'Top-tier rating for safari hospitality, cleanliness and riverside atmosphere.',
-    accentColor: '#2577E3',
   },
   {
     src: '/awards/expedia.jpeg',
@@ -45,7 +42,6 @@ const CERTIFICATES: CertificateItem[] = [
     outOf: '/5',
     awardTitle: 'Exceptional · Verified Reviews',
     description: 'Perfect score across service, jungle excursions and dining experience.',
-    accentColor: '#00355f',
   },
   {
     src: '/awards/hotel.jpeg',
@@ -55,7 +51,6 @@ const CERTIFICATES: CertificateItem[] = [
     outOf: '/10',
     awardTitle: 'Exceptional · Guest Rated 2026',
     description: 'Celebrated by verified guests as an unforgettable Chitwan wilderness retreat.',
-    accentColor: '#D32F2F',
   },
 ]
 

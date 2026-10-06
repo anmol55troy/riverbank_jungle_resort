@@ -417,7 +417,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       {/* Closing CTA */}
       <section className="relative overflow-hidden bg-espresso py-24 sm:py-32 lg:py-40 text-center">
         <Image
-          src={PLACEHOLDER.terrace}
+          src="/hero/LON05462.jpg"
           alt=""
           fill
           sizes="100vw"

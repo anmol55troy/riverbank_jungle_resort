@@ -59,8 +59,8 @@ export function FormSubmissionsClient({
       } else {
         addToast(res.error || 'Failed to delete submission.', 'error')
       }
-    } catch (err: any) {
-      addToast(err.message || 'Error occurred.', 'error')
+    } catch (err: unknown) {
+      addToast((err instanceof Error ? err.message : "An unknown error occurred") || 'Error occurred.', 'error')
     } finally {
       setIsDeleting(false)
     }

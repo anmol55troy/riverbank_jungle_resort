@@ -75,8 +75,8 @@ export function MediaManagerClient({
       } else {
         addToast(res.error || 'Failed to update media.', 'error')
       }
-    } catch (err: any) {
-      addToast(err.message || 'Error occurred.', 'error')
+    } catch (err: unknown) {
+      addToast((err instanceof Error ? err.message : "An unknown error occurred") || 'Error occurred.', 'error')
     } finally {
       setIsSavingEdit(false)
     }
@@ -104,8 +104,8 @@ export function MediaManagerClient({
       } else {
         addToast(res.error || 'Upload failed.', 'error')
       }
-    } catch (err: any) {
-      addToast(err.message || 'Upload error.', 'error')
+    } catch (err: unknown) {
+      addToast((err instanceof Error ? err.message : "An unknown error occurred") || 'Upload error.', 'error')
     } finally {
       setIsUploading(false)
     }
@@ -127,8 +127,8 @@ export function MediaManagerClient({
       } else {
         addToast(res.error || 'Failed to delete media.', 'error')
       }
-    } catch (err: any) {
-      addToast(err.message || 'Deletion error.', 'error')
+    } catch (err: unknown) {
+      addToast((err instanceof Error ? err.message : "An unknown error occurred") || 'Deletion error.', 'error')
     } finally {
       setIsDeleting(false)
     }

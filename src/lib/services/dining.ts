@@ -81,7 +81,7 @@ export async function saveDiningVenue(
     cuisine: cuisine || undefined,
     hours: hours || undefined,
     image: image || undefined,
-    gallery: gallery.filter((g: any) => g.image),
+    gallery: Array.isArray(gallery) ? gallery.filter((g: any) => g.image) : [],
     order,
   }
 
@@ -100,8 +100,8 @@ export async function saveDiningVenue(
     revalidatePath('/sitemap.xml')
 
     return { success: true, id: savedId! }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to save venue.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Failed to save venue.' }
   }
 }
 
@@ -117,7 +117,7 @@ export async function deleteDiningVenue(id: string): Promise<{ success: boolean;
       revalidatePath('/sitemap.xml')
     }
     return { success: true }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to delete venue.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Failed to delete venue.' }
   }
 }

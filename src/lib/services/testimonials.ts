@@ -83,8 +83,8 @@ export async function saveTestimonial(
 
     revalidatePath('/[locale]', 'page')
     return { success: true, id: savedId! }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to save review.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Failed to save review.' }
   }
 }
 
@@ -95,7 +95,7 @@ export async function deleteTestimonial(id: string): Promise<{ success: boolean;
     await TestimonialModel.findByIdAndDelete(id)
     revalidatePath('/[locale]', 'page')
     return { success: true }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to delete review.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Failed to delete review.' }
   }
 }

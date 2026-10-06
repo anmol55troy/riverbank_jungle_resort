@@ -36,8 +36,8 @@ export function FaqForm({ faq }: FaqFormProps) {
       } else {
         setError(res.error || 'Failed to save FAQ.')
       }
-    } catch (err: any) {
-      setError(err.message || 'An error occurred.')
+    } catch (err: unknown) {
+      setError((err instanceof Error ? err.message : "An unknown error occurred") || 'An error occurred.')
     } finally {
       setIsSubmitting(false)
     }

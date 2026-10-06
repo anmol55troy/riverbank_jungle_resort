@@ -77,8 +77,8 @@ export async function saveFaq(
     revalidatePath('/[locale]/contact', 'page')
     revalidatePath('/[locale]', 'page')
     return { success: true, id: savedId! }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to save FAQ.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Failed to save FAQ.' }
   }
 }
 
@@ -90,7 +90,7 @@ export async function deleteFaq(id: string): Promise<{ success: boolean; error?:
     revalidatePath('/[locale]/contact', 'page')
     revalidatePath('/[locale]', 'page')
     return { success: true }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to delete FAQ.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Failed to delete FAQ.' }
   }
 }

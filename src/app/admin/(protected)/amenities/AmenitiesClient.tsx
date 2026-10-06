@@ -59,8 +59,8 @@ export function AmenitiesClient({ initialAmenities }: AmenitiesClientProps) {
       } else {
         addToast(res.error || 'Failed to save amenity.', 'error')
       }
-    } catch (err: any) {
-      addToast(err.message || 'Error occurred.', 'error')
+    } catch (err: unknown) {
+      addToast((err instanceof Error ? err.message : "An unknown error occurred") || 'Error occurred.', 'error')
     } finally {
       setIsSubmitting(false)
     }
@@ -78,8 +78,8 @@ export function AmenitiesClient({ initialAmenities }: AmenitiesClientProps) {
       } else {
         addToast(res.error || 'Failed to delete amenity.', 'error')
       }
-    } catch (err: any) {
-      addToast(err.message || 'Error occurred.', 'error')
+    } catch (err: unknown) {
+      addToast((err instanceof Error ? err.message : "An unknown error occurred") || 'Error occurred.', 'error')
     } finally {
       setIsDeleting(false)
     }

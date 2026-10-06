@@ -37,8 +37,8 @@ export function DiningVenueForm({ venue }: DiningVenueFormProps) {
       } else {
         setError(res.error || 'Failed to save venue.')
       }
-    } catch (err: any) {
-      setError(err.message || 'An unexpected error occurred.')
+    } catch (err: unknown) {
+      setError((err instanceof Error ? err.message : "An unknown error occurred") || 'An unexpected error occurred.')
     } finally {
       setIsSubmitting(false)
     }

@@ -72,8 +72,8 @@ export function MediaBrowserModal({
       } else {
         setUploadError(res.error || 'Upload failed.')
       }
-    } catch (err: any) {
-      setUploadError(err.message || 'Upload failed.')
+    } catch (err: unknown) {
+      setUploadError((err instanceof Error ? err.message : "An unknown error occurred") || 'Upload failed.')
     } finally {
       setUploading(false)
     }

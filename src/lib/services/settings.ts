@@ -121,7 +121,7 @@ export async function saveSiteSettings(formData: FormData): Promise<{ success: b
     revalidatePath('/sitemap.xml')
 
     return { success: true }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to update site settings.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Failed to update site settings.' }
   }
 }

@@ -94,8 +94,8 @@ export async function saveOffer(
     revalidatePath('/sitemap.xml')
 
     return { success: true, id: savedId! }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to save offer.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Failed to save offer.' }
   }
 }
 
@@ -108,7 +108,7 @@ export async function deleteOffer(id: string): Promise<{ success: boolean; error
     revalidatePath('/[locale]', 'page')
     revalidatePath('/sitemap.xml')
     return { success: true }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to delete offer.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Failed to delete offer.' }
   }
 }

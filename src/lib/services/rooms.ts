@@ -83,7 +83,7 @@ export async function saveRoom(
     order,
     features,
     amenities: amenities.filter(Boolean),
-    gallery: gallery.filter((g: any) => g.image),
+    gallery: Array.isArray(gallery) ? gallery.filter((g: any) => g.image) : [],
     priceFrom: priceAmount !== undefined ? { amount: priceAmount, currency: priceCurrency } : undefined,
   }
 
@@ -102,8 +102,8 @@ export async function saveRoom(
     revalidatePath('/sitemap.xml')
 
     return { success: true, id: savedId! }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to save room.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Failed to save room.' }
   }
 }
 
@@ -120,7 +120,7 @@ export async function deleteRoom(id: string): Promise<{ success: boolean; error?
       revalidatePath('/sitemap.xml')
     }
     return { success: true }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to delete room.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Failed to delete room.' }
   }
 }

@@ -37,8 +37,8 @@ export function UserForm({ user, currentUserId }: UserFormProps) {
       } else {
         setError(res.error || 'Failed to save user.')
       }
-    } catch (err: any) {
-      setError(err.message || 'An error occurred.')
+    } catch (err: unknown) {
+      setError((err instanceof Error ? err.message : "An unknown error occurred") || 'An error occurred.')
     } finally {
       setIsSubmitting(false)
     }

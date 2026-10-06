@@ -1,4 +1,4 @@
-import { v2 as cloudinary } from 'cloudinary';
+import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
 
 // Configure Cloudinary using environment variables
 cloudinary.config({
@@ -17,7 +17,7 @@ cloudinary.config({
 export const uploadToCloudinary = (
   buffer: Buffer,
   folder: string = 'river-bank-jungle-resort'
-): Promise<any> => {
+): Promise<UploadApiResponse> => {
   return new Promise((resolve, reject) => {
     const uploadStream = cloudinary.uploader.upload_stream(
       {
@@ -26,7 +26,8 @@ export const uploadToCloudinary = (
       },
       (error, result) => {
         if (error) return reject(error);
-        resolve(result);
+        if (result) resolve(result);
+        else reject(new Error('No result returned from Cloudinary.'));
       }
     );
 
@@ -39,7 +40,7 @@ export const uploadToCloudinary = (
  * @param publicId - The public ID of the Cloudinary asset
  * @returns Promise with the Cloudinary deletion result
  */
-export const deleteFromCloudinary = async (publicId: string): Promise<any> => {
+export const deleteFromCloudinary = async (publicId: string): Promise<unknown> => {
   if (!publicId) return;
   return new Promise((resolve, reject) => {
     cloudinary.uploader.destroy(publicId, (error, result) => {

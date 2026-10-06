@@ -110,8 +110,8 @@ export async function saveBlogPost(
     revalidatePath('/sitemap.xml')
 
     return { success: true, id: savedId! }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to save blog post.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Failed to save blog post.' }
   }
 }
 
@@ -127,7 +127,7 @@ export async function deleteBlogPost(id: string): Promise<{ success: boolean; er
       revalidatePath('/sitemap.xml')
     }
     return { success: true }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to delete post.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Failed to delete post.' }
   }
 }

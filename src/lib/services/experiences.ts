@@ -95,8 +95,8 @@ export async function saveExperience(
     revalidatePath('/sitemap.xml')
 
     return { success: true, id: savedId! }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to save experience.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Failed to save experience.' }
   }
 }
 
@@ -109,7 +109,7 @@ export async function deleteExperience(id: string): Promise<{ success: boolean; 
     revalidatePath('/[locale]', 'page')
     revalidatePath('/sitemap.xml')
     return { success: true }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to delete experience.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Failed to delete experience.' }
   }
 }

@@ -48,8 +48,8 @@ export function NewsletterSignupsClient({
       } else {
         addToast(res.error || 'Failed to remove subscriber.', 'error')
       }
-    } catch (err: any) {
-      addToast(err.message || 'Error occurred.', 'error')
+    } catch (err: unknown) {
+      addToast((err instanceof Error ? err.message : "An unknown error occurred") || 'Error occurred.', 'error')
     } finally {
       setIsDeleting(false)
     }

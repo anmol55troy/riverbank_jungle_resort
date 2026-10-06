@@ -36,8 +36,8 @@ export function ExperienceForm({ experience }: ExperienceFormProps) {
       } else {
         setError(res.error || 'Failed to save experience.')
       }
-    } catch (err: any) {
-      setError(err.message || 'An error occurred.')
+    } catch (err: unknown) {
+      setError((err instanceof Error ? err.message : "An unknown error occurred") || 'An error occurred.')
     } finally {
       setIsSubmitting(false)
     }

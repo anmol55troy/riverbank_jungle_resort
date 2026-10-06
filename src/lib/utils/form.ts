@@ -1,6 +1,6 @@
-import { generateSlug } from '../validation/slug'
 
-export function parseLexicalJson(rawDescription: string): any {
+
+export function parseLexicalJson(rawDescription: string): unknown {
   try {
     if (rawDescription) {
       return JSON.parse(rawDescription)
@@ -18,7 +18,7 @@ export function parseLexicalJson(rawDescription: string): any {
   }
 }
 
-export function parseJsonField(rawField: string, defaultValue: any = []): any {
+export function parseJsonField(rawField: string, defaultValue: unknown = []): unknown {
   try {
     return JSON.parse(rawField)
   } catch {

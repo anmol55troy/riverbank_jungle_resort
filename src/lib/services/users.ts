@@ -101,8 +101,8 @@ export async function saveAdminUser(
 
     revalidatePath('/admin/users')
     return { success: true, id: savedId! }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to save user.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Failed to save user.' }
   }
 }
 
@@ -125,7 +125,7 @@ export async function deleteAdminUser(id: string): Promise<{ success: boolean; e
     await revokeAllUserSessions(id)
     revalidatePath('/admin/users')
     return { success: true }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to delete user.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Failed to delete user.' }
   }
 }

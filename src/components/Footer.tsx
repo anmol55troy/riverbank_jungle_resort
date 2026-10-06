@@ -97,11 +97,10 @@ export async function Footer({ settings, logoUrl = '/logo.png' }: Props) {
         <div>
           <h2 className="label-caps mb-5">{t('contactUs')}</h2>
           <ul className="space-y-3 text-sm text-ivory/75">
-            <li className="flex gap-2.5">
-              <PinIcon className="mt-1 h-4 w-4 shrink-0 text-gold" />
-              <span>
-                {address}
-                <br />
+            <li className={`flex gap-2.5 ${address ? 'items-start' : 'items-center'}`}>
+              <PinIcon className={`h-4 w-4 shrink-0 text-gold ${address ? 'mt-1' : ''}`} />
+              <span className="flex flex-col">
+                {!!address && <span>{address}</span>}
                 <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">
                   {t('viewOnMap')}
                 </a>

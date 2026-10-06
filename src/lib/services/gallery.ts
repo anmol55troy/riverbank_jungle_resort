@@ -79,8 +79,8 @@ export async function saveGalleryImage(
 
     revalidatePath('/[locale]/gallery', 'page')
     return { success: true, id: savedId! }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to save gallery image.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Failed to save gallery image.' }
   }
 }
 
@@ -91,7 +91,7 @@ export async function deleteGalleryImage(id: string): Promise<{ success: boolean
     await GalleryImageModel.findByIdAndDelete(id)
     revalidatePath('/[locale]/gallery', 'page')
     return { success: true }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to delete gallery image.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Failed to delete gallery image.' }
   }
 }

@@ -40,8 +40,8 @@ export async function saveAmenity(
 
     revalidatePath('/[locale]/rooms', 'page')
     return { success: true, id: savedId! }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to save amenity.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Failed to save amenity.' }
   }
 }
 
@@ -52,7 +52,7 @@ export async function deleteAmenity(id: string): Promise<{ success: boolean; err
     await AmenityModel.findByIdAndDelete(id)
     revalidatePath('/[locale]/rooms', 'page')
     return { success: true }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Failed to delete amenity.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Failed to delete amenity.' }
   }
 }

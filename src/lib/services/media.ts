@@ -81,9 +81,9 @@ export async function uploadMedia(formData: FormData): Promise<{ success: boolea
     const media = serializeDoc<Media>(doc)
     revalidatePath('/admin/media')
     return { success: true, media }
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('Failed to process upload:', err)
-    return { success: false, error: err.message || 'Image processing failed.' }
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Image processing failed.' }
   }
 }
 
@@ -113,8 +113,8 @@ export async function updateMedia(
 
     revalidatePath('/admin/media')
     return { success: true, media: serializeDoc<Media>(doc) }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Update failed.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Update failed.' }
   }
 }
 
@@ -136,7 +136,7 @@ export async function deleteMedia(id: string): Promise<{ success: boolean; error
 
     revalidatePath('/admin/media')
     return { success: true }
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Deletion failed.' }
+  } catch (err: unknown) {
+    return { success: false, error: (err instanceof Error ? err.message : "An unknown error occurred") || 'Deletion failed.' }
   }
 }

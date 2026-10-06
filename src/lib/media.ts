@@ -15,16 +15,10 @@ export type ResolvedImage = {
  */
 export function resolveMedia(
   media: MediaLike,
-  size: 'thumbnail' | 'card' | 'hero' | 'og' | 'original' = 'card',
+  _size?: 'thumbnail' | 'card' | 'hero' | 'og' | 'original',
 ): ResolvedImage | null {
   if (!media || typeof media === 'number' || typeof media === 'string') return null
 
-  if (size !== 'original') {
-    const s = media.sizes?.[size]
-    if (s?.url && s.width && s.height) {
-      return { url: s.url, alt: media.alt ?? '', width: s.width, height: s.height }
-    }
-  }
 
   if (media.url && media.width && media.height) {
     return { url: media.url, alt: media.alt ?? '', width: media.width, height: media.height }

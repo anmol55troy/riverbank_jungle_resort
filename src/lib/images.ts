@@ -1,14 +1,11 @@
 /**
- * Placeholder imagery, served locally from /public/placeholders.
+ * Placeholder imagery, served from Picsum Photos.
  *
- * Nature, wildlife and culture shots are real Chitwan photographs from
- * Wikimedia Commons (CC-licensed); interiors are Unsplash stock — see
- * scripts/download-placeholders source URLs in the repo history. The resort
- * replaces all of these through the CMS: every consumer resolves a media
+ * The resort replaces all of these through the CMS: every consumer resolves a media
  * relation first and only falls back to these when the collection has
  * no image yet.
  */
-const local = (key: string) => `/placeholders/${key}.jpg`
+const local = (key: string) => `https://picsum.photos/seed/${key}/1600/1067`
 
 export const PLACEHOLDER = {
   // — Chitwan / Rapti (Wikimedia Commons) —

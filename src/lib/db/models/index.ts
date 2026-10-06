@@ -1,18 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
 
-// --- Size Sub-Schema for Media ---
-const mediaSizeSchema = new Schema(
-  {
-    url: String,
-    width: Number,
-    height: Number,
-    mimeType: String,
-    filesize: Number,
-    filename: String,
-  },
-  { _id: false }
-)
-
 // --- 1. Media Model ---
 const mediaSchema = new Schema(
   {
@@ -27,14 +14,8 @@ const mediaSchema = new Schema(
     height: Number,
     focalX: Number,
     focalY: Number,
-    provider: { type: String, default: 'local' },
+    provider: { type: String, default: 'cloudinary' },
     public_id: String,
-    sizes: {
-      thumbnail: mediaSizeSchema,
-      card: mediaSizeSchema,
-      hero: mediaSizeSchema,
-      og: mediaSizeSchema,
-    },
   },
   { timestamps: true, collection: 'media' }
 )

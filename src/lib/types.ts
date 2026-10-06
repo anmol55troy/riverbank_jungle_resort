@@ -31,41 +31,6 @@ export interface User {
   updatedAt: string
 }
 
-interface MediaSizes {
-  thumbnail?: {
-    url?: string | null
-    width?: number | null
-    height?: number | null
-    mimeType?: string | null
-    filesize?: number | null
-    filename?: string | null
-  }
-  card?: {
-    url?: string | null
-    width?: number | null
-    height?: number | null
-    mimeType?: string | null
-    filesize?: number | null
-    filename?: string | null
-  }
-  hero?: {
-    url?: string | null
-    width?: number | null
-    height?: number | null
-    mimeType?: string | null
-    filesize?: number | null
-    filename?: string | null
-  }
-  og?: {
-    url?: string | null
-    width?: number | null
-    height?: number | null
-    mimeType?: string | null
-    filesize?: number | null
-    filename?: string | null
-  }
-}
-
 export interface Media {
   id: string
   alt: string
@@ -79,7 +44,6 @@ export interface Media {
   height?: number | null
   focalX?: number | null
   focalY?: number | null
-  sizes?: MediaSizes
   provider?: string | null
   public_id?: string | null
   createdAt: string

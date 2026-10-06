@@ -308,32 +308,15 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
         {/* 4 Full-Bleed Edge-to-Edge Visual Columns */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 w-full overflow-hidden bg-espresso">
-          {[
-            {
-              title: 'RECREATION',
+          {experiences.slice(0, 4).map((item) => {
+            const resolved = resolveMedia(item.image, 'card')
+            return {
+              title: item.title,
               href: '/experiences',
-              image: '/media/Recreation.jpg',
-              alt: 'Recreation, swimming pool and leisure at River Bank Jungle Resort',
-            },
-            {
-              title: 'JEEP SAFARI',
-              href: '/experiences',
-              image: '/media/Jeep safari.jpg',
-              alt: 'Open 4x4 Jeep Safari through Chitwan National Park',
-            },
-            {
-              title: 'CANOEING SAFARI',
-              href: '/experiences',
-              image: '/media/canoing safari.jpg',
-              alt: 'Traditional dugout canoe safari along the Rapti River',
-            },
-            {
-              title: 'THARU CULTURAL DANCE',
-              href: '/experiences',
-              image: '/media/tharu dance.webp',
-              alt: 'Authentic Tharu cultural dance and performance',
-            },
-          ].map((item) => (
+              image: resolved?.url || PLACEHOLDER.hero,
+              alt: item.title,
+            }
+          }).map((item) => (
             <Link
               key={item.title}
               href={item.href}

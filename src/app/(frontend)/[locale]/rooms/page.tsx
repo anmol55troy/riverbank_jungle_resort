@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { setRequestLocale } from 'next-intl/server'
-import { getSiteSettings } from '@/lib/data'
+import { getSiteSettings, getRooms } from '@/lib/data'
 
 import { Hero } from '@/components/Hero'
 import { JsonLd } from '@/components/JsonLd'
@@ -25,26 +25,13 @@ export default async function RoomsPage({ params }: { params: Promise<{ locale: 
   setRequestLocale(locale)
 
   const settings = await getSiteSettings().catch(() => null)
-const roomShowcase = [
-    {
-      slug: 'deluxe-room',
-      title: 'DELUXE ROOM',
-      image: '/media/delaux.webp',
-      alt: 'Deluxe Room at River Bank Jungle Resort',
-    },
-    {
-      slug: 'super-deluxe-room',
-      title: 'SUPER DELUXE ROOM',
-      image: '/media/super delaux.webp',
-      alt: 'Super Deluxe Room at River Bank Jungle Resort',
-    },
-    {
-      slug: 'villa-with-private-plunge-pool',
-      title: 'VILLA WITH PRIVATE PLUNGE POOL',
-      image: '/media/pool.webp',
-      alt: 'Villa with Private Plunge Pool at River Bank Jungle Resort',
-    },
-  ]
+  const rooms = await getRooms()
+  const roomShowcase = rooms.slice(0, 3).map((room) => ({
+    slug: room.slug,
+    title: room.title,
+    image: resolveMedia(room.gallery?.[0]?.image, 'card')?.url || PLACEHOLDER.room,
+    alt: room.title,
+  }))
 
   return (
     <>

@@ -129,10 +129,6 @@ export async function deleteMedia(id: string): Promise<{ success: boolean; error
 
     if (doc.provider === 'cloudinary' && doc.public_id) {
       await deleteFromCloudinary(doc.public_id)
-    } else if (doc.provider === 'local' || !doc.provider) {
-      // If we wanted to keep local fallback, we could, but user requested to remove old code.
-      // So local files will be orphaned until manual cleanup, or we can just leave it.
-      // The old deleteMediaFiles is removed, so we do nothing to the local fs here.
     }
 
     // Delete DB record

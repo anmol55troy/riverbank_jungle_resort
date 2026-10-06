@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { getDashboardStats } from '@/lib/services/dashboard'
-import { Badge } from '@/components/admin/ui/Badge'
+import { Badge } from '@/app/admin/_components/ui/Badge'
 
 export const dynamic = 'force-dynamic'
 

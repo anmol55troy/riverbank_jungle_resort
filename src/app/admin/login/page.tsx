@@ -3,7 +3,7 @@
 import React, { useActionState } from 'react'
 import Link from 'next/link'
 import { loginAction } from '@/lib/services/auth'
-import { Button } from '@/components/admin/ui/Button'
+import { Button } from '@/app/admin/_components/ui/Button'
 
 export default function AdminLoginPage() {
   const [state, formAction, isPending] = useActionState(loginAction, { error: '' })

@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { FormField } from '@/components/admin/forms/FormField'
-import { TextInput, NumberInput } from '@/components/admin/forms/Inputs'
-import { RichTextEditor } from '@/components/admin/forms/RichTextEditor'
-import { FormActions } from '@/components/admin/forms/FormActions'
-import { useToast } from '@/components/admin/ui/Toast'
+import { FormField } from '@/app/admin/_components/forms/FormField'
+import { TextInput, NumberInput } from '@/app/admin/_components/forms/Inputs'
+import { RichTextEditor } from '@/app/admin/_components/forms/RichTextEditor'
+import { FormActions } from '@/app/admin/_components/forms/FormActions'
+import { useToast } from '@/app/admin/_components/ui/Toast'
 import { saveFaq, deleteFaq } from '@/lib/services/faqs'
 import type { Faq } from '@/lib/types'
 

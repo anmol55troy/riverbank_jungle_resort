@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Marcellus, Plus_Jakarta_Sans } from 'next/font/google'
-import '../(frontend)/globals.css'
+import '../globals.css'
 
 const marcellus = Marcellus({
   subsets: ['latin'],

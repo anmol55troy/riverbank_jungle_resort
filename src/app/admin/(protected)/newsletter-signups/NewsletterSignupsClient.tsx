@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Button } from '@/components/admin/ui/Button'
-import { ConfirmDialog } from '@/components/admin/ui/ConfirmDialog'
-import { Pagination } from '@/components/admin/tables/Pagination'
-import { useToast } from '@/components/admin/ui/Toast'
+import { Button } from '@/app/admin/_components/ui/Button'
+import { ConfirmDialog } from '@/app/admin/_components/ui/ConfirmDialog'
+import { Pagination } from '@/app/admin/_components/tables/Pagination'
+import { useToast } from '@/app/admin/_components/ui/Toast'
 import { deleteNewsletterSignup } from '@/lib/services/submissions'
 import type { NewsletterSignup } from '@/lib/types'
 

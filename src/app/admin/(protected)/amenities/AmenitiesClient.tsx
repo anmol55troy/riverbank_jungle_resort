@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Button } from '@/components/admin/ui/Button'
-import { Modal } from '@/components/admin/ui/Modal'
-import { ConfirmDialog } from '@/components/admin/ui/ConfirmDialog'
-import { useToast } from '@/components/admin/ui/Toast'
+import { Button } from '@/app/admin/_components/ui/Button'
+import { Modal } from '@/app/admin/_components/ui/Modal'
+import { ConfirmDialog } from '@/app/admin/_components/ui/ConfirmDialog'
+import { useToast } from '@/app/admin/_components/ui/Toast'
 import { saveAmenity, deleteAmenity } from '@/lib/services/amenities'
 import type { Amenity } from '@/lib/types'
 

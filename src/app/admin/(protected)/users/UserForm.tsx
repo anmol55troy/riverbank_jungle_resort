@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { FormField } from '@/components/admin/forms/FormField'
-import { TextInput } from '@/components/admin/forms/Inputs'
-import { FormActions } from '@/components/admin/forms/FormActions'
-import { useToast } from '@/components/admin/ui/Toast'
+import { FormField } from '@/app/admin/_components/forms/FormField'
+import { TextInput } from '@/app/admin/_components/forms/Inputs'
+import { FormActions } from '@/app/admin/_components/forms/FormActions'
+import { useToast } from '@/app/admin/_components/ui/Toast'
 import { saveAdminUser, deleteAdminUser } from '@/lib/services/users'
 import type { User } from '@/lib/types'
 

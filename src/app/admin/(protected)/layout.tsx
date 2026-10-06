@@ -1,6 +1,6 @@
 import React from 'react'
 import { requireAdmin } from '@/lib/auth/guard'
-import { AdminShell } from '@/components/admin/layout/AdminShell'
+import { AdminShell } from '@/app/admin/_components/layout/AdminShell'
 
 export const dynamic = 'force-dynamic'
 

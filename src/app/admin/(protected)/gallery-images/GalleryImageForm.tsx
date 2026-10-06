@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { FormField } from '@/components/admin/forms/FormField'
-import { TextInput, Select, NumberInput } from '@/components/admin/forms/Inputs'
-import { MediaPicker } from '@/components/admin/forms/MediaPicker'
-import { FormActions } from '@/components/admin/forms/FormActions'
-import { useToast } from '@/components/admin/ui/Toast'
+import { FormField } from '@/app/admin/_components/forms/FormField'
+import { TextInput, Select, NumberInput } from '@/app/admin/_components/forms/Inputs'
+import { MediaPicker } from '@/app/admin/_components/forms/MediaPicker'
+import { FormActions } from '@/app/admin/_components/forms/FormActions'
+import { useToast } from '@/app/admin/_components/ui/Toast'
 import { saveGalleryImage, deleteGalleryImage } from '@/lib/services/gallery'
 import type { GalleryImage } from '@/lib/types'
 

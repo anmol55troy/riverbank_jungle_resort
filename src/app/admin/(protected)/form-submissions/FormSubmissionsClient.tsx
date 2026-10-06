@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Badge } from '@/components/admin/ui/Badge'
-import { Modal } from '@/components/admin/ui/Modal'
-import { ConfirmDialog } from '@/components/admin/ui/ConfirmDialog'
-import { Pagination } from '@/components/admin/tables/Pagination'
-import { useToast } from '@/components/admin/ui/Toast'
+import { Badge } from '@/app/admin/_components/ui/Badge'
+import { Modal } from '@/app/admin/_components/ui/Modal'
+import { ConfirmDialog } from '@/app/admin/_components/ui/ConfirmDialog'
+import { Pagination } from '@/app/admin/_components/tables/Pagination'
+import { useToast } from '@/app/admin/_components/ui/Toast'
 import { deleteSubmission } from '@/lib/services/submissions'
 import type { FormSubmission } from '@/lib/types'
 

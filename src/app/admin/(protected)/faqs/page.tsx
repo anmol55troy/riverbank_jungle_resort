@@ -1,9 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 import { getAdminFaqs } from '@/lib/services/faqs'
-import { SearchBar } from '@/components/admin/tables/SearchBar'
-import { Pagination } from '@/components/admin/tables/Pagination'
-import { Badge } from '@/components/admin/ui/Badge'
+import { SearchBar } from '@/app/admin/_components/tables/SearchBar'
+import { Pagination } from '@/app/admin/_components/tables/Pagination'
+import { Badge } from '@/app/admin/_components/ui/Badge'
 
 export const dynamic = 'force-dynamic'
 

@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { FormField } from '@/components/admin/forms/FormField'
-import { TextInput, Textarea } from '@/components/admin/forms/Inputs'
-import { MediaPicker } from '@/components/admin/forms/MediaPicker'
-import { Button } from '@/components/admin/ui/Button'
-import { useToast } from '@/components/admin/ui/Toast'
+import { FormField } from '@/app/admin/_components/forms/FormField'
+import { TextInput, Textarea } from '@/app/admin/_components/forms/Inputs'
+import { MediaPicker } from '@/app/admin/_components/forms/MediaPicker'
+import { Button } from '@/app/admin/_components/ui/Button'
+import { useToast } from '@/app/admin/_components/ui/Toast'
 import { saveSiteSettings } from '@/lib/services/settings'
 import type { SiteSetting } from '@/lib/types'
 

@@ -5,7 +5,7 @@ import { Link } from '@/i18n/navigation'
 import { DEFAULTS, NAV_LINKS, SITE_NAME } from '@/lib/constants'
 import type { SiteSetting } from '@/lib/types'
 
-import { ExternalIcon, FacebookIcon, InstagramIcon, LinkedInIcon, MailIcon, PhoneIcon, PinIcon } from './ui/icons'
+import { ExternalIcon, FacebookIcon, InstagramIcon, LinkedInIcon, MailIcon, PhoneIcon, PinIcon, TiktokIcon } from './ui/icons'
 import { PalmMotif } from './ui/Motifs'
 import { NewsletterForm } from './NewsletterForm'
 
@@ -31,6 +31,7 @@ export async function Footer({ settings, logoUrl = '/logo.png' }: Props) {
     { href: settings?.facebook ?? DEFAULTS.facebook, label: 'Facebook', icon: FacebookIcon },
     { href: settings?.instagram ?? DEFAULTS.instagram, label: 'Instagram', icon: InstagramIcon },
     { href: settings?.linkedin ?? DEFAULTS.linkedin, label: 'LinkedIn', icon: LinkedInIcon },
+    { href: (settings as any)?.tiktok ?? 'https://tiktok.com', label: 'TikTok', icon: TiktokIcon },
   ]
 
   const otas = [

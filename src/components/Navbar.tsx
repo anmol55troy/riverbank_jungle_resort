@@ -56,7 +56,7 @@ export function Navbar({
             : 'border-b border-transparent bg-gradient-to-b from-espresso/80 via-espresso/35 to-transparent'
         }`}
       >
-        <div className="mx-auto flex h-20 md:h-24 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex h-14 md:h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link href="/" className="group flex items-center" aria-label="River Bank Jungle Resort — Home">
             <Image
               src={logoUrl}
@@ -64,7 +64,7 @@ export function Navbar({
               width={116}
               height={60}
               priority
-              className="h-11 w-auto drop-shadow-[0_1px_6px_rgba(42,33,26,0.5)] md:h-13"
+              className="h-8 w-auto drop-shadow-[0_1px_6px_rgba(42,33,26,0.5)] md:h-10"
             />
           </Link>
 
@@ -100,7 +100,7 @@ export function Navbar({
               href={bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`inline-flex min-h-10 items-center gap-2 border px-3 py-2 text-[9px] font-semibold uppercase tracking-[0.16em] transition-all duration-300 sm:px-5 sm:text-[10.5px] sm:tracking-[0.22em] ${
+              className={`inline-flex min-h-9 items-center gap-2 border px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.16em] transition-all duration-300 sm:px-4 sm:text-[10px] sm:tracking-[0.2em] ${
                 solid
                   ? 'border-gold bg-gold text-espresso hover:bg-gold-dark hover:text-ivory'
                   : 'border-gold/90 bg-gold/90 text-espresso backdrop-blur-sm hover:bg-gold hover:text-espresso'
@@ -113,7 +113,7 @@ export function Navbar({
               onClick={() => setOpen(!open)}
               aria-expanded={open}
               aria-label={open ? t('closeMenu') : t('menu')}
-              className="inline-flex h-11 w-11 items-center justify-center text-ivory transition-colors hover:text-gold focus:outline-none"
+              className="inline-flex h-9 w-9 items-center justify-center text-ivory transition-colors hover:text-gold focus:outline-none"
             >
               {open ? <CloseIcon /> : <MenuIcon />}
             </button>
@@ -122,7 +122,7 @@ export function Navbar({
       </header>
 
       <div
-        className={`mobile-menu fixed inset-0 top-20 z-[90] flex flex-col overflow-y-auto bg-espresso md:top-24 ${
+        className={`mobile-menu fixed inset-0 top-14 z-[90] flex flex-col overflow-y-auto bg-espresso md:top-16 ${
           open ? 'pointer-events-auto opacity-100 visible' : 'pointer-events-none opacity-0 invisible'
         }`}
         data-open={open}

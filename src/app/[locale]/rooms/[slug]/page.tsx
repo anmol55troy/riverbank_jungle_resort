@@ -3,12 +3,12 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { setRequestLocale } from 'next-intl/server'
 
-import { GoldExternal, OutlineLink } from '@/components/ui/Buttons'
+import { OutlineLink } from '@/components/ui/Buttons'
 import { Hero } from '@/components/Hero'
 import { JsonLd } from '@/components/JsonLd'
 import { RichText } from '@/components/ui/RichText'
 import { FadeUp, StaggerGroup, StaggerItem } from '@/components/ui/motion'
-import { DEFAULTS } from '@/lib/constants'
+
 import { getExperiences, getRoomBySlug, getRooms, getSiteSettings } from '@/lib/data'
 import { PLACEHOLDER } from '@/lib/images'
 import { breadcrumbSchema } from '@/lib/jsonld'
@@ -40,6 +40,66 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })
 }
 
+import {
+  Maximize,
+  Users,
+  Grid,
+  PanelBottom,
+  ShowerHead,
+  Coffee,
+  Vault,
+  Wind,
+  Flashlight,
+  Sofa,
+  AirVent,
+  Wifi,
+  Layers,
+  Footprints,
+  ConciergeBell,
+  Droplets,
+  Sparkles,
+  Tv,
+  Shirt,
+  Flame,
+  Trees,
+  Bath,
+  AlarmClock,
+  CheckCircle2,
+} from 'lucide-react'
+
+function getFeatureIcon(label: string) {
+  const l = label.toLowerCase()
+  if (l.includes('occupancy') || l.includes('adult') || l.includes('person')) return <Users className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  return <Maximize className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+}
+
+function getAmenityIcon(name: string) {
+  const n = name.toLowerCase()
+  if (n.includes('marble')) return <Grid className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  if (n.includes('balcony')) return <PanelBottom className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  if (n.includes('shower')) return <ShowerHead className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  if (n.includes('coffee') || n.includes('kettle')) return <Coffee className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  if (n.includes('safety') || n.includes('box')) return <Vault className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  if (n.includes('iron') || n.includes('hairdryer')) return <Wind className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  if (n.includes('torch')) return <Flashlight className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  if (n.includes('seating')) return <Sofa className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  if (n.includes('air condition')) return <AirVent className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  if (n.includes('wifi')) return <Wifi className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  if (n.includes('towel')) return <Layers className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  if (n.includes('slipper')) return <Footprints className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  if (n.includes('service')) return <ConciergeBell className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  if (n.includes('toiletries')) return <Droplets className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  if (n.includes('dental')) return <Sparkles className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  if (n.includes('tv')) return <Tv className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  if (n.includes('bathrobe')) return <Shirt className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  if (n.includes('water')) return <Flame className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  if (n.includes('jungle')) return <Trees className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  if (n.includes('bath')) return <Bath className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  if (n.includes('wakeup')) return <AlarmClock className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+  
+  return <CheckCircle2 className="h-6 w-6 text-gray-600" strokeWidth={1.5} />
+}
+
 export default async function RoomDetailPage({ params }: Props) {
   const { locale, slug } = await params
   setRequestLocale(locale)
@@ -51,7 +111,6 @@ export default async function RoomDetailPage({ params }: Props) {
   ])
   if (!room) notFound()
 
-  const bookingUrl = settings?.bookingUrl || DEFAULTS.bookingUrl
   const heroImage = resolveMedia(room.gallery?.[0]?.image, 'hero') ?? {
     url: PLACEHOLDER.room,
     alt: room.title,
@@ -77,10 +136,13 @@ export default async function RoomDetailPage({ params }: Props) {
       />
       <Hero size="banner" image={heroImage} label="Rooms & Suites" title={room.title} />
 
-      <section className="grain bg-ivory py-16 md:py-24">
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[2fr_1fr]">
+      <section className="grain bg-white py-16 md:py-24">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <FadeUp>
-            <RichText data={room.description} />
+            <h1 className="mb-6 text-2xl font-serif font-bold text-[#1e5b87] md:text-3xl">"{room.title}"</h1>
+            <div className="text-gray-700 leading-relaxed">
+              <RichText data={room.description} />
+            </div>
 
             {galleryImages.length > 1 && (
               <div className="mt-10 grid grid-cols-2 gap-4">
@@ -99,54 +161,40 @@ export default async function RoomDetailPage({ params }: Props) {
             )}
           </FadeUp>
 
-          <FadeUp delay={0.1}>
-            <aside className="space-y-8 lg:sticky lg:top-28">
-              {room.priceFrom?.amount != null && (
-                <div className="rounded-lg bg-espresso p-6 text-center text-ivory">
-                  <p className="label-caps">From</p>
-                  <p className="mt-1 font-serif text-3xl">
-                    {room.priceFrom.currency ?? 'USD'} {room.priceFrom.amount}
-                  </p>
-                  <p className="text-xs text-ivory/60">per night</p>
-                  <GoldExternal href={bookingUrl} className="mt-5 w-full">
-                    Book Now
-                  </GoldExternal>
-                </div>
-              )}
-              {room.priceFrom?.amount == null && (
-                <GoldExternal href={bookingUrl} className="w-full">
-                  Check Rates & Book
-                </GoldExternal>
-              )}
-
-              {(room.features ?? []).length > 0 && (
-                <div className="grain rounded-lg bg-white p-6 shadow-card">
-                  <h2 className="label-caps mb-4">At a Glance</h2>
-                  <dl className="space-y-3">
-                    {(room.features ?? []).map((f) => (
-                      <div key={f.id ?? f.label} className="flex justify-between gap-4 border-b border-espresso/8 pb-2 text-sm">
-                        <dt className="text-espresso/60">{f.label}</dt>
-                        <dd className="text-right font-medium text-espresso">{f.value}</dd>
+          <FadeUp delay={0.1} className="mt-16 space-y-12">
+            {(room.features ?? []).length > 0 && (
+              <div>
+                <h2 className="mb-8 font-serif font-bold text-xl text-[#1e5b87]">Room Features</h2>
+                <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
+                  {(room.features ?? []).map((f) => (
+                    <li key={f.id ?? f.label} className="flex items-center gap-4 text-sm text-gray-700">
+                      {getFeatureIcon(f.label)}
+                      <div className="flex flex-col">
+                        {f.label.toLowerCase().includes('occupancy') ? (
+                          <span>Occupancy: {f.value}</span>
+                        ) : (
+                          <span>{f.label}: {f.value}</span>
+                        )}
                       </div>
-                    ))}
-                  </dl>
-                </div>
-              )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
-              {amenities.length > 0 && (
-                <div className="grain rounded-lg bg-white p-6 shadow-card">
-                  <h2 className="label-caps mb-4">Amenities</h2>
-                  <ul className="grid grid-cols-2 gap-x-3 gap-y-2 text-sm text-espresso/75">
-                    {amenities.map((name) => (
-                      <li key={name} className="flex items-start gap-1.5">
-                        <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-gold" aria-hidden="true" />
-                        {name}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </aside>
+            {amenities.length > 0 && (
+              <div>
+                <h2 className="mb-8 font-serif font-bold text-xl text-[#1e5b87]">Room Amenities</h2>
+                <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+                  {amenities.map((name) => (
+                    <li key={name} className="flex items-center gap-4 text-sm text-gray-700">
+                      {getAmenityIcon(name)}
+                      <span>{name}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </FadeUp>
         </div>
       </section>

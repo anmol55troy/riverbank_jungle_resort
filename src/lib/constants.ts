@@ -46,7 +46,7 @@ export const PRIMARY_NAV_LINKS = [
   { href: '/about', key: 'about' },
   { href: '/rooms', key: 'rooms' },
   { href: '/blog', key: 'blog' },
-  { href: '/dining', key: 'dining' },
+  { href: '/contact', key: 'contact' },
 ] as const
 
 export const whatsappHref = (number: string, text: string): string =>

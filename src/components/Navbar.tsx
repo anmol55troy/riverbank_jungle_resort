@@ -3,7 +3,7 @@
 
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Fragment } from 'react'
 
 import { Link, usePathname } from '@/i18n/navigation'
 import { NAV_LINKS, PRIMARY_NAV_LINKS } from '@/lib/constants'
@@ -70,26 +70,29 @@ export function Navbar({
 
           <nav className="hidden items-center gap-5 lg:flex xl:gap-7" aria-label="Main navigation">
             {PRIMARY_NAV_LINKS.map((link) => (
-              <Link
-                key={link.key}
-                href={link.href}
-                prefetch={true}
-                data-active={pathname === link.href}
-                className={`nav-underline pb-1 text-xs font-medium uppercase tracking-[0.14em] transition-colors hover:text-gold ${
-                  pathname === link.href ? 'text-gold' : 'text-ivory'
-                }`}
-              >
-                {t(link.key)}
-              </Link>
+              <Fragment key={link.key}>
+                {link.key === 'contact' && (
+                  <a
+                    href={virtualTourUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="nav-underline pb-1 text-xs font-medium uppercase tracking-[0.14em] text-ivory transition-colors hover:text-gold"
+                  >
+                    360 Tours
+                  </a>
+                )}
+                <Link
+                  href={link.href}
+                  prefetch={true}
+                  data-active={pathname === link.href}
+                  className={`nav-underline pb-1 text-xs font-medium uppercase tracking-[0.14em] transition-colors hover:text-gold ${
+                    pathname === link.href ? 'text-gold' : 'text-ivory'
+                  }`}
+                >
+                  {t(link.key)}
+                </Link>
+              </Fragment>
             ))}
-            <a
-              href={virtualTourUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-underline pb-1 text-xs font-medium uppercase tracking-[0.14em] text-ivory transition-colors hover:text-gold"
-            >
-              360 Tours
-            </a>
           </nav>
 
           <div className="flex items-center gap-3">
@@ -130,21 +133,24 @@ export function Navbar({
           aria-label="Mobile navigation"
           className="flex flex-1 flex-col items-center justify-center gap-1 py-10"
         >
-          {[{ href: '/', key: 'home' as const }, ...NAV_LINKS].map((link) => (
-            <div key={link.key} className="mobile-menu-item">
-              <Link
-                href={link.href}
-                prefetch={true}
-                onClick={() => setOpen(false)}
-                className={`block px-8 py-2.5 text-center font-serif text-[1.7rem] transition-colors hover:text-gold active:text-gold-dark ${
-                  pathname === link.href ? 'text-gold' : 'text-ivory'
-                }`}
-              >
-                {t(link.key)}
-              </Link>
-            </div>
-          ))}
-          <div className="mobile-menu-item mt-6 flex flex-col items-center gap-4">
+          {[{ href: '/', key: 'home' as const }, ...NAV_LINKS].map((link) => {
+            const isPrimary = PRIMARY_NAV_LINKS.some((p) => p.href === link.href)
+            return (
+              <div key={link.key} className={`mobile-menu-item ${isPrimary ? 'lg:hidden' : ''}`}>
+                <Link
+                  href={link.href}
+                  prefetch={true}
+                  onClick={() => setOpen(false)}
+                  className={`block px-8 py-2.5 text-center font-serif text-[1.7rem] transition-colors hover:text-gold active:text-gold-dark ${
+                    pathname === link.href ? 'text-gold' : 'text-ivory'
+                  }`}
+                >
+                  {t(link.key)}
+                </Link>
+              </div>
+            )
+          })}
+          <div className="mobile-menu-item mt-6 flex flex-col items-center gap-4 lg:hidden">
             <a
               href={bookingUrl}
               target="_blank"

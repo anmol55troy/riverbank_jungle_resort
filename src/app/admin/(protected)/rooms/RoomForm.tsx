@@ -102,26 +102,13 @@ export function RoomForm({ room, amenitiesList }: RoomFormProps) {
         <RichTextEditor name="description" defaultValue={room?.description} />
       </FormField>
 
-      {/* Pricing and Display Order */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-gray-200">
-        <FormField label="Price From (Amount)" description="Leave blank to hide price">
-          <NumberInput name="priceAmount" defaultValue={room?.priceFrom?.amount ?? ''} placeholder="e.g. 150" />
-        </FormField>
-
-        <FormField label="Currency">
-          <Select
-            name="priceCurrency"
-            defaultValue={room?.priceFrom?.currency || 'USD'}
-            options={[
-              { label: 'USD ($)', value: 'USD' },
-              { label: 'NPR (Rs.)', value: 'NPR' },
-            ]}
-          />
-        </FormField>
-
-        <FormField label="Display Order" description="Lower number appears first">
-          <NumberInput name="order" defaultValue={room?.order ?? 0} />
-        </FormField>
+      {/* Display Order */}
+      <div className="pt-4 border-t border-gray-200">
+        <div className="max-w-xs">
+          <FormField label="Display Order" description="Lower number appears first">
+            <NumberInput name="order" defaultValue={room?.order ?? 0} />
+          </FormField>
+        </div>
       </div>
 
       {/* Features Array */}

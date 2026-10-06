@@ -48,7 +48,6 @@ export default async function AdminRoomsPage(props: {
                   <th className="pb-3 font-semibold">Image</th>
                   <th className="pb-3 font-semibold">Title</th>
                   <th className="pb-3 font-semibold">Slug</th>
-                  <th className="pb-3 font-semibold">Price</th>
                   <th className="pb-3 font-semibold">Order</th>
                   <th className="pb-3 font-semibold text-right">Action</th>
                 </tr>
@@ -76,11 +75,6 @@ export default async function AdminRoomsPage(props: {
                       </td>
                       <td className="py-3 font-medium text-gray-900 max-w-xs truncate">{room.title}</td>
                       <td className="py-3 text-gray-500 font-mono text-[11px]">{room.slug}</td>
-                      <td className="py-3 text-gray-600">
-                        {room.priceFrom?.amount
-                          ? `${room.priceFrom.currency === 'USD' ? '$' : 'Rs. '}${room.priceFrom.amount}`
-                          : '—'}
-                      </td>
                       <td className="py-3 text-gray-500">{room.order ?? 0}</td>
                       <td className="py-3 text-right">
                         <Link

@@ -16,7 +16,7 @@ export const revalidate = 3600
 export const metadata = buildMetadata({
   title: 'Rooms & Suites',
   description:
-    'Deluxe rooms, super deluxe rooms and villas with private plunge pools at River Bank Jungle Resort, Patihani, Chitwan — AC, balconies, marble floors and jungle views.',
+    'Deluxe rooms, super deluxe rooms and villas with private plunge pools at River Bank Jungle Resort, Patihani, Chitwan-AC, balconies, marble floors and jungle views.',
   path: '/rooms',
 })
 
@@ -46,7 +46,7 @@ export default async function RoomsPage({ params }: { params: Promise<{ locale: 
         image={resolveMedia(settings?.roomsBanner, 'hero') ?? { url: PLACEHOLDER.room, alt: 'A softly lit resort bedroom with a balcony facing the jungle' }}
         label="Stay"
         title="Rooms & Suites"
-        subtitle="Every room faces the river or the gardens — cool marble underfoot, the Terai at the window."
+        subtitle="Every room faces the river or the gardens cool marble underfoot, the Terai at the window."
       />
 
       {/* 3 Full-Bleed Edge-to-Edge Accommodation Showcase */}
@@ -74,37 +74,41 @@ export default async function RoomsPage({ params }: { params: Promise<{ locale: 
           </div>
         </div>
 
-        {/* 3 Full-Bleed Edge-to-Edge Room Columns using provided images */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 w-full overflow-hidden bg-espresso">
-          {roomShowcase.map((room) => (
-            <Link
-              key={room.slug}
-              href={`/rooms/${room.slug}`}
-              className="group relative flex h-[520px] sm:h-[600px] md:h-[680px] lg:h-[760px] w-full items-center justify-center overflow-hidden"
-            >
-              <Image
-                src={room.image}
-                alt={room.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                className="img-grade object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                priority
-              />
-              <div className="absolute inset-0 bg-black/25 transition-colors duration-500 group-hover:bg-black/40" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/25" />
+        {/* Room Showcase Grid */}
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 pb-16 sm:pb-24">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 w-full">
+            {roomShowcase.map((room) => (
+              <Link
+                key={room.slug}
+                href={`/rooms/${room.slug}`}
+                className="group relative flex h-[480px] sm:h-[560px] lg:h-[640px] w-full items-end overflow-hidden rounded-sm"
+              >
+                <Image
+                  src={room.image}
+                  alt={room.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="img-grade object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
+                  priority
+                />
+                <div className="absolute inset-0 bg-black/20 transition-colors duration-500 group-hover:bg-black/10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-espresso-light/90 via-espresso/40 to-transparent opacity-80" />
 
-              {/* Centered thin bordered rectangle button matching reference image */}
-              <div className="relative z-10 flex flex-col items-center justify-center px-6 text-center">
-                <span className="inline-flex items-center justify-center border border-white/80 bg-black/20 px-6 py-2.5 sm:px-8 sm:py-3 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.24em] text-white backdrop-blur-[2px] transition-all duration-300 group-hover:border-gold group-hover:bg-gold group-hover:text-espresso group-hover:shadow-lg">
-                  {room.title}
-                </span>
-              </div>
-            </Link>
-          ))}
+                {/* Elegant bottom-aligned content */}
+                <div className="relative z-10 p-6 sm:p-8 w-full">
+                  <h3 className="display !text-ivory text-xl sm:text-2xl mb-3 translate-y-2 transition-transform duration-500 group-hover:translate-y-0">
+                    {room.title}
+                  </h3>
+                  <div className="flex items-center opacity-0 transition-all duration-500 group-hover:opacity-100">
+                    <span className="link-line-light !text-gold !text-[11px] sm:!text-xs">
+                      Explore Room
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
-
-        {/* Small White Nepali Kagaz Divider Band between the accommodation section and the footer */}
-        <div className="grain relative w-full bg-ivory py-8 sm:py-12 md:py-14" />
       </section>
     </>
   )

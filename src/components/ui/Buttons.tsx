@@ -65,17 +65,18 @@ export function TextExternal({
   )
 }
 
-/* Legacy aliases — outline style is retired; these render the text-link style */
+const outline =
+  'inline-flex min-h-12 items-center justify-center rounded-none border border-gold px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.18em] text-espresso transition-all duration-300 hover:bg-gold hover:text-espresso focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ivory shadow-sm'
+
 export function OutlineLink({
   href,
   children,
   className = '',
-  light = false,
-}: ButtonProps & { href: string; light?: boolean }) {
+}: ButtonProps & { href: string }) {
   return (
-    <TextLink href={href} light={light} className={className}>
+    <Link href={href} className={`${outline} ${className}`}>
       {children}
-    </TextLink>
+    </Link>
   )
 }
 
@@ -83,11 +84,15 @@ export function OutlineExternal({
   href,
   children,
   className = '',
-  light = false,
-}: ButtonProps & { href: string; light?: boolean }) {
+}: ButtonProps & { href: string }) {
   return (
-    <TextExternal href={href} light={light} className={className}>
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`${outline} ${className}`}
+    >
       {children}
-    </TextExternal>
+    </a>
   )
 }

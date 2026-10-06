@@ -113,6 +113,28 @@ export interface Experience {
   updatedAt: string
 }
 
+export interface EventVenue {
+  id: string
+  title: string
+  slug?: string | null
+  shortDescription: string
+  description: SerializedEditorState
+  image?: (string | null) | Media
+  gallery?: {
+    image: string | Media
+    id?: string | null
+  }[] | null
+  hallSize?: string | null
+  uSetup?: string | null
+  classroomSetup?: string | null
+  theaterSetup?: string | null
+  roundTableSetup?: string | null
+  amenities?: string[] | null
+  order?: number | null
+  createdAt: string
+  updatedAt: string
+}
+
 export interface Offer {
   id: string
   title: string

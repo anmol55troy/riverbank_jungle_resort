@@ -105,6 +105,34 @@ const experienceSchema = new Schema(
 export const ExperienceModel =
   mongoose.models.Experience || mongoose.model('Experience', experienceSchema)
 
+// --- 5.5 Event Venue Model ---
+const eventVenueSchema = new Schema(
+  {
+    title: { type: String, required: true },
+    slug: { type: String, required: true, unique: true },
+    shortDescription: { type: String, required: true },
+    description: { type: Schema.Types.Mixed, required: true },
+    image: { type: Schema.Types.ObjectId, ref: 'Media' },
+    gallery: [
+      {
+        image: { type: Schema.Types.ObjectId, ref: 'Media', required: true },
+        id: String,
+      },
+    ],
+    hallSize: String,
+    uSetup: String,
+    classroomSetup: String,
+    theaterSetup: String,
+    roundTableSetup: String,
+    amenities: [String], // Array of predefined amenity names like "Projector", "LED TV", etc.
+    order: { type: Number, default: 0 },
+  },
+  { timestamps: true, collection: 'event-venues' }
+)
+
+export const EventVenueModel =
+  mongoose.models.EventVenue || mongoose.model('EventVenue', eventVenueSchema)
+
 // --- 6. Offer Model ---
 const offerSchema = new Schema(
   {

@@ -115,7 +115,7 @@ export function Hero({
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_58%_50%_at_50%_46%,rgba(20,38,31,0.5),transparent_72%)]" />
       </div>
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-6 sm:gap-10 px-4 py-20 sm:py-28 md:py-32 lg:grid-cols-[minmax(0,1fr)_25rem] lg:items-center lg:gap-16">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-6 sm:gap-10 px-4 sm:px-6 lg:px-8 py-20 sm:py-28 md:py-32 lg:grid-cols-[minmax(0,1fr)_25rem] lg:items-center lg:gap-16">
         <div className="max-w-3xl text-center lg:text-left">
           {label && <p className="kicker-light hero-text-shadow hero-rise mb-3 sm:mb-5">{label}</p>}
           {/* hero-settle, not hero-rise: this is the LCP element, so it is

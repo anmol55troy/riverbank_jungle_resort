@@ -7,7 +7,7 @@ import type { ReactNode } from 'react'
 
 import { Footer } from '@/components/Footer'
 import { JsonLd } from '@/components/JsonLd'
-import { MobileBookBar } from '@/components/MobileBookBar'
+// import { MobileBookBar } from '@/components/MobileBookBar'
 import { Navbar } from '@/components/Navbar'
 import { OtaFloat } from '@/components/OtaFloat'
 import { WhatsAppFloat } from '@/components/WhatsAppFloat'
@@ -135,12 +135,12 @@ export default async function LocaleLayout({ children, params }: Props) {
             tripadvisorUrl={settings?.tripadvisor ?? DEFAULTS.tripadvisor}
             makemytripUrl={settings?.makemytrip ?? DEFAULTS.makemytrip}
           />
-          <MobileBookBar
+          {/* <MobileBookBar
             bookingUrl={bookingUrl}
             whatsappNumber={whatsapp}
             whatsappText={DEFAULTS.whatsappText}
             bookLabel={tNav('bookNow')}
-          />
+          /> */}
           <VirtualTourPrompt url={virtualTourUrl} />
         </NextIntlClientProvider>
       </body>

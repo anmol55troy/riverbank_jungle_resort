@@ -10,7 +10,7 @@ export interface AdminShellProps {
   children: React.ReactNode
 }
 
-export function AdminShell({ user, children }: AdminShellProps) {
+export function AdminShell({ children }: AdminShellProps) {
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
 
   return (

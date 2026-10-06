@@ -5,8 +5,7 @@ import { Link } from '@/i18n/navigation'
 import { DEFAULTS, NAV_LINKS, SITE_NAME } from '@/lib/constants'
 import type { SiteSetting } from '@/lib/types'
 
-import { ExternalIcon, FacebookIcon, InstagramIcon, LinkedInIcon, MailIcon, PhoneIcon, PinIcon, TiktokIcon } from './ui/icons'
-import { PalmMotif } from './ui/Motifs'
+import { FacebookIcon, InstagramIcon, LinkedInIcon, MailIcon, PhoneIcon, PinIcon, TiktokIcon } from './ui/icons'
 import { NewsletterForm } from './NewsletterForm'
 
 type Props = {
@@ -20,24 +19,21 @@ export async function Footer({ settings, logoUrl = '/logo.png' }: Props) {
 
   const phones = settings?.phones?.length ? settings.phones.map((p) => p.number) : [...DEFAULTS.phones]
   const emails = settings?.emails?.length ? settings.emails.map((e) => e.email) : [...DEFAULTS.emails]
-  const address = settings?.address ?? DEFAULTS.address
-  const salesOffice = settings?.salesOffice ?? DEFAULTS.salesOffice
-  const mapUrl = settings?.mapUrl ?? DEFAULTS.mapUrl
+  const address = settings?.address || DEFAULTS.address
   const mapEmbedUrl = DEFAULTS.mapEmbedUrl
-  const bookingUrl = settings?.bookingUrl || DEFAULTS.bookingUrl
   const virtualTourUrl = settings?.virtualTourUrl || DEFAULTS.virtualTourUrl
 
   const socials = [
-    { href: settings?.facebook ?? DEFAULTS.facebook, label: 'Facebook', icon: FacebookIcon },
-    { href: settings?.instagram ?? DEFAULTS.instagram, label: 'Instagram', icon: InstagramIcon },
-    { href: settings?.linkedin ?? DEFAULTS.linkedin, label: 'LinkedIn', icon: LinkedInIcon },
-    { href: settings?.tiktok ?? 'https://tiktok.com', label: 'TikTok', icon: TiktokIcon },
+    { href: settings?.facebook || DEFAULTS.facebook, label: 'Facebook', icon: FacebookIcon },
+    { href: settings?.instagram || DEFAULTS.instagram, label: 'Instagram', icon: InstagramIcon },
+    { href: settings?.linkedin || DEFAULTS.linkedin, label: 'LinkedIn', icon: LinkedInIcon },
+    { href: settings?.tiktok || 'https://tiktok.com', label: 'TikTok', icon: TiktokIcon },
   ]
 
   const otas = [
-    { href: settings?.bookingCom ?? DEFAULTS.bookingCom, label: 'Booking.com' },
-    { href: settings?.tripadvisor ?? DEFAULTS.tripadvisor, label: 'TripAdvisor' },
-    { href: settings?.makemytrip ?? DEFAULTS.makemytrip, label: 'MakeMyTrip' },
+    { href: settings?.bookingCom || DEFAULTS.bookingCom, label: 'Booking.com' },
+    { href: settings?.tripadvisor || DEFAULTS.tripadvisor, label: 'TripAdvisor' },
+    { href: settings?.makemytrip || DEFAULTS.makemytrip, label: 'MakeMyTrip' },
   ]
 
   return (
@@ -59,14 +55,6 @@ export async function Footer({ settings, logoUrl = '/logo.png' }: Props) {
                   <PinIcon className="mt-1 h-4 w-4 shrink-0 text-gold" />
                   <div className="flex flex-col gap-1 text-sm">
                     <span className="font-medium text-ivory">{address}</span>
-                    <a
-                      href={mapUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-ivory/50 transition-colors hover:text-gold"
-                    >
-                      {t('viewOnMap')}
-                    </a>
                   </div>
                 </li>
               )}

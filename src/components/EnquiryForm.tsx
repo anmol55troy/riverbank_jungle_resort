@@ -27,7 +27,7 @@ export function EnquiryForm({ formType }: Props) {
   }
 
   return (
-    <form action={formAction} className="grid gap-5 sm:grid-cols-2">
+    <form action={formAction} className="grid gap-4 sm:grid-cols-2">
       <input type="hidden" name="formType" value={formType} />
       {/* Honeypot — hidden from real users */}
       <input
@@ -86,7 +86,7 @@ export function EnquiryForm({ formType }: Props) {
         <label htmlFor={`${formType}-message`} className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.12em] text-espresso/70">
           {t('message')} *
         </label>
-        <textarea id={`${formType}-message`} name="message" required rows={5} className={inputClass} />
+        <textarea id={`${formType}-message`} name="message" required rows={3} className={inputClass} />
       </div>
 
       <div className="sm:col-span-2">

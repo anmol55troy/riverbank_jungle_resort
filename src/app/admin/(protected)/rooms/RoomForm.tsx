@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { FormField } from '@/app/admin/_components/forms/FormField'
-import { TextInput, Textarea, NumberInput, Select } from '@/app/admin/_components/forms/Inputs'
+import { TextInput, Textarea, NumberInput } from '@/app/admin/_components/forms/Inputs'
 import { RichTextEditor } from '@/app/admin/_components/forms/RichTextEditor'
 import { FeaturesArray } from '@/app/admin/_components/forms/FeaturesArray'
 import { GalleryPicker } from '@/app/admin/_components/forms/GalleryPicker'

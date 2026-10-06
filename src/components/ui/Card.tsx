@@ -58,11 +58,11 @@ export function Card({
             {meta}
           </p>
         )}
-        <h3 className={`display min-h-[1.9em] text-[1.7rem] ${dark ? '!text-ivory' : ''}`}>
-          <span className="title-underline pb-0.5">{title}</span>
+        <h3 className={`display min-h-[1.9em] text-[1.7rem] group-hover:text-espresso-light transition-colors duration-300 ${dark ? '!text-ivory group-hover:!text-ivory/80' : ''}`}>
+          {title}
         </h3>
         {description && (
-          <p className={`mt-2.5 line-clamp-3 text-[15px] leading-7 ${dark ? 'text-ivory/70' : 'text-espresso/68'}`}>
+          <p className={`mt-3 line-clamp-3 text-[15px] leading-relaxed ${dark ? 'text-ivory/75' : 'text-espresso/75'}`}>
             {description}
           </p>
         )}

@@ -23,7 +23,7 @@ export function NavigationProgressBar() {
       const hideTimer = setTimeout(() => {
         setLoading(false)
         setProgress(0)
-      }, 250)
+      }, 50)
       return () => clearTimeout(hideTimer)
     }
   }, [pathname])

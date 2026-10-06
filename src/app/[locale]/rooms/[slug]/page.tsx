@@ -9,11 +9,12 @@ import { JsonLd } from '@/components/JsonLd'
 import { RichText } from '@/components/ui/RichText'
 import { FadeUp, StaggerGroup, StaggerItem } from '@/components/ui/motion'
 
-import { getExperiences, getRoomBySlug, getRooms, getSiteSettings } from '@/lib/data'
+import { getExperiences, getRoomBySlug, getRooms } from '@/lib/data'
 import { PLACEHOLDER } from '@/lib/images'
 import { breadcrumbSchema } from '@/lib/jsonld'
 import { resolveMedia } from '@/lib/media'
 import { buildMetadata } from '@/lib/seo'
+import { RiverRule } from '@/components/ui/RiverRule'
 
 export const revalidate = 3600
 
@@ -104,10 +105,9 @@ export default async function RoomDetailPage({ params }: Props) {
   const { locale, slug } = await params
   setRequestLocale(locale)
 
-  const [room, experiences, settings] = await Promise.all([
+  const [room, experiences] = await Promise.all([
     getRoomBySlug(slug),
     getExperiences(),
-    getSiteSettings().catch(() => null),
   ])
   if (!room) notFound()
 
@@ -139,8 +139,8 @@ export default async function RoomDetailPage({ params }: Props) {
       <section className="grain bg-white py-16 md:py-24">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <FadeUp>
-            <h1 className="mb-6 text-2xl font-serif font-bold text-[#1e5b87] md:text-3xl">"{room.title}"</h1>
-            <div className="text-gray-700 leading-relaxed">
+            <h1 className="mb-6 font-serif text-2xl font-bold text-espresso md:text-3xl">&quot;{room.title}&quot;</h1>
+            <div className="leading-relaxed text-gray-700">
               <RichText data={room.description} />
             </div>
 
@@ -164,7 +164,7 @@ export default async function RoomDetailPage({ params }: Props) {
           <FadeUp delay={0.1} className="mt-16 space-y-12">
             {(room.features ?? []).length > 0 && (
               <div>
-                <h2 className="mb-8 font-serif font-bold text-xl text-[#1e5b87]">Room Features</h2>
+                <h2 className="mb-8 font-serif text-xl font-bold text-espresso">Room Features</h2>
                 <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
                   {(room.features ?? []).map((f) => (
                     <li key={f.id ?? f.label} className="flex items-center gap-4 text-sm text-gray-700">
@@ -184,7 +184,7 @@ export default async function RoomDetailPage({ params }: Props) {
 
             {amenities.length > 0 && (
               <div>
-                <h2 className="mb-8 font-serif font-bold text-xl text-[#1e5b87]">Room Amenities</h2>
+                <h2 className="mb-8 font-serif text-xl font-bold text-espresso">Room Amenities</h2>
                 <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
                   {amenities.map((name) => (
                     <li key={name} className="flex items-center gap-4 text-sm text-gray-700">
@@ -205,7 +205,7 @@ export default async function RoomDetailPage({ params }: Props) {
             <FadeUp className="mb-10 text-center">
               <p className="label-caps mb-3">Beyond the Room</p>
               <h2 className="font-serif text-3xl text-espresso">Pair Your Stay With the Jungle</h2>
-              <div className="hairline mt-5" />
+              <RiverRule className="mx-auto mt-6" tone="gold" />
             </FadeUp>
             <StaggerGroup className="grid gap-6 sm:grid-cols-3">
               {experiences.slice(0, 3).map((exp) => (

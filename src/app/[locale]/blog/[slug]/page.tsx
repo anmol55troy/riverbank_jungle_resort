@@ -13,6 +13,7 @@ import { PLACEHOLDER } from '@/lib/images'
 import { blogPostingSchema, breadcrumbSchema } from '@/lib/jsonld'
 import { resolveMedia } from '@/lib/media'
 import { buildMetadata } from '@/lib/seo'
+import { RiverRule } from '@/components/ui/RiverRule'
 
 export const revalidate = 3600
 
@@ -82,7 +83,7 @@ export default async function BlogPostPage({ params }: Props) {
             {post.category ? post.category.replace(/-/g, ' ') : 'Journal'}
           </p>
           <h1 className="display text-[clamp(2.4rem,5vw,4.6rem)]">{post.title}</h1>
-          <div className="hairline mt-6" />
+          <RiverRule className="mx-auto mt-6" tone="gold" />
           <p className="mt-5 text-sm text-espresso/60">
             {post.author}
             {post.publishedDate && (

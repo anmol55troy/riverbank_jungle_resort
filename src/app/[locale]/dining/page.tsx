@@ -46,10 +46,15 @@ export default async function DiningPage({ params }: { params: Promise<{ locale:
         subtitle="Nepali, Indian, Japanese and Continental kitchens — from breakfast on the lawn to cocktails at the bar."
       />
 
-      <section className="grain bg-ivory py-20 md:py-28">
+      <section className="grain bg-ivory py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <SectionHeading label="Our Venues" title="Four Ways to Eat Well" />
-          <StaggerGroup className="grid gap-7 sm:grid-cols-2">
+          <SectionHeading 
+            align="center"
+            className="!mb-10 md:!mb-14"
+            label="Our Venues" 
+            title="Four Ways to Eat Well" 
+          />
+          <StaggerGroup className="grid gap-6 sm:grid-cols-2">
             {venues.map((venue, i) => (
               <StaggerItem key={venue.id}>
                 <Card

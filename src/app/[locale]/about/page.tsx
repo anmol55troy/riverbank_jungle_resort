@@ -12,6 +12,7 @@ import { PLACEHOLDER } from '@/lib/images'
 import { breadcrumbSchema } from '@/lib/jsonld'
 import { resolveMedia } from '@/lib/media'
 import { buildMetadata } from '@/lib/seo'
+import { RiverRule } from '@/components/ui/RiverRule'
 
 export const revalidate = 3600
 
@@ -66,7 +67,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
             <h2 className="font-serif text-3xl leading-tight text-espresso md:text-4xl">
               Between Patihani Village and the National Park
             </h2>
-            <div className="hairline mt-5 ml-0" />
+            <RiverRule className="mt-6" tone="gold" />
             <div className="mt-6 space-y-4 leading-relaxed text-espresso/75">
               <p>
                 River Bank Jungle Resort stands at Bharatpur-22, Patihani, on the flat floodplain of the
@@ -123,11 +124,14 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
           <FadeUp>
             <SectionHeading
+              align="center"
               label="Responsible Travel"
               title="Light Footprints on the Floodplain"
               intro="From solar water heating to hiring and buying locally in Patihani, we try to keep the resort's weight on this landscape as light as a canoe on the Rapti."
             />
-            <GoldLink href="/sustainability">Our Sustainability Commitments</GoldLink>
+            <div className="mt-8 flex justify-center">
+              <GoldLink href="/sustainability">Our Sustainability Commitments</GoldLink>
+            </div>
           </FadeUp>
         </div>
       </section>

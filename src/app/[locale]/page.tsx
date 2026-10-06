@@ -105,19 +105,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </TextExternal>
       </Hero>
 
-      <section className="grain relative z-20 -mt-1 border-y border-sage-dark/30 bg-ivory shadow-[0_12px_30px_-24px_rgba(32,55,45,0.6)]">
-        <div className="mx-auto grid max-w-7xl gap-6 px-4 py-10 sm:px-6 md:grid-cols-[1.25fr_1fr_1fr] md:items-center md:gap-10 md:py-14">
-          <div>
-            <p className="kicker mb-2">Plan your stay</p>
-            <h2 className="display text-2xl sm:text-3xl">Your time by the Rapti starts here.</h2>
-          </div>
-          <p className="text-sm leading-7 text-espresso/65">
-            Check our best available rates, choose your room and let us arrange the river, safari and airport pickup.
-          </p>
-          <GoldExternal href={bookingUrl} className="w-full md:w-auto">Check availability</GoldExternal>
-        </div>
-      </section>
-
       <section aria-label="Awards and guest review certificates" className="grain relative overflow-hidden border-y border-sage/40 bg-cream py-20 sm:py-24 lg:py-32">
         {/* Left top botanical leaf accent framing the section header without encroaching on carousel */}
         <div
@@ -282,7 +269,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       {/* The Experience — 4 highlighted visual panels matching the reference image */}
       <section aria-label="Resort Experiences" className="relative w-full overflow-hidden">
         {/* Section Header with authentic Nepali Lokta Kagaz texture */}
-        <div className="grain relative w-full bg-ivory pt-20 pb-16 sm:pt-24 lg:pt-32">
+        <div className="grain relative w-full bg-ivory pt-10 pb-8 sm:pt-12 sm:pb-10 lg:pt-14 lg:pb-12">
           <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6">
             <SectionHeading
               label="The Park"
@@ -293,6 +280,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               }
               intro="Through our personalized service & thoughtful curated excursions, we create memories that will last a lifetime."
               align="center"
+              className="!mb-0"
             />
           </div>
         </div>

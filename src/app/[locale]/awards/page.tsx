@@ -34,10 +34,11 @@ export default async function AwardsPage({ params }: { params: Promise<{ locale:
         title="Honoured by our guests"
         subtitle="Every award reflects the care, hospitality and sense of place we share at the riverbank."
       />
-      <main className="grain bg-ivory py-24 md:py-32">
+      <main className="grain bg-ivory py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <SectionHeading
             align="center"
+            className="!mb-10 md:!mb-14"
             label="Awards & guest reviews"
             title={<>A stay remembered <em className="italic">beyond checkout</em></>}
             intro="Our recognition comes from travellers who have stayed, explored Chitwan and shared their experience with the world."

@@ -30,8 +30,8 @@ const [settings, faqs] = await Promise.all([getSiteSettings().catch(() => null),
 
   const phones = settings?.phones?.length ? settings.phones.map((p) => p.number) : [...DEFAULTS.phones]
   const emails = settings?.emails?.length ? settings.emails.map((e) => e.email) : [...DEFAULTS.emails]
-  const address = settings?.address ?? DEFAULTS.address
-  const salesOffice = settings?.salesOffice ?? DEFAULTS.salesOffice
+  const address = settings?.address || DEFAULTS.address
+  const salesOffice = settings?.salesOffice || DEFAULTS.salesOffice
 
   return (
     <>
@@ -51,7 +51,7 @@ const [settings, faqs] = await Promise.all([getSiteSettings().catch(() => null),
         subtitle="Write, call or message us on WhatsApp — we reply the same day."
       />
 
-      <section className="grain bg-ivory py-20 md:py-28">
+      <section className="grain bg-ivory py-16 md:py-20">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2">
           <FadeUp>
             <h2 className="font-serif text-2xl text-espresso md:text-3xl">Send an Enquiry</h2>
@@ -100,22 +100,16 @@ const [settings, faqs] = await Promise.all([getSiteSettings().catch(() => null),
                 className="h-80 w-full border-0"
               />
             </div>
-            <a
-              href={settings?.mapUrl ?? DEFAULTS.mapUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 inline-block text-sm text-gold-dark underline underline-offset-2 hover:text-gold"
-            >
-              Open in Google Maps
-            </a>
           </FadeUp>
         </div>
       </section>
 
       {faqs.length > 0 && (
-        <section className="grain bg-cream py-20 md:py-28">
+        <section className="grain bg-cream py-12 md:py-16">
           <div className="mx-auto max-w-3xl px-4 sm:px-6">
             <SectionHeading
+              align="center"
+              className="!mb-8 md:!mb-12"
               label="Good to Know"
               title="Frequently Asked Questions"
               intro="Getting here, park permits and what to pack — answered."

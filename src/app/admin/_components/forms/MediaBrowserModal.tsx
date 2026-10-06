@@ -28,6 +28,8 @@ export function MediaBrowserModal({
   const [search, setSearch] = useState('')
   const [uploading, setUploading] = useState(false)
   const [uploadError, setUploadError] = useState('')
+  const [hasFile, setHasFile] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const loadMedia = async (q = '') => {
     setLoading(true)
@@ -52,10 +54,13 @@ export function MediaBrowserModal({
   const uploadFormRef = useRef<HTMLFormElement>(null)
 
   const handleUploadSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
-    if (e) e.preventDefault()
+    if (e) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
     setUploadError('')
     
-    const form = e ? e.currentTarget : uploadFormRef.current
+    const form = e?.currentTarget instanceof HTMLFormElement ? e.currentTarget : uploadFormRef.current
     if (!form) return
 
     const formData = new FormData(form)
@@ -72,12 +77,17 @@ export function MediaBrowserModal({
       if (res.success && res.media) {
         onSelect(res.media)
         form.reset()
+        setHasFile(false)
         setActiveTab('browse')
       } else {
         setUploadError(res.error || 'Upload failed.')
       }
     } catch (err: unknown) {
-      setUploadError((err instanceof Error ? err.message : "An unknown error occurred") || 'Upload failed.')
+      let errorMessage = err instanceof Error ? err.message : "An unknown error occurred";
+      if (errorMessage.includes('Body exceeded') || errorMessage.includes('body size limit')) {
+        errorMessage = 'The selected image is too large. Please choose an image smaller than 10MB.';
+      }
+      setUploadError(errorMessage || 'Upload failed.')
     } finally {
       setUploading(false)
     }
@@ -167,18 +177,32 @@ export function MediaBrowserModal({
             
             <div>
               <label className="block text-xs font-semibold text-gray-900 mb-1">Choose Image File</label>
-              <input
-                type="file"
-                name="file"
-                accept="image/*"
-                required
-                onChange={(e) => {
-                  if (e.target.files && e.target.files.length > 0) {
-                    handleUploadSubmit();
-                  }
-                }}
-                className="block w-full text-xs text-gray-600 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-gray-100 file:text-gray-900 hover:file:bg-sage/40 file:cursor-pointer cursor-pointer border border-gray-300 rounded-lg p-2 bg-white"
-              />
+              <div className="flex items-center gap-2">
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  name="file"
+                  accept="image/*"
+                  required
+                  onChange={(e) => setHasFile(!!e.target.files?.length)}
+                  className="block w-full text-xs text-gray-600 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-gray-100 file:text-gray-900 hover:file:bg-sage/40 file:cursor-pointer cursor-pointer border border-gray-300 rounded-lg p-2 bg-white"
+                />
+                {hasFile && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (fileInputRef.current) {
+                        fileInputRef.current.value = ''
+                      }
+                      setHasFile(false)
+                    }}
+                    className="p-2 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors"
+                    title="Clear selected file"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                  </button>
+                )}
+              </div>
             </div>
 
             {requireAltAndCaption && (
@@ -209,7 +233,10 @@ export function MediaBrowserModal({
               <Button type="button" variant="ghost" size="sm" onClick={() => setActiveTab('browse')}>
                 Cancel
               </Button>
-              <Button type="submit" variant="primary" size="sm" isLoading={uploading}>
+              <Button type="button" variant="primary" size="sm" isLoading={uploading} onClick={(e) => {
+                e.stopPropagation();
+                handleUploadSubmit();
+              }}>
                 Upload & Select
               </Button>
             </div>

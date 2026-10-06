@@ -2,6 +2,7 @@
 
 import React, { useActionState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { loginAction } from '@/lib/services/auth'
 import { Button } from '@/app/admin/_components/ui/Button'
 
@@ -11,13 +12,12 @@ export default function AdminLoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center p-4 sm:p-6 bg-ivory">
       <div className="w-full max-w-md bg-white rounded-3xl border border-espresso/15 shadow-card p-8 sm:p-10 space-y-8 relative overflow-hidden">
-        {/* Subtle decorative top line */}
-        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-espresso via-gold to-espresso" />
+
 
         {/* Brand header */}
         <div className="text-center space-y-2">
-          <div className="inline-flex w-12 h-12 rounded-2xl bg-espresso items-center justify-center text-gold font-serif font-bold text-2xl shadow-sm mb-2">
-            R
+          <div className="relative inline-flex w-12 h-12 rounded-2xl bg-espresso/5 items-center justify-center shadow-sm mb-2 p-1 overflow-hidden">
+            <Image src="/logo.png" alt="Logo" fill sizes="48px" className="object-contain" />
           </div>
           <h1 className="font-serif text-2xl font-light text-espresso tracking-tight">
             River Bank Jungle Resort
@@ -75,7 +75,7 @@ export default function AdminLoginPage() {
               className="w-full py-3 text-sm rounded-xl font-medium tracking-wide shadow-md"
               isLoading={isPending}
             >
-              Sign In to Console
+              Sign In
             </Button>
           </div>
         </form>
@@ -85,7 +85,7 @@ export default function AdminLoginPage() {
             href="/"
             className="text-xs text-espresso/50 hover:text-espresso transition-colors"
           >
-            ← Back to Resort Website
+            Back to Resort Website
           </Link>
         </div>
       </div>

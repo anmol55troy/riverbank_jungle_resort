@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 interface NavGroup {
@@ -186,8 +187,8 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
       {/* Brand Header */}
       <div className="p-5 border-b border-espresso-light flex items-center justify-between">
         <Link href="/admin" className="flex items-center gap-2.5" onClick={onClose}>
-          <div className="w-8 h-8 rounded-lg bg-gold flex items-center justify-center font-serif text-espresso font-bold text-base shadow-sm">
-            R
+          <div className="relative w-8 h-8 rounded-lg bg-gold/20 flex items-center justify-center shadow-sm overflow-hidden p-1">
+            <Image src="/logo.png" alt="Logo" fill sizes="32px" className="object-contain" />
           </div>
           <div>
             <h1 className="font-serif text-sm tracking-wider font-semibold text-ivory">River Bank</h1>

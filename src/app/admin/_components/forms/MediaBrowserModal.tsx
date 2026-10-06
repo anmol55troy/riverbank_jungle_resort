@@ -51,11 +51,13 @@ export function MediaBrowserModal({
 
   const uploadFormRef = useRef<HTMLFormElement>(null)
 
-  const handleUploadSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const handleUploadSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
+    if (e) e.preventDefault()
     setUploadError('')
     
-    const form = e.currentTarget
+    const form = e ? e.currentTarget : uploadFormRef.current
+    if (!form) return
+
     const formData = new FormData(form)
     const file = formData.get('file') as File
 
@@ -70,6 +72,7 @@ export function MediaBrowserModal({
       if (res.success && res.media) {
         onSelect(res.media)
         form.reset()
+        setActiveTab('browse')
       } else {
         setUploadError(res.error || 'Upload failed.')
       }
@@ -169,6 +172,11 @@ export function MediaBrowserModal({
                 name="file"
                 accept="image/*"
                 required
+                onChange={(e) => {
+                  if (e.target.files && e.target.files.length > 0) {
+                    handleUploadSubmit();
+                  }
+                }}
                 className="block w-full text-xs text-gray-600 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-gray-100 file:text-gray-900 hover:file:bg-sage/40 file:cursor-pointer cursor-pointer border border-gray-300 rounded-lg p-2 bg-white"
               />
             </div>

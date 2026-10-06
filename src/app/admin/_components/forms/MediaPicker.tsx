@@ -21,17 +21,13 @@ export function MediaPicker({
   onChange,
   label = 'Select Image',
 }: MediaPickerProps) {
-  const [selected, setSelected] = useState<Media | null>(null)
-  const [isOpen, setIsOpen] = useState(false)
-
-  // Initialize selected from defaultValue if provided
-  useEffect(() => {
-    if (defaultValue) {
-      if (typeof defaultValue === 'object' && defaultValue.id) {
-        setSelected(defaultValue as Media)
-      }
+  const [selected, setSelected] = useState<Media | null>(() => {
+    if (defaultValue && typeof defaultValue === 'object' && defaultValue.id) {
+      return defaultValue as Media
     }
-  }, [defaultValue])
+    return null
+  })
+  const [isOpen, setIsOpen] = useState(false)
 
   const handleSelect = (item: Media) => {
     setSelected(item)

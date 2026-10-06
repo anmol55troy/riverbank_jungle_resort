@@ -31,7 +31,7 @@ export async function Footer({ settings, logoUrl = '/logo.png' }: Props) {
     { href: settings?.facebook ?? DEFAULTS.facebook, label: 'Facebook', icon: FacebookIcon },
     { href: settings?.instagram ?? DEFAULTS.instagram, label: 'Instagram', icon: InstagramIcon },
     { href: settings?.linkedin ?? DEFAULTS.linkedin, label: 'LinkedIn', icon: LinkedInIcon },
-    { href: (settings as any)?.tiktok ?? 'https://tiktok.com', label: 'TikTok', icon: TiktokIcon },
+    { href: settings?.tiktok ?? 'https://tiktok.com', label: 'TikTok', icon: TiktokIcon },
   ]
 
   const otas = [

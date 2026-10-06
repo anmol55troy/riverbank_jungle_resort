@@ -288,7 +288,7 @@ export function SettingsForm({ settings }: SettingsFormProps) {
             </FormField>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 border-t border-gray-200">
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 pt-2 border-t border-gray-200">
             <FormField label="Facebook URL">
               <TextInput
                 name="facebook"
@@ -310,6 +310,14 @@ export function SettingsForm({ settings }: SettingsFormProps) {
                 name="linkedin"
                 defaultValue={settings.linkedin || ''}
                 placeholder="https://linkedin.com/..."
+              />
+            </FormField>
+
+            <FormField label="TikTok URL">
+              <TextInput
+                name="tiktok"
+                defaultValue={settings.tiktok || ''}
+                placeholder="https://tiktok.com/..."
               />
             </FormField>
           </div>

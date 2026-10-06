@@ -273,6 +273,7 @@ const siteSettingSchema = new Schema(
       type: String,
       default: 'https://www.linkedin.com/company/104239283',
     },
+    tiktok: String,
     bookingCom: String,
     tripadvisor: String,
     makemytrip: String,

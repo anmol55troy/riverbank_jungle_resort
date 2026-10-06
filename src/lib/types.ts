@@ -218,6 +218,7 @@ export interface SiteSetting {
   facebook?: string | null
   instagram?: string | null
   linkedin?: string | null
+  tiktok?: string | null
   bookingCom?: string | null
   tripadvisor?: string | null
   makemytrip?: string | null

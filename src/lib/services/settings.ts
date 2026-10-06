@@ -61,6 +61,7 @@ export async function saveSiteSettings(formData: FormData): Promise<{ success: b
   const facebook = String(formData.get('facebook') || '').trim()
   const instagram = String(formData.get('instagram') || '').trim()
   const linkedin = String(formData.get('linkedin') || '').trim()
+  const tiktok = String(formData.get('tiktok') || '').trim()
   const bookingCom = String(formData.get('bookingCom') || '').trim()
   const tripadvisor = String(formData.get('tripadvisor') || '').trim()
   const makemytrip = String(formData.get('makemytrip') || '').trim()
@@ -95,6 +96,7 @@ export async function saveSiteSettings(formData: FormData): Promise<{ success: b
     facebook,
     instagram,
     linkedin,
+    tiktok: tiktok || undefined,
     bookingCom: bookingCom || undefined,
     tripadvisor: tripadvisor || undefined,
     makemytrip: makemytrip || undefined,

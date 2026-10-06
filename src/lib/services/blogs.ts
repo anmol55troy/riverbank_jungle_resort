@@ -7,6 +7,7 @@ import { serializeDoc, serializeDocs } from '../db/serialize'
 import { requireAdmin } from '../auth/guard'
 import { generateSlug } from '../validation/slug'
 import type { BlogPost } from '../types'
+import { parseLexicalJson, parseStringField } from '../utils/form'
 
 export async function getAdminBlogPosts(options?: {
   search?: string
@@ -55,12 +56,13 @@ export async function saveBlogPost(
   await requireAdmin()
   await connectDB()
 
-  const title = String(formData.get('title') || '').trim()
-  const rawSlug = String(formData.get('slug') || '').trim()
-  const excerpt = String(formData.get('excerpt') || '').trim()
-  const rawBody = String(formData.get('body') || '').trim()
-  const coverImage = String(formData.get('coverImage') || '').trim()
-  const author = String(formData.get('author') || 'River Bank Jungle Resort').trim()
+  const title = parseStringField(formData, 'title')
+  const rawSlug = parseStringField(formData, 'slug')
+  const excerpt = parseStringField(formData, 'excerpt')
+  const rawBody = parseStringField(formData, 'body')
+  const coverImage = parseStringField(formData, 'coverImage')
+  const author = parseStringField(formData, 'author', 'River Bank Jungle Resort')
+  
   const publishedDate = formData.get('publishedDate')
     ? new Date(String(formData.get('publishedDate')))
     : new Date()
@@ -78,21 +80,7 @@ export async function saveBlogPost(
     return { success: false, error: `A blog post with the slug "${slug}" already exists.` }
   }
 
-  let bodyObj: any = { root: { type: 'root', children: [], direction: 'ltr', format: '', indent: 0, version: 1 } }
-  try {
-    if (rawBody) bodyObj = JSON.parse(rawBody)
-  } catch {
-    bodyObj = {
-      root: {
-        type: 'root',
-        children: [{ type: 'paragraph', children: [{ type: 'text', text: rawBody, version: 1 }], version: 1 }],
-        direction: 'ltr',
-        format: '',
-        indent: 0,
-        version: 1,
-      },
-    }
-  }
+  const bodyObj = parseLexicalJson(rawBody)
 
   const data: Record<string, unknown> = {
     title,

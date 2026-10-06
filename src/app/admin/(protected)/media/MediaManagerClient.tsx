@@ -185,7 +185,7 @@ export function MediaManagerClient({
               >
                 <div className="aspect-square relative w-full bg-cream/40 overflow-hidden">
                   <Image
-                    src={(item.sizes?.thumbnail?.url || item.url) || ''}
+                    src={(item.thumbnailURL || item.url) || ''}
                     alt={item.alt || ''}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"

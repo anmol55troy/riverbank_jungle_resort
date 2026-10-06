@@ -7,6 +7,7 @@ import { serializeDoc, serializeDocs } from '../db/serialize'
 import { requireAdmin } from '../auth/guard'
 import { generateSlug } from '../validation/slug'
 import type { Room } from '../types'
+import { parseLexicalJson, parseJsonField, parseNumberField, parseStringField } from '../utils/form'
 
 export async function getAdminRooms(options?: {
   search?: string
@@ -51,60 +52,28 @@ export async function saveRoom(
   await requireAdmin()
   await connectDB()
 
-  const title = String(formData.get('title') || '').trim()
-  const rawSlug = String(formData.get('slug') || '').trim()
-  const shortDescription = String(formData.get('shortDescription') || '').trim()
-  const rawDescription = String(formData.get('description') || '').trim()
-  const order = Number(formData.get('order') || 0)
-  const priceAmount = formData.get('priceAmount') ? Number(formData.get('priceAmount')) : undefined
-  const priceCurrency = (formData.get('priceCurrency') as 'USD' | 'NPR') || 'USD'
+  const title = parseStringField(formData, 'title')
+  const rawSlug = parseStringField(formData, 'slug')
+  const shortDescription = parseStringField(formData, 'shortDescription')
+  const rawDescription = parseStringField(formData, 'description')
+  const order = parseNumberField(formData, 'order', 0)
+  const priceAmount = parseNumberField(formData, 'priceAmount')
+  const priceCurrency = parseStringField(formData, 'priceCurrency', 'USD') as 'USD' | 'NPR'
 
-  const rawFeatures = String(formData.get('features') || '[]')
-  const rawGallery = String(formData.get('gallery') || '[]')
   const amenities = formData.getAll('amenities') as string[]
 
-  if (!title) {
-    return { success: false, error: 'Title is required.' }
-  }
-  if (!shortDescription) {
-    return { success: false, error: 'Short description is required.' }
-  }
+  if (!title) return { success: false, error: 'Title is required.' }
+  if (!shortDescription) return { success: false, error: 'Short description is required.' }
 
   const slug = generateSlug(rawSlug, title)
-
-  // Verify unique slug
   const existing = await RoomModel.findOne({ slug, ...(id ? { _id: { $ne: id } } : {}) })
   if (existing) {
     return { success: false, error: `A room with the slug "${slug}" already exists.` }
   }
 
-  let descriptionObj: any = { root: { type: 'root', children: [], direction: 'ltr', format: '', indent: 0, version: 1 } }
-  try {
-    if (rawDescription) {
-      descriptionObj = JSON.parse(rawDescription)
-    }
-  } catch {
-    descriptionObj = {
-      root: {
-        type: 'root',
-        children: [{ type: 'paragraph', children: [{ type: 'text', text: rawDescription, version: 1 }], version: 1 }],
-        direction: 'ltr',
-        format: '',
-        indent: 0,
-        version: 1,
-      },
-    }
-  }
-
-  let features = []
-  try {
-    features = JSON.parse(rawFeatures)
-  } catch {}
-
-  let gallery = []
-  try {
-    gallery = JSON.parse(rawGallery)
-  } catch {}
+  const descriptionObj = parseLexicalJson(rawDescription)
+  const features = parseJsonField(parseStringField(formData, 'features', '[]'))
+  const gallery = parseJsonField(parseStringField(formData, 'gallery', '[]'))
 
   const data: Record<string, unknown> = {
     title,

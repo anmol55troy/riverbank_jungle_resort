@@ -7,6 +7,7 @@ import { serializeDoc, serializeDocs } from '../db/serialize'
 import { requireAdmin } from '../auth/guard'
 import { generateSlug } from '../validation/slug'
 import type { Offer } from '../types'
+import { parseLexicalJson, parseStringField } from '../utils/form'
 
 export async function getAdminOffers(options?: {
   search?: string
@@ -51,13 +52,13 @@ export async function saveOffer(
   await requireAdmin()
   await connectDB()
 
-  const title = String(formData.get('title') || '').trim()
-  const rawSlug = String(formData.get('slug') || '').trim()
+  const title = parseStringField(formData, 'title')
+  const rawSlug = parseStringField(formData, 'slug')
   const active = formData.get('active') === 'on' || formData.get('active') === 'true'
   const validFrom = formData.get('validFrom') ? new Date(String(formData.get('validFrom'))) : undefined
   const validUntil = formData.get('validUntil') ? new Date(String(formData.get('validUntil'))) : undefined
-  const rawDescription = String(formData.get('description') || '').trim()
-  const image = String(formData.get('image') || '').trim()
+  const rawDescription = parseStringField(formData, 'description')
+  const image = parseStringField(formData, 'image')
 
   if (!title) return { success: false, error: 'Title is required.' }
 
@@ -67,21 +68,7 @@ export async function saveOffer(
     return { success: false, error: `An offer with the slug "${slug}" already exists.` }
   }
 
-  let descriptionObj: any = { root: { type: 'root', children: [], direction: 'ltr', format: '', indent: 0, version: 1 } }
-  try {
-    if (rawDescription) descriptionObj = JSON.parse(rawDescription)
-  } catch {
-    descriptionObj = {
-      root: {
-        type: 'root',
-        children: [{ type: 'paragraph', children: [{ type: 'text', text: rawDescription, version: 1 }], version: 1 }],
-        direction: 'ltr',
-        format: '',
-        indent: 0,
-        version: 1,
-      },
-    }
-  }
+  const descriptionObj = parseLexicalJson(rawDescription)
 
   const data: Record<string, unknown> = {
     title,

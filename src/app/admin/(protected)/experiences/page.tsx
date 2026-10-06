@@ -52,7 +52,7 @@ export default async function AdminExperiencesPage(props: {
               <tbody className="divide-y divide-espresso/5">
                 {experiences.map((exp) => {
                   const img = exp.image as Media | undefined
-                  const thumb = img?.sizes?.thumbnail?.url || img?.url
+                  const thumb = img?.thumbnailURL || img?.url
 
                   return (
                     <tr key={exp.id} className="hover:bg-cream/20 transition-colors">

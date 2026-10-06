@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import { setRequestLocale } from 'next-intl/server'
 
-import { Hero } from '@/components/Hero'
-import { SectionHeading } from '@/components/SectionHeading'
+import { Hero } from '@/components/frontend/Hero'
+import { SectionHeading } from '@/components/ui/SectionHeading'
 import { buildMetadata } from '@/lib/seo'
 
 export const revalidate = 3600

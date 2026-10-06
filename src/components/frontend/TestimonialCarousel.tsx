@@ -5,7 +5,7 @@ import useEmblaCarousel from 'embla-carousel-react'
 import { useReducedMotion } from '@/lib/useReducedMotion'
 import { useCallback, useEffect, useState } from 'react'
 
-import { StarIcon } from './icons'
+import { StarIcon } from '../ui/icons'
 
 export type TestimonialItem = {
   id: string | number

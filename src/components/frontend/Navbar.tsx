@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 import { Link, usePathname } from '@/i18n/navigation'
 import { NAV_LINKS, PRIMARY_NAV_LINKS } from '@/lib/constants'
 
-import { CloseIcon, ExternalIcon, MenuIcon } from './icons'
+import { CloseIcon, ExternalIcon, MenuIcon } from '../ui/icons'
 
 type Props = {
   bookingUrl: string

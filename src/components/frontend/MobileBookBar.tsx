@@ -1,6 +1,6 @@
 import { whatsappHref } from '@/lib/constants'
 
-import { WhatsAppIcon } from './icons'
+import { WhatsAppIcon } from '../ui/icons'
 
 type Props = {
   bookingUrl: string

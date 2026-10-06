@@ -2,10 +2,9 @@
 
 import React, { useState } from 'react'
 import Image from 'next/image'
-import { Modal } from '../ui/Modal'
 import { Button } from '../ui/Button'
-import { getMediaList, uploadMedia } from '@/lib/services/media'
 import type { Media } from '@/lib/types'
+import { MediaBrowserModal } from './MediaBrowserModal'
 
 export interface GalleryItem {
   image: string | Media
@@ -25,29 +24,6 @@ export function GalleryPicker({
 }: GalleryPickerProps) {
   const [items, setItems] = useState<GalleryItem[]>(defaultValue || [])
   const [isOpen, setIsOpen] = useState(false)
-  const [mediaList, setMediaList] = useState<Media[]>([])
-  const [loading, setLoading] = useState(false)
-  const [search, setSearch] = useState('')
-  const [uploading, setUploading] = useState(false)
-  const [uploadError, setUploadError] = useState('')
-  const [activeTab, setActiveTab] = useState<'browse' | 'upload'>('browse')
-
-  const loadMedia = async (q = '') => {
-    setLoading(true)
-    try {
-      const res = await getMediaList({ search: q, limit: 40 })
-      setMediaList(res.docs)
-    } catch (e) {
-      console.error(e)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const handleOpen = () => {
-    setIsOpen(true)
-    loadMedia(search)
-  }
 
   const handleAddMedia = (media: Media) => {
     const id = Math.random().toString(36).substring(2, 10)
@@ -69,34 +45,6 @@ export function GalleryPicker({
     setItems(newItems)
   }
 
-  const handleUploadSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setUploadError('')
-    const form = e.currentTarget
-    const formData = new FormData(form)
-    const file = formData.get('file') as File
-
-    if (!file || file.size === 0) {
-      setUploadError('Please choose a file.')
-      return
-    }
-
-    setUploading(true)
-    try {
-      const res = await uploadMedia(formData)
-      if (res.success && res.media) {
-        handleAddMedia(res.media)
-        form.reset()
-      } else {
-        setUploadError(res.error || 'Upload failed.')
-      }
-    } catch (err: any) {
-      setUploadError(err.message || 'Upload failed.')
-    } finally {
-      setUploading(false)
-    }
-  }
-
   // Generate serialized hidden inputs for each item in the gallery
   return (
     <div className="space-y-3">
@@ -116,7 +64,7 @@ export function GalleryPicker({
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3">
           {items.map((item, idx) => {
             const mediaObj = typeof item.image === 'object' ? (item.image as Media) : null
-            const url = mediaObj?.sizes?.thumbnail?.url || mediaObj?.url
+            const url = mediaObj?.thumbnailURL || mediaObj?.url
 
             return (
               <div
@@ -177,96 +125,18 @@ export function GalleryPicker({
       )}
 
       <div>
-        <Button type="button" variant="secondary" size="sm" onClick={handleOpen}>
+        <Button type="button" variant="secondary" size="sm" onClick={() => setIsOpen(true)}>
           + {label}
         </Button>
       </div>
 
-      {/* Media Picker Modal */}
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} title="Add Image to Gallery" maxWidth="4xl">
-        <div className="space-y-4">
-          <div className="flex border-b border-espresso/15 gap-4">
-            <button
-              type="button"
-              onClick={() => setActiveTab('browse')}
-              className={`pb-2 text-sm font-semibold border-b-2 cursor-pointer ${
-                activeTab === 'browse' ? 'border-espresso text-espresso' : 'border-transparent text-espresso/60'
-              }`}
-            >
-              Browse Library
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveTab('upload')}
-              className={`pb-2 text-sm font-semibold border-b-2 cursor-pointer ${
-                activeTab === 'upload' ? 'border-espresso text-espresso' : 'border-transparent text-espresso/60'
-              }`}
-            >
-              Upload New
-            </button>
-          </div>
-
-          {activeTab === 'browse' ? (
-            <div className="space-y-4">
-              <input
-                type="text"
-                placeholder="Search media..."
-                value={search}
-                onChange={(e) => {
-                  setSearch(e.target.value)
-                  loadMedia(e.target.value)
-                }}
-                className="w-full rounded-lg border border-espresso/20 px-3.5 py-1.5 text-xs text-espresso bg-white"
-              />
-
-              {loading ? (
-                <div className="py-12 text-center text-xs text-espresso/60">Loading...</div>
-              ) : (
-                <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-3 max-h-[50vh] overflow-y-auto p-1">
-                  {mediaList.map((m) => {
-                    const thumb = m.sizes?.thumbnail?.url || m.url
-                    return (
-                      <button
-                        key={m.id}
-                        type="button"
-                        onClick={() => handleAddMedia(m)}
-                        className="group relative aspect-4/3 rounded-lg overflow-hidden border border-espresso/15 hover:border-espresso hover:ring-2 hover:ring-espresso/20 bg-cream cursor-pointer"
-                      >
-                        {thumb && (
-                          <Image src={thumb} alt={m.alt || ''} fill sizes="200px" className="object-cover" unoptimized />
-                        )}
-                        <div className="absolute inset-x-0 bottom-0 bg-espresso/80 text-ivory text-[10px] p-1 truncate opacity-0 group-hover:opacity-100">
-                          {m.alt || m.filename}
-                        </div>
-                      </button>
-                    )
-                  })}
-                </div>
-              )}
-            </div>
-          ) : (
-            <form onSubmit={handleUploadSubmit} className="space-y-4 max-w-lg mx-auto py-4">
-              {uploadError && <div className="p-3 text-xs text-rose-700 bg-rose-50 border border-rose-200 rounded-lg">{uploadError}</div>}
-              <div>
-                <label className="block text-xs font-semibold text-espresso mb-1">Image File</label>
-                <input type="file" name="file" accept="image/*" required className="w-full text-xs border border-espresso/20 rounded-lg p-2 bg-white" />
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-espresso mb-1">Alt Text</label>
-                <input type="text" name="alt" placeholder="Description of image" className="w-full text-xs border border-espresso/20 rounded-lg px-3 py-2 bg-white" />
-              </div>
-              <div className="flex justify-end gap-2 pt-2">
-                <Button type="button" variant="ghost" size="sm" onClick={() => setActiveTab('browse')}>
-                  Cancel
-                </Button>
-                <Button type="submit" variant="primary" size="sm" isLoading={uploading}>
-                  Upload & Add
-                </Button>
-              </div>
-            </form>
-          )}
-        </div>
-      </Modal>
+      <MediaBrowserModal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        onSelect={handleAddMedia}
+        title="Add Image to Gallery"
+        requireAltAndCaption={false}
+      />
     </div>
   )
 }

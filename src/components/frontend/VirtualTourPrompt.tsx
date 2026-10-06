@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
-import { CloseIcon, ExternalIcon } from './icons'
+import { CloseIcon, ExternalIcon } from '../ui/icons'
 
 type Props = {
   url: string

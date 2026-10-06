@@ -7,6 +7,7 @@ import { serializeDoc, serializeDocs } from '../db/serialize'
 import { requireAdmin } from '../auth/guard'
 import { generateSlug } from '../validation/slug'
 import type { DiningVenue } from '../types'
+import { parseLexicalJson, parseJsonField, parseNumberField, parseStringField } from '../utils/form'
 
 export async function getAdminDiningVenues(options?: {
   search?: string
@@ -51,16 +52,15 @@ export async function saveDiningVenue(
   await requireAdmin()
   await connectDB()
 
-  const title = String(formData.get('title') || '').trim()
-  const rawSlug = String(formData.get('slug') || '').trim()
-  const shortDescription = String(formData.get('shortDescription') || '').trim()
-  const rawDescription = String(formData.get('description') || '').trim()
-  const cuisine = String(formData.get('cuisine') || '').trim()
-  const hours = String(formData.get('hours') || '').trim()
-  const image = String(formData.get('image') || '').trim()
-  const order = Number(formData.get('order') || 0)
-  const rawGallery = String(formData.get('gallery') || '[]')
-
+  const title = parseStringField(formData, 'title')
+  const rawSlug = parseStringField(formData, 'slug')
+  const shortDescription = parseStringField(formData, 'shortDescription')
+  const rawDescription = parseStringField(formData, 'description')
+  const cuisine = parseStringField(formData, 'cuisine')
+  const hours = parseStringField(formData, 'hours')
+  const image = parseStringField(formData, 'image')
+  const order = parseNumberField(formData, 'order', 0)
+  
   if (!title) return { success: false, error: 'Title is required.' }
   if (!shortDescription) return { success: false, error: 'Short description is required.' }
 
@@ -70,26 +70,8 @@ export async function saveDiningVenue(
     return { success: false, error: `A dining venue with the slug "${slug}" already exists.` }
   }
 
-  let descriptionObj: any = { root: { type: 'root', children: [], direction: 'ltr', format: '', indent: 0, version: 1 } }
-  try {
-    if (rawDescription) descriptionObj = JSON.parse(rawDescription)
-  } catch {
-    descriptionObj = {
-      root: {
-        type: 'root',
-        children: [{ type: 'paragraph', children: [{ type: 'text', text: rawDescription, version: 1 }], version: 1 }],
-        direction: 'ltr',
-        format: '',
-        indent: 0,
-        version: 1,
-      },
-    }
-  }
-
-  let gallery = []
-  try {
-    gallery = JSON.parse(rawGallery)
-  } catch {}
+  const descriptionObj = parseLexicalJson(rawDescription)
+  const gallery = parseJsonField(parseStringField(formData, 'gallery', '[]'))
 
   const data: Record<string, unknown> = {
     title,

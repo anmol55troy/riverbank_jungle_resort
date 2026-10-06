@@ -1,17 +1,17 @@
 import Image from 'next/image'
 import { setRequestLocale } from 'next-intl/server'
 
-import { BookingWidget } from '@/components/BookingWidget'
-import { GoldExternal, TextExternal, TextLink } from '@/components/Buttons'
-import { Hero } from '@/components/Hero'
-import { JsonLd } from '@/components/JsonLd'
-import { SalBranchMotif } from '@/components/Motifs'
-import { RiverRule } from '@/components/RiverRule'
-import { SectionHeading } from '@/components/SectionHeading'
-import { FadeUp } from '@/components/motion'
-import { TestimonialCarousel } from '@/components/TestimonialCarousel'
-import { CertificateCarousel } from '@/components/CertificateCarousel'
-import { PropertyImageSlider } from '@/components/PropertyImageSlider'
+import { BookingWidget } from '@/components/frontend/BookingWidget'
+import { GoldExternal, TextExternal, TextLink } from '@/components/ui/Buttons'
+import { Hero } from '@/components/frontend/Hero'
+import { JsonLd } from '@/components/frontend/JsonLd'
+import { SalBranchMotif } from '@/components/ui/Motifs'
+import { RiverRule } from '@/components/ui/RiverRule'
+import { SectionHeading } from '@/components/ui/SectionHeading'
+import { FadeUp } from '@/components/ui/motion'
+import { TestimonialCarousel } from '@/components/frontend/TestimonialCarousel'
+import { CertificateCarousel } from '@/components/frontend/CertificateCarousel'
+import { PropertyImageSlider } from '@/components/frontend/PropertyImageSlider'
 import { Link } from '@/i18n/navigation'
 import { DEFAULTS } from '@/lib/constants'
 import {
@@ -36,16 +36,7 @@ export const metadata = buildMetadata({
   isHome: true,
 })
 
-/** Fallback thumbnails for the excursion list, used until the CMS has an image. */
-const EXPERIENCE_FALLBACKS = [
-  PLACEHOLDER.canoe,
-  PLACEHOLDER.jungle,
-  PLACEHOLDER.bird,
-  PLACEHOLDER.crocodile,
-  PLACEHOLDER.culture,
-  PLACEHOLDER.village,
-  PLACEHOLDER.sunset,
-]
+
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -62,7 +53,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const bookingUrl = settings?.bookingUrl || DEFAULTS.bookingUrl
   const virtualTourUrl = settings?.virtualTourUrl || DEFAULTS.virtualTourUrl
 
-  const [featured, ...restExperiences] = experiences
+  const [featured] = experiences
 
   return (
     <>

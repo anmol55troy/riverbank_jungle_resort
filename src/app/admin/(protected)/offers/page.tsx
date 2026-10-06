@@ -53,7 +53,7 @@ export default async function AdminOffersPage(props: {
               <tbody className="divide-y divide-espresso/5">
                 {offers.map((offer) => {
                   const img = offer.image as Media | undefined
-                  const thumb = img?.sizes?.thumbnail?.url || img?.url
+                  const thumb = img?.thumbnailURL || img?.url
 
                   return (
                     <tr key={offer.id} className="hover:bg-cream/20 transition-colors">

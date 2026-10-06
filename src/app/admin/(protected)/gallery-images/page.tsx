@@ -48,7 +48,7 @@ export default async function AdminGalleryPage(props: {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {images.map((item) => {
               const img = item.image as Media | undefined
-              const thumb = img?.sizes?.thumbnail?.url || img?.url
+              const thumb = img?.thumbnailURL || img?.url
 
               return (
                 <Link

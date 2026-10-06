@@ -56,7 +56,7 @@ export default async function AdminRoomsPage(props: {
               <tbody className="divide-y divide-espresso/5">
                 {rooms.map((room) => {
                   const firstGalleryImg = room.gallery?.[0]?.image as Media | undefined
-                  const thumb = firstGalleryImg?.sizes?.thumbnail?.url || firstGalleryImg?.url
+                  const thumb = firstGalleryImg?.thumbnailURL || firstGalleryImg?.url
 
                   return (
                     <tr key={room.id} className="hover:bg-cream/20 transition-colors">

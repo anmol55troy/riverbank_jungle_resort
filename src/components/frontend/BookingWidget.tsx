@@ -29,7 +29,7 @@ export function BookingWidget({ bookingUrl }: Props) {
       url.searchParams.set('items[0][infants]', '0')
       url.searchParams.set('currency', 'USD')
       return url.toString()
-    } catch (e) {
+    } catch {
       // If it's a relative path or invalid URL, fallback gracefully
       return bookingUrl
     }

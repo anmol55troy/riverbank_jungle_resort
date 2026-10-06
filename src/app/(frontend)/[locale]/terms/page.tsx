@@ -1,6 +1,6 @@
 import { setRequestLocale } from 'next-intl/server'
 
-import { JsonLd } from '@/components/JsonLd'
+import { JsonLd } from '@/components/frontend/JsonLd'
 import { breadcrumbSchema } from '@/lib/jsonld'
 import { buildMetadata } from '@/lib/seo'
 

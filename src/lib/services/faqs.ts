@@ -6,6 +6,7 @@ import { FaqModel } from '../db/models'
 import { serializeDoc, serializeDocs } from '../db/serialize'
 import { requireAdmin } from '../auth/guard'
 import type { Faq } from '../types'
+import { parseLexicalJson, parseStringField, parseNumberField } from '../utils/form'
 
 export async function getAdminFaqs(options?: {
   search?: string
@@ -50,27 +51,13 @@ export async function saveFaq(
   await requireAdmin()
   await connectDB()
 
-  const question = String(formData.get('question') || '').trim()
-  const rawAnswer = String(formData.get('answer') || '').trim()
-  const order = Number(formData.get('order') || 0)
+  const question = parseStringField(formData, 'question')
+  const rawAnswer = parseStringField(formData, 'answer')
+  const order = parseNumberField(formData, 'order', 0)
 
   if (!question) return { success: false, error: 'Question is required.' }
 
-  let answerObj: any = { root: { type: 'root', children: [], direction: 'ltr', format: '', indent: 0, version: 1 } }
-  try {
-    if (rawAnswer) answerObj = JSON.parse(rawAnswer)
-  } catch {
-    answerObj = {
-      root: {
-        type: 'root',
-        children: [{ type: 'paragraph', children: [{ type: 'text', text: rawAnswer, version: 1 }], version: 1 }],
-        direction: 'ltr',
-        format: '',
-        indent: 0,
-        version: 1,
-      },
-    }
-  }
+  const answerObj = parseLexicalJson(rawAnswer)
 
   const data = {
     question,

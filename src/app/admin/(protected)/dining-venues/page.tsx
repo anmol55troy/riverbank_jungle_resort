@@ -53,7 +53,7 @@ export default async function AdminDiningPage(props: {
               <tbody className="divide-y divide-espresso/5">
                 {venues.map((venue) => {
                   const img = venue.image as Media | undefined
-                  const thumb = img?.sizes?.thumbnail?.url || img?.url
+                  const thumb = img?.thumbnailURL || img?.url
 
                   return (
                     <tr key={venue.id} className="hover:bg-cream/20 transition-colors">

@@ -5,8 +5,8 @@ import { Link } from '@/i18n/navigation'
 import { DEFAULTS, NAV_LINKS, SITE_NAME } from '@/lib/constants'
 import type { SiteSetting } from '@/lib/types'
 
-import { ExternalIcon, FacebookIcon, InstagramIcon, LinkedInIcon, MailIcon, PhoneIcon, PinIcon } from './icons'
-import { PalmMotif } from './Motifs'
+import { ExternalIcon, FacebookIcon, InstagramIcon, LinkedInIcon, MailIcon, PhoneIcon, PinIcon } from '../ui/icons'
+import { PalmMotif } from '../ui/Motifs'
 import { NewsletterForm } from './NewsletterForm'
 
 type Props = {

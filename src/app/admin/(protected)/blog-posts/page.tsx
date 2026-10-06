@@ -53,7 +53,7 @@ export default async function AdminBlogPage(props: {
               <tbody className="divide-y divide-espresso/5">
                 {posts.map((post) => {
                   const img = post.coverImage as Media | undefined
-                  const thumb = img?.sizes?.thumbnail?.url || img?.url
+                  const thumb = img?.thumbnailURL || img?.url
 
                   return (
                     <tr key={post.id} className="hover:bg-cream/20 transition-colors">

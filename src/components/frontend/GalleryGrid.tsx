@@ -4,7 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import Image from 'next/image'
 import { useCallback, useEffect, useState } from 'react'
 
-import { ArrowRight, CloseIcon } from './icons'
+import { ArrowRight, CloseIcon } from '../ui/icons'
 
 export type GalleryItem = {
   id: string | number

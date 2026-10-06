@@ -4,6 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import { logoutAction } from '@/lib/services/auth'
 
 interface NavGroup {
   label: string
@@ -248,8 +249,8 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
         ))}
       </div>
 
-      {/* Footer link to public website */}
-      <div className="p-3 border-t border-espresso-light bg-espresso/50">
+      {/* Footer link to public website & Logout */}
+      <div className="p-3 border-t border-espresso-light bg-espresso/50 flex flex-col gap-2">
         <Link
           href="/"
           target="_blank"
@@ -260,6 +261,17 @@ export function Sidebar({ onClose }: { onClose?: () => void }) {
           </svg>
           <span>View Public Website</span>
         </Link>
+        <form action={logoutAction} className="w-full">
+          <button
+            type="submit"
+            className="flex items-center gap-2 px-3 py-2 w-full rounded-lg text-xs text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 transition-colors cursor-pointer text-left"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            <span>Logout</span>
+          </button>
+        </form>
       </div>
     </aside>
   )

@@ -16,17 +16,17 @@ export default async function EditDiningVenuePage(props: {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-2 text-xs text-espresso/60">
-        <Link href="/admin/dining-venues" className="hover:text-espresso">
+      <div className="flex items-center gap-2 text-xs text-gray-500">
+        <Link href="/admin/dining-venues" className="hover:text-gray-900">
           Dining & Venues
         </Link>
         <span>/</span>
-        <span className="text-espresso font-medium">{venue.title}</span>
+        <span className="text-gray-900 font-medium">{venue.title}</span>
       </div>
 
       <div>
-        <h1 className="font-serif text-2xl font-light text-espresso">Edit Dining Venue</h1>
-        <p className="text-xs text-espresso/60 mt-0.5 font-mono">ID: {venue.id}</p>
+        <h1 className="font-serif text-2xl font-light text-gray-900">Edit Dining Venue</h1>
+        <p className="text-xs text-gray-500 mt-0.5 font-mono">ID: {venue.id}</p>
       </div>
 
       <DiningVenueForm venue={venue} />

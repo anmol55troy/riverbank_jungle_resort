@@ -87,10 +87,10 @@ export function NewsletterSignupsClient({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by subscriber email..."
-            className="w-full px-3.5 py-2 pl-9 rounded-xl border border-espresso/15 bg-white text-xs text-espresso placeholder:text-espresso/40 focus:outline-hidden focus:border-espresso/40"
+            className="w-full px-3.5 py-2 pl-9 rounded-xl border border-gray-200 bg-white text-xs text-gray-900 placeholder:text-gray-900/40 focus:outline-hidden focus:border-gray-300/40"
           />
           <svg
-            className="w-4 h-4 text-espresso/40 absolute left-3 top-2.5"
+            className="w-4 h-4 text-gray-900/40 absolute left-3 top-2.5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -108,12 +108,12 @@ export function NewsletterSignupsClient({
       </div>
 
       {/* Subscribers Table */}
-      <div className="bg-white rounded-3xl border border-espresso/10 p-5 shadow-xs">
+      <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
         {initialDocs.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="text-espresso/50 uppercase tracking-wider text-[10px] border-b border-espresso/10">
+                <tr className="text-gray-400 uppercase tracking-wider text-[10px] border-b border-gray-200">
                   <th className="pb-3 font-semibold">Subscriber Email</th>
                   <th className="pb-3 font-semibold">Date Subscribed</th>
                   <th className="pb-3 font-semibold text-right">Actions</th>
@@ -121,13 +121,13 @@ export function NewsletterSignupsClient({
               </thead>
               <tbody className="divide-y divide-espresso/5">
                 {initialDocs.map((sub) => (
-                  <tr key={sub.id} className="hover:bg-cream/20 transition-colors">
-                    <td className="py-3 font-medium text-espresso font-mono">
-                      <a href={`mailto:${sub.email}`} className="hover:text-gold-dark hover:underline">
+                  <tr key={sub.id} className="hover:bg-gray-50 transition-colors">
+                    <td className="py-3 font-medium text-gray-900 font-mono">
+                      <a href={`mailto:${sub.email}`} className="hover:text-blue-600 hover:underline">
                         {sub.email}
                       </a>
                     </td>
-                    <td className="py-3 text-espresso/60">
+                    <td className="py-3 text-gray-500">
                       {new Date(sub.createdAt).toLocaleDateString('en-US', {
                         month: 'short',
                         day: 'numeric',
@@ -150,7 +150,7 @@ export function NewsletterSignupsClient({
             </table>
           </div>
         ) : (
-          <div className="py-12 text-center text-xs text-espresso/60">
+          <div className="py-12 text-center text-xs text-gray-500">
             {searchQuery ? 'No subscribers match your search.' : 'No newsletter subscribers yet.'}
           </div>
         )}

@@ -54,7 +54,7 @@ export function TestimonialForm({ testimonial }: TestimonialFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-3xl border border-espresso/10 p-6 sm:p-8 space-y-6 shadow-xs max-w-2xl">
+    <form onSubmit={handleSubmit} className="bg-white rounded-lg border border-gray-200 p-6 sm:p-8 space-y-6 shadow-sm max-w-2xl">
       {error && <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-800">{error}</div>}
 
       <FormField label="Guest Name" required>

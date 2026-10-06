@@ -10,16 +10,16 @@ export default async function NewRoomPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-2 text-xs text-espresso/60">
-        <Link href="/admin/rooms" className="hover:text-espresso">
+      <div className="flex items-center gap-2 text-xs text-gray-500">
+        <Link href="/admin/rooms" className="hover:text-gray-900">
           Rooms & Suites
         </Link>
         <span>/</span>
-        <span className="text-espresso font-medium">New Room</span>
+        <span className="text-gray-900 font-medium">New Room</span>
       </div>
 
       <div className="flex items-center justify-between">
-        <h1 className="font-serif text-2xl font-light text-espresso">Add New Room</h1>
+        <h1 className="font-serif text-2xl font-light text-gray-900">Add New Room</h1>
       </div>
 
       <RoomForm amenitiesList={amenities} />

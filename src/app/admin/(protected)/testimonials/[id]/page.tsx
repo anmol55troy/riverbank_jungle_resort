@@ -18,18 +18,18 @@ export default async function EditTestimonialPage(props: {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-2 text-xs text-espresso/60">
-        <Link href="/admin/testimonials" className="hover:text-espresso">
+      <div className="flex items-center gap-2 text-xs text-gray-500">
+        <Link href="/admin/testimonials" className="hover:text-gray-900">
           Guest Reviews
         </Link>
         <span>/</span>
-        <span className="text-espresso font-medium">{testimonial.guestName}</span>
+        <span className="text-gray-900 font-medium">{testimonial.guestName}</span>
       </div>
 
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-serif text-2xl font-light text-espresso">Edit Review</h1>
-          <p className="text-xs text-espresso/60 mt-0.5 font-mono">ID: {testimonial.id}</p>
+          <h1 className="font-serif text-2xl font-light text-gray-900">Edit Review</h1>
+          <p className="text-xs text-gray-500 mt-0.5 font-mono">ID: {testimonial.id}</p>
         </div>
       </div>
 

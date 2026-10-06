@@ -65,7 +65,7 @@ export function OfferForm({ offer }: OfferFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-3xl border border-espresso/10 p-6 sm:p-8 space-y-6 shadow-xs">
+    <form onSubmit={handleSubmit} className="bg-white rounded-lg border border-gray-200 p-6 sm:p-8 space-y-6 shadow-sm">
       {error && <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-800">{error}</div>}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -78,7 +78,7 @@ export function OfferForm({ offer }: OfferFormProps) {
         </FormField>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 rounded-2xl bg-ivory/50 border border-espresso/10 items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 rounded-lg bg-gray-50 border border-gray-200 items-center">
         <div>
           <Checkbox name="active" defaultChecked={offer?.active ?? true} label="Offer is Active on Website" />
         </div>
@@ -96,8 +96,8 @@ export function OfferForm({ offer }: OfferFormProps) {
         <RichTextEditor name="description" defaultValue={offer?.description} />
       </FormField>
 
-      <div className="pt-4 border-t border-espresso/10">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-espresso/80 mb-2">Offer Promotional Image</h3>
+      <div className="pt-4 border-t border-gray-200">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-600 mb-2">Offer Promotional Image</h3>
         <MediaPicker name="image" defaultValue={offer?.image as any} label="Select Offer Image" />
       </div>
 

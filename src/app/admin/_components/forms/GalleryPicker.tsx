@@ -69,17 +69,17 @@ export function GalleryPicker({
             return (
               <div
                 key={item.id || idx}
-                className="group relative aspect-4/3 rounded-xl overflow-hidden border border-espresso/20 bg-cream"
+                className="group relative aspect-4/3 rounded-xl overflow-hidden border border-gray-300 bg-gray-100"
               >
                 {url ? (
                   <Image src={url} alt={mediaObj?.alt || 'Gallery image'} fill sizes="200px" className="object-cover" unoptimized />
                 ) : (
-                  <div className="flex items-center justify-center h-full text-xs text-espresso/40">Image {idx + 1}</div>
+                  <div className="flex items-center justify-center h-full text-xs text-gray-900/40">Image {idx + 1}</div>
                 )}
 
                 {/* Overlay actions */}
-                <div className="absolute inset-0 bg-espresso/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-between p-2">
-                  <div className="flex justify-between items-center text-ivory text-[10px]">
+                <div className="absolute inset-0 bg-gray-900/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-between p-2">
+                  <div className="flex justify-between items-center text-white text-[10px]">
                     <span>#{idx + 1}</span>
                     <button
                       type="button"
@@ -98,7 +98,7 @@ export function GalleryPicker({
                       type="button"
                       disabled={idx === 0}
                       onClick={() => handleMove(idx, 'up')}
-                      className="p-1 bg-white/20 hover:bg-white/40 disabled:opacity-30 rounded text-ivory cursor-pointer"
+                      className="p-1 bg-white/20 hover:bg-white/40 disabled:opacity-30 rounded text-white cursor-pointer"
                       title="Move backward"
                     >
                       ←
@@ -107,7 +107,7 @@ export function GalleryPicker({
                       type="button"
                       disabled={idx === items.length - 1}
                       onClick={() => handleMove(idx, 'down')}
-                      className="p-1 bg-white/20 hover:bg-white/40 disabled:opacity-30 rounded text-ivory cursor-pointer"
+                      className="p-1 bg-white/20 hover:bg-white/40 disabled:opacity-30 rounded text-white cursor-pointer"
                       title="Move forward"
                     >
                       →
@@ -119,8 +119,8 @@ export function GalleryPicker({
           })}
         </div>
       ) : (
-        <div className="p-6 text-center border-2 border-dashed border-espresso/15 rounded-xl bg-white/40">
-          <p className="text-xs text-espresso/60 mb-2">No gallery images added yet.</p>
+        <div className="p-6 text-center border-2 border-dashed border-gray-200 rounded-xl bg-white/40">
+          <p className="text-xs text-gray-500 mb-2">No gallery images added yet.</p>
         </div>
       )}
 

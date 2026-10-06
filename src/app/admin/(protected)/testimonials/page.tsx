@@ -20,12 +20,12 @@ export default async function AdminTestimonialsPage(props: {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="font-serif text-2xl font-light text-espresso">Guest Reviews</h1>
-          <p className="text-xs text-espresso/60">Manage visitor testimonials displayed on the homepage and review carousels.</p>
+          <h1 className="font-serif text-2xl font-light text-gray-900">Guest Reviews</h1>
+          <p className="text-xs text-gray-500">Manage visitor testimonials displayed on the homepage and review carousels.</p>
         </div>
         <Link
           href="/admin/testimonials/new"
-          className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold rounded-lg bg-espresso text-ivory hover:bg-espresso-light shadow-xs"
+          className="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md bg-gray-900 text-white hover:bg-gray-800 transition-colors"
         >
           + Add Review
         </Link>
@@ -35,12 +35,12 @@ export default async function AdminTestimonialsPage(props: {
         <SearchBar placeholder="Search by guest or quote..." />
       </div>
 
-      <div className="bg-white rounded-3xl border border-espresso/10 p-5 shadow-xs">
+      <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
         {testimonials.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="text-espresso/50 uppercase tracking-wider text-[10px] border-b border-espresso/10">
+                <tr className="text-gray-400 uppercase tracking-wider text-[10px] border-b border-gray-200">
                   <th className="pb-3 font-semibold">Guest</th>
                   <th className="pb-3 font-semibold">Country</th>
                   <th className="pb-3 font-semibold">Quote Snippet</th>
@@ -51,10 +51,10 @@ export default async function AdminTestimonialsPage(props: {
               </thead>
               <tbody className="divide-y divide-espresso/5">
                 {testimonials.map((t) => (
-                  <tr key={t.id} className="hover:bg-cream/20 transition-colors">
-                    <td className="py-3 font-medium text-espresso">{t.guestName}</td>
-                    <td className="py-3 text-espresso/70">{t.country || '—'}</td>
-                    <td className="py-3 text-espresso/80 max-w-sm truncate">{t.quote}</td>
+                  <tr key={t.id} className="hover:bg-gray-50 transition-colors">
+                    <td className="py-3 font-medium text-gray-900">{t.guestName}</td>
+                    <td className="py-3 text-gray-500">{t.country || '—'}</td>
+                    <td className="py-3 text-gray-600 max-w-sm truncate">{t.quote}</td>
                     <td className="py-3">
                       <Badge variant="default" size="sm">
                         {t.source}
@@ -64,7 +64,7 @@ export default async function AdminTestimonialsPage(props: {
                     <td className="py-3 text-right">
                       <Link
                         href={`/admin/testimonials/${t.id}`}
-                        className="font-semibold text-gold-dark hover:underline"
+                        className="font-semibold text-blue-600 hover:underline"
                       >
                         Edit
                       </Link>
@@ -75,7 +75,7 @@ export default async function AdminTestimonialsPage(props: {
             </table>
           </div>
         ) : (
-          <div className="py-12 text-center text-xs text-espresso/60">
+          <div className="py-12 text-center text-xs text-gray-500">
             No testimonials found.
           </div>
         )}

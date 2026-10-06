@@ -50,19 +50,19 @@ export function FeaturesArray({ name, defaultValue = [] }: FeaturesArrayProps) {
               placeholder="Label (e.g. Size, Occupancy)"
               value={feat.label}
               onChange={(e) => handleChange(idx, 'label', e.target.value)}
-              className="flex-1 rounded-lg border border-espresso/20 px-3 py-1.5 text-xs text-espresso bg-white"
+              className="flex-1 rounded-lg border border-gray-300 px-3 py-1.5 text-xs text-gray-900 bg-white"
             />
             <input
               type="text"
               placeholder="Value (e.g. 378 sq.ft, 2 Adults)"
               value={feat.value}
               onChange={(e) => handleChange(idx, 'value', e.target.value)}
-              className="flex-1 rounded-lg border border-espresso/20 px-3 py-1.5 text-xs text-espresso bg-white"
+              className="flex-1 rounded-lg border border-gray-300 px-3 py-1.5 text-xs text-gray-900 bg-white"
             />
             <button
               type="button"
               onClick={() => handleRemove(idx)}
-              className="p-1.5 text-espresso/40 hover:text-rose-600 transition-colors cursor-pointer"
+              className="p-1.5 text-gray-900/40 hover:text-rose-600 transition-colors cursor-pointer"
               title="Delete feature"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

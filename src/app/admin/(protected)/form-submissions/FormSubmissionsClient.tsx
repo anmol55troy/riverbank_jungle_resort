@@ -71,7 +71,7 @@ export function FormSubmissionsClient({
       {/* Filters & Search */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
         {/* Type tabs */}
-        <div className="flex items-center gap-1.5 p-1 bg-cream/40 rounded-xl border border-espresso/10">
+        <div className="flex items-center gap-1.5 p-1 bg-gray-50 rounded-xl border border-gray-200">
           {[
             { label: 'All', value: 'all' },
             { label: 'General Contact', value: 'contact' },
@@ -82,8 +82,8 @@ export function FormSubmissionsClient({
               onClick={() => handleTypeChange(tab.value)}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
                 currentType === tab.value
-                  ? 'bg-espresso text-ivory shadow-xs'
-                  : 'text-espresso/60 hover:text-espresso'
+                  ? 'bg-gray-900 text-white shadow-sm'
+                  : 'text-gray-500 hover:text-gray-900'
               }`}
             >
               {tab.label}
@@ -98,10 +98,10 @@ export function FormSubmissionsClient({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by name, email, subject..."
-            className="w-full px-3.5 py-2 pl-9 rounded-xl border border-espresso/15 bg-white text-xs text-espresso placeholder:text-espresso/40 focus:outline-hidden focus:border-espresso/40"
+            className="w-full px-3.5 py-2 pl-9 rounded-xl border border-gray-200 bg-white text-xs text-gray-900 placeholder:text-gray-900/40 focus:outline-hidden focus:border-gray-300/40"
           />
           <svg
-            className="w-4 h-4 text-espresso/40 absolute left-3 top-2.5"
+            className="w-4 h-4 text-gray-900/40 absolute left-3 top-2.5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -112,12 +112,12 @@ export function FormSubmissionsClient({
       </div>
 
       {/* Submissions Table */}
-      <div className="bg-white rounded-3xl border border-espresso/10 p-5 shadow-xs">
+      <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
         {initialDocs.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="text-espresso/50 uppercase tracking-wider text-[10px] border-b border-espresso/10">
+                <tr className="text-gray-400 uppercase tracking-wider text-[10px] border-b border-gray-200">
                   <th className="pb-3 font-semibold">Date</th>
                   <th className="pb-3 font-semibold">Type</th>
                   <th className="pb-3 font-semibold">Sender</th>
@@ -128,8 +128,8 @@ export function FormSubmissionsClient({
               </thead>
               <tbody className="divide-y divide-espresso/5">
                 {initialDocs.map((sub) => (
-                  <tr key={sub.id} className="hover:bg-cream/20 transition-colors">
-                    <td className="py-3 text-espresso/60 whitespace-nowrap">
+                  <tr key={sub.id} className="hover:bg-gray-50 transition-colors">
+                    <td className="py-3 text-gray-500 whitespace-nowrap">
                       {new Date(sub.createdAt).toLocaleDateString('en-US', {
                         month: 'short',
                         day: 'numeric',
@@ -141,23 +141,23 @@ export function FormSubmissionsClient({
                         {sub.formType === 'events' ? 'Event Inquiry' : 'Contact'}
                       </Badge>
                     </td>
-                    <td className="py-3 font-medium text-espresso">
+                    <td className="py-3 font-medium text-gray-900">
                       <div>{sub.name}</div>
-                      <div className="text-[11px] text-espresso/60 font-mono">{sub.email}</div>
+                      <div className="text-[11px] text-gray-500 font-mono">{sub.email}</div>
                     </td>
-                    <td className="py-3 text-espresso/80">
+                    <td className="py-3 text-gray-600">
                       {sub.subject && <div className="font-medium truncate max-w-xs">{sub.subject}</div>}
                       {sub.eventDate && (
-                        <div className="text-[11px] text-espresso/60">
+                        <div className="text-[11px] text-gray-500">
                           Date: {sub.eventDate} {sub.guests ? `(${sub.guests} guests)` : ''}
                         </div>
                       )}
                     </td>
-                    <td className="py-3 text-espresso/70 max-w-sm truncate">{sub.message}</td>
+                    <td className="py-3 text-gray-500 max-w-sm truncate">{sub.message}</td>
                     <td className="py-3 text-right whitespace-nowrap">
                       <button
                         onClick={() => setActiveSubmission(sub)}
-                        className="font-semibold text-gold-dark hover:underline mr-3 cursor-pointer"
+                        className="font-semibold text-blue-600 hover:underline mr-3 cursor-pointer"
                       >
                         View
                       </button>
@@ -174,7 +174,7 @@ export function FormSubmissionsClient({
             </table>
           </div>
         ) : (
-          <div className="py-12 text-center text-xs text-espresso/60">
+          <div className="py-12 text-center text-xs text-gray-500">
             {searchQuery ? 'No submissions match your search.' : 'No form submissions received yet.'}
           </div>
         )}
@@ -191,17 +191,17 @@ export function FormSubmissionsClient({
       >
         {activeSubmission && (
           <div className="space-y-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-2xl bg-cream/40 border border-espresso/10 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-lg bg-gray-50 border border-gray-200 text-xs">
               <div>
-                <span className="block text-[10px] text-espresso/50 uppercase font-semibold">Sender Name</span>
-                <span className="text-sm font-medium text-espresso">{activeSubmission.name}</span>
+                <span className="block text-[10px] text-gray-400 uppercase font-semibold">Sender Name</span>
+                <span className="text-sm font-medium text-gray-900">{activeSubmission.name}</span>
               </div>
 
               <div>
-                <span className="block text-[10px] text-espresso/50 uppercase font-semibold">Email</span>
+                <span className="block text-[10px] text-gray-400 uppercase font-semibold">Email</span>
                 <a
                   href={`mailto:${activeSubmission.email}`}
-                  className="text-sm text-gold-dark hover:underline font-mono"
+                  className="text-sm text-blue-600 hover:underline font-mono"
                 >
                   {activeSubmission.email}
                 </a>
@@ -209,10 +209,10 @@ export function FormSubmissionsClient({
 
               {activeSubmission.phone && (
                 <div>
-                  <span className="block text-[10px] text-espresso/50 uppercase font-semibold">Phone</span>
+                  <span className="block text-[10px] text-gray-400 uppercase font-semibold">Phone</span>
                   <a
                     href={`tel:${activeSubmission.phone}`}
-                    className="text-sm text-espresso/80 hover:text-espresso font-mono"
+                    className="text-sm text-gray-600 hover:text-gray-900 font-mono"
                   >
                     {activeSubmission.phone}
                   </a>
@@ -220,42 +220,42 @@ export function FormSubmissionsClient({
               )}
 
               <div>
-                <span className="block text-[10px] text-espresso/50 uppercase font-semibold">Received On</span>
-                <span className="text-espresso/70">
+                <span className="block text-[10px] text-gray-400 uppercase font-semibold">Received On</span>
+                <span className="text-gray-500">
                   {new Date(activeSubmission.createdAt).toLocaleString()}
                 </span>
               </div>
 
               {activeSubmission.subject && (
                 <div className="col-span-full">
-                  <span className="block text-[10px] text-espresso/50 uppercase font-semibold">Subject</span>
-                  <span className="text-espresso font-medium">{activeSubmission.subject}</span>
+                  <span className="block text-[10px] text-gray-400 uppercase font-semibold">Subject</span>
+                  <span className="text-gray-900 font-medium">{activeSubmission.subject}</span>
                 </div>
               )}
 
               {activeSubmission.eventDate && (
                 <div>
-                  <span className="block text-[10px] text-espresso/50 uppercase font-semibold">Requested Event Date</span>
-                  <span className="text-espresso font-medium">{activeSubmission.eventDate}</span>
+                  <span className="block text-[10px] text-gray-400 uppercase font-semibold">Requested Event Date</span>
+                  <span className="text-gray-900 font-medium">{activeSubmission.eventDate}</span>
                 </div>
               )}
 
               {activeSubmission.guests && (
                 <div>
-                  <span className="block text-[10px] text-espresso/50 uppercase font-semibold">Estimated Guests</span>
-                  <span className="text-espresso font-medium">{activeSubmission.guests} persons</span>
+                  <span className="block text-[10px] text-gray-400 uppercase font-semibold">Estimated Guests</span>
+                  <span className="text-gray-900 font-medium">{activeSubmission.guests} persons</span>
                 </div>
               )}
             </div>
 
             <div>
-              <span className="block text-xs font-semibold text-espresso uppercase tracking-wider mb-2">Message</span>
-              <div className="p-4 rounded-2xl bg-white border border-espresso/10 text-xs leading-relaxed text-espresso whitespace-pre-wrap">
+              <span className="block text-xs font-semibold text-gray-900 uppercase tracking-wider mb-2">Message</span>
+              <div className="p-4 rounded-lg bg-white border border-gray-200 text-xs leading-relaxed text-gray-900 whitespace-pre-wrap">
                 {activeSubmission.message}
               </div>
             </div>
 
-            <div className="flex items-center justify-between pt-4 border-t border-espresso/10">
+            <div className="flex items-center justify-between pt-4 border-t border-gray-200">
               <button
                 type="button"
                 onClick={() => setDeleteTarget(activeSubmission)}
@@ -267,7 +267,7 @@ export function FormSubmissionsClient({
               <div className="flex items-center gap-3">
                 <a
                   href={`mailto:${activeSubmission.email}?subject=Re: ${encodeURIComponent(activeSubmission.subject || 'River Bank Jungle Resort Inquiry')}`}
-                  className="px-4 py-2 text-xs font-semibold rounded-xl bg-espresso text-ivory hover:bg-espresso-light shadow-xs"
+                  className="px-4 py-2 text-xs font-semibold rounded-xl bg-gray-900 text-white hover:bg-gray-800 shadow-sm"
                 >
                   Reply via Email
                 </a>

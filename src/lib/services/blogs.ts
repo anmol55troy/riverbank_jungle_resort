@@ -27,7 +27,7 @@ export async function getAdminBlogPosts(options?: {
   }
 
   const [docs, total] = await Promise.all([
-    BlogPostModel.find(query).sort({ publishedDate: -1, createdAt: -1 }).skip(skip).limit(limit).lean(),
+    BlogPostModel.find(query).sort({ publishedDate: -1, createdAt: -1 }).skip(skip).limit(limit).populate('coverImage').lean(),
     BlogPostModel.countDocuments(query),
   ])
 
@@ -66,7 +66,7 @@ export async function saveBlogPost(
   const publishedDate = formData.get('publishedDate')
     ? new Date(String(formData.get('publishedDate')))
     : new Date()
-  const category = (formData.get('category') as any) || 'travel-guide'
+  const category = (formData.get('category') as string) || 'travel-guide'
 
   const relatedRooms = formData.getAll('relatedRooms') as string[]
   const relatedExperiences = formData.getAll('relatedExperiences') as string[]

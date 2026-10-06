@@ -27,7 +27,7 @@ export async function getAdminOffers(options?: {
   }
 
   const [docs, total] = await Promise.all([
-    OfferModel.find(query).sort({ createdAt: -1 }).skip(skip).limit(limit).lean(),
+    OfferModel.find(query).sort({ createdAt: -1 }).skip(skip).limit(limit).populate('image').lean(),
     OfferModel.countDocuments(query),
   ])
 

@@ -32,7 +32,7 @@ export default function AdminRootLayout({
 }) {
   return (
     <html lang="en" className={`${marcellus.variable} ${plusJakartaSans.variable}`}>
-      <body className="bg-ivory text-espresso font-sans antialiased min-h-screen">
+      <body className="bg-gray-50 text-gray-900 font-sans antialiased h-[100dvh] overflow-hidden overscroll-none w-full">
         {children}
       </body>
     </html>

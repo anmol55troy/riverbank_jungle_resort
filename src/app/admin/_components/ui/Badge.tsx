@@ -19,7 +19,7 @@ export function Badge({
   }
 
   const variants = {
-    default: 'bg-cream text-espresso border border-espresso/15',
+    default: 'bg-gray-100 text-gray-900 border border-gray-200',
     success: 'bg-emerald-50 text-emerald-800 border border-emerald-300',
     warning: 'bg-amber-50 text-amber-800 border border-amber-300',
     info: 'bg-sky-50 text-sky-800 border border-sky-300',

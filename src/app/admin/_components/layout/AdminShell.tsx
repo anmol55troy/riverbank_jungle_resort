@@ -16,7 +16,7 @@ export function AdminShell({ user, children }: AdminShellProps) {
 
   return (
     <ToastProvider>
-      <div className="flex h-screen overflow-hidden bg-ivory text-espresso font-sans">
+      <div className="flex h-[100dvh] overflow-hidden bg-ivory text-espresso font-sans">
         {/* Desktop Sidebar */}
         <div className="hidden md:flex shrink-0">
           <Sidebar />

@@ -57,7 +57,7 @@ export function DiningVenueForm({ venue }: DiningVenueFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-3xl border border-espresso/10 p-6 sm:p-8 space-y-6 shadow-xs">
+    <form onSubmit={handleSubmit} className="bg-white rounded-lg border border-gray-200 p-6 sm:p-8 space-y-6 shadow-sm">
       {error && (
         <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-800">
           {error}
@@ -82,7 +82,7 @@ export function DiningVenueForm({ venue }: DiningVenueFormProps) {
         <RichTextEditor name="description" defaultValue={venue?.description} />
       </FormField>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-espresso/10">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-gray-200">
         <FormField label="Cuisine Type" description="e.g. Nepali, Indian, Continental">
           <TextInput name="cuisine" defaultValue={venue?.cuisine || ''} placeholder="e.g. Organic Nepali & Continental" />
         </FormField>
@@ -96,14 +96,14 @@ export function DiningVenueForm({ venue }: DiningVenueFormProps) {
         </FormField>
       </div>
 
-      <div className="pt-4 border-t border-espresso/10 space-y-4">
+      <div className="pt-4 border-t border-gray-200 space-y-4">
         <div>
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-espresso/80 mb-1">Featured Cover Image</h3>
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-600 mb-1">Featured Cover Image</h3>
           <MediaPicker name="image" defaultValue={venue?.image as any} label="Select Featured Image" />
         </div>
 
-        <div className="pt-4 border-t border-espresso/10">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-espresso/80 mb-2">Venue Photo Gallery</h3>
+        <div className="pt-4 border-t border-gray-200">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-600 mb-2">Venue Photo Gallery</h3>
           <GalleryPicker name="gallery" defaultValue={venue?.gallery as any} />
         </div>
       </div>

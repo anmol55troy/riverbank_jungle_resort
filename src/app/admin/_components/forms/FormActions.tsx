@@ -36,7 +36,7 @@ export function FormActions({
   }
 
   return (
-    <div className="flex items-center justify-between pt-6 border-t border-espresso/10 mt-8">
+    <div className="flex items-center justify-between pt-6 border-t border-gray-200 mt-8">
       <div>
         {onDelete && (
           <Button

@@ -68,7 +68,7 @@ function ToolbarPlugin() {
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-1 p-2 border-b border-espresso/15 bg-cream/30 rounded-t-lg">
+    <div className="flex flex-wrap items-center gap-1 p-2 border-b border-gray-200 bg-gray-50 rounded-t-lg">
       <select
         value={blockType}
         onChange={(e) => {
@@ -79,7 +79,7 @@ function ToolbarPlugin() {
           else if (val === 'ol') formatNumberedList()
           else if (val === 'quote') formatQuote()
         }}
-        className="text-xs bg-white border border-espresso/20 rounded px-2 py-1 text-espresso font-medium cursor-pointer focus:outline-none"
+        className="text-xs bg-white border border-gray-300 rounded px-2 py-1 text-gray-900 font-medium cursor-pointer focus:outline-none"
       >
         <option value="paragraph">Paragraph</option>
         <option value="h2">Heading 2</option>
@@ -89,12 +89,12 @@ function ToolbarPlugin() {
         <option value="quote">Quote</option>
       </select>
 
-      <div className="h-4 w-[1px] bg-espresso/20 mx-1" />
+      <div className="h-4 w-[1px] bg-gray-900/20 mx-1" />
 
       <button
         type="button"
         onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold')}
-        className="p-1.5 rounded hover:bg-espresso/10 text-espresso font-bold text-xs cursor-pointer min-w-6 text-center"
+        className="p-1.5 rounded hover:bg-gray-100 text-gray-900 font-bold text-xs cursor-pointer min-w-6 text-center"
         title="Bold"
       >
         B
@@ -103,7 +103,7 @@ function ToolbarPlugin() {
       <button
         type="button"
         onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic')}
-        className="p-1.5 rounded hover:bg-espresso/10 text-espresso italic text-xs cursor-pointer min-w-6 text-center"
+        className="p-1.5 rounded hover:bg-gray-100 text-gray-900 italic text-xs cursor-pointer min-w-6 text-center"
         title="Italic"
       >
         I
@@ -112,18 +112,18 @@ function ToolbarPlugin() {
       <button
         type="button"
         onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline')}
-        className="p-1.5 rounded hover:bg-espresso/10 text-espresso underline text-xs cursor-pointer min-w-6 text-center"
+        className="p-1.5 rounded hover:bg-gray-100 text-gray-900 underline text-xs cursor-pointer min-w-6 text-center"
         title="Underline"
       >
         U
       </button>
 
-      <div className="h-4 w-[1px] bg-espresso/20 mx-1" />
+      <div className="h-4 w-[1px] bg-gray-900/20 mx-1" />
 
       <button
         type="button"
         onClick={() => editor.dispatchCommand(UNDO_COMMAND, undefined)}
-        className="p-1.5 rounded hover:bg-espresso/10 text-espresso text-xs cursor-pointer"
+        className="p-1.5 rounded hover:bg-gray-100 text-gray-900 text-xs cursor-pointer"
         title="Undo"
       >
         <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -134,7 +134,7 @@ function ToolbarPlugin() {
       <button
         type="button"
         onClick={() => editor.dispatchCommand(REDO_COMMAND, undefined)}
-        className="p-1.5 rounded hover:bg-espresso/10 text-espresso text-xs cursor-pointer"
+        className="p-1.5 rounded hover:bg-gray-100 text-gray-900 text-xs cursor-pointer"
         title="Redo"
       >
         <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -166,8 +166,8 @@ export function RichTextEditor({ name, defaultValue, error }: RichTextEditorProp
     theme: {
       paragraph: 'mb-2 text-sm leading-relaxed',
       heading: {
-        h2: 'text-lg font-serif font-semibold text-espresso mt-3 mb-1',
-        h3: 'text-base font-serif font-medium text-espresso mt-2 mb-1',
+        h2: 'text-lg font-serif font-semibold text-gray-900 mt-3 mb-1',
+        h3: 'text-base font-serif font-medium text-gray-900 mt-2 mb-1',
       },
       list: {
         ul: 'list-disc pl-5 mb-2 text-sm',
@@ -178,7 +178,7 @@ export function RichTextEditor({ name, defaultValue, error }: RichTextEditorProp
         italic: 'italic',
         underline: 'underline',
       },
-      quote: 'border-l-2 border-gold pl-3 italic text-espresso/70 my-2 text-sm',
+      quote: 'border-l-2 border-gold pl-3 italic text-gray-500 my-2 text-sm',
     },
     nodes: [HeadingNode, QuoteNode, ListNode, ListItemNode],
     editorState: defaultValue ? (editor: unknown) => {
@@ -205,7 +205,7 @@ export function RichTextEditor({ name, defaultValue, error }: RichTextEditorProp
   return (
     <div
       className={`rounded-lg border bg-white transition-colors focus-within:ring-2 focus-within:ring-espresso/20 ${
-        error ? 'border-rose-400 focus-within:border-rose-600' : 'border-espresso/20 focus-within:border-espresso'
+        error ? 'border-rose-400 focus-within:border-rose-600' : 'border-gray-300 focus-within:border-gray-300'
       }`}
     >
       <input type="hidden" name={name} value={jsonValue} />
@@ -214,10 +214,10 @@ export function RichTextEditor({ name, defaultValue, error }: RichTextEditorProp
         <div className="relative p-3 min-h-[160px]">
           <RichTextPlugin
             contentEditable={
-              <ContentEditable className="outline-none min-h-[140px] text-sm text-espresso font-sans" />
+              <ContentEditable className="outline-none min-h-[140px] text-sm text-gray-900 font-sans" />
             }
             placeholder={
-              <div className="pointer-events-none absolute top-3 left-3 text-espresso/40 text-sm">
+              <div className="pointer-events-none absolute top-3 left-3 text-gray-900/40 text-sm">
                 Enter description or article content...
               </div>
             }

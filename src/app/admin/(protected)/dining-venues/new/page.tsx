@@ -7,15 +7,15 @@ export const dynamic = 'force-dynamic'
 export default function NewDiningVenuePage() {
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-2 text-xs text-espresso/60">
-        <Link href="/admin/dining-venues" className="hover:text-espresso">
+      <div className="flex items-center gap-2 text-xs text-gray-500">
+        <Link href="/admin/dining-venues" className="hover:text-gray-900">
           Dining & Venues
         </Link>
         <span>/</span>
-        <span className="text-espresso font-medium">New Venue</span>
+        <span className="text-gray-900 font-medium">New Venue</span>
       </div>
 
-      <h1 className="font-serif text-2xl font-light text-espresso">Add New Dining Venue</h1>
+      <h1 className="font-serif text-2xl font-light text-gray-900">Add New Dining Venue</h1>
       <DiningVenueForm />
     </div>
   )

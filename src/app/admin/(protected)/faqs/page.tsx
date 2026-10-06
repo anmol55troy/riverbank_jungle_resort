@@ -20,12 +20,12 @@ export default async function AdminFaqsPage(props: {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="font-serif text-2xl font-light text-espresso">Frequently Asked Questions</h1>
-          <p className="text-xs text-espresso/60">Manage visitor FAQs and resort policies.</p>
+          <h1 className="font-serif text-2xl font-light text-gray-900">Frequently Asked Questions</h1>
+          <p className="text-xs text-gray-500">Manage visitor FAQs and resort policies.</p>
         </div>
         <Link
           href="/admin/faqs/new"
-          className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold rounded-lg bg-espresso text-ivory hover:bg-espresso-light shadow-xs"
+          className="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md bg-gray-900 text-white hover:bg-gray-800 transition-colors"
         >
           + Add FAQ
         </Link>
@@ -35,12 +35,12 @@ export default async function AdminFaqsPage(props: {
         <SearchBar placeholder="Search FAQs by question..." />
       </div>
 
-      <div className="bg-white rounded-3xl border border-espresso/10 p-5 shadow-xs">
+      <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
         {faqs.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="text-espresso/50 uppercase tracking-wider text-[10px] border-b border-espresso/10">
+                <tr className="text-gray-400 uppercase tracking-wider text-[10px] border-b border-gray-200">
                   <th className="pb-3 font-semibold">Order</th>
                   <th className="pb-3 font-semibold">Question</th>
                   <th className="pb-3 font-semibold text-right">Action</th>
@@ -48,17 +48,17 @@ export default async function AdminFaqsPage(props: {
               </thead>
               <tbody className="divide-y divide-espresso/5">
                 {faqs.map((f) => (
-                  <tr key={f.id} className="hover:bg-cream/20 transition-colors">
-                    <td className="py-3 font-mono text-espresso/60 w-16">
+                  <tr key={f.id} className="hover:bg-gray-50 transition-colors">
+                    <td className="py-3 font-mono text-gray-500 w-16">
                       <Badge variant="default" size="sm">
                         #{f.order ?? 0}
                       </Badge>
                     </td>
-                    <td className="py-3 font-medium text-espresso">{f.question}</td>
+                    <td className="py-3 font-medium text-gray-900">{f.question}</td>
                     <td className="py-3 text-right">
                       <Link
                         href={`/admin/faqs/${f.id}`}
-                        className="font-semibold text-gold-dark hover:underline"
+                        className="font-semibold text-blue-600 hover:underline"
                       >
                         Edit
                       </Link>
@@ -69,7 +69,7 @@ export default async function AdminFaqsPage(props: {
             </table>
           </div>
         ) : (
-          <div className="py-12 text-center text-xs text-espresso/60">
+          <div className="py-12 text-center text-xs text-gray-500">
             No FAQs found.
           </div>
         )}

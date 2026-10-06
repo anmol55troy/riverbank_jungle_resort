@@ -21,8 +21,8 @@ export default async function AdminNewsletterSignupsPage(props: {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-serif text-2xl font-light text-espresso">Newsletter Subscribers</h1>
-          <p className="text-xs text-espresso/60 mt-0.5">
+          <h1 className="font-serif text-2xl font-light text-gray-900">Newsletter Subscribers</h1>
+          <p className="text-xs text-gray-500 mt-0.5">
             Mailing list subscribers collected from footer & newsletter signup forms
           </p>
         </div>

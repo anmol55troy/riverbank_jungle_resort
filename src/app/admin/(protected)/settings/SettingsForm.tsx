@@ -82,7 +82,7 @@ export function SettingsForm({ settings }: SettingsFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6 max-w-4xl">
       {/* Tabs */}
-      <div className="flex border-b border-espresso/15 gap-4 sm:gap-6 overflow-x-auto pb-px">
+      <div className="flex border-b border-gray-200 gap-4 sm:gap-6 overflow-x-auto pb-px">
         {[
           { id: 'general', label: 'General & Brand' },
           { id: 'contact', label: 'Contact & Location' },
@@ -95,8 +95,8 @@ export function SettingsForm({ settings }: SettingsFormProps) {
             onClick={() => setActiveTab(tab.id as any)}
             className={`pb-3 text-xs font-semibold uppercase tracking-wider border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
               activeTab === tab.id
-                ? 'border-espresso text-espresso'
-                : 'border-transparent text-espresso/50 hover:text-espresso'
+                ? 'border-gray-300 text-gray-900'
+                : 'border-transparent text-gray-400 hover:text-gray-900'
             }`}
           >
             {tab.label}
@@ -112,7 +112,7 @@ export function SettingsForm({ settings }: SettingsFormProps) {
 
       {/* Tab: General & Brand */}
       {activeTab === 'general' && (
-        <div className="bg-white rounded-3xl border border-espresso/10 p-6 sm:p-8 space-y-6 shadow-xs">
+        <div className="bg-white rounded-lg border border-gray-200 p-6 sm:p-8 space-y-6 shadow-sm">
           <FormField label="Resort Name" required>
             <TextInput
               name="siteName"
@@ -160,7 +160,7 @@ export function SettingsForm({ settings }: SettingsFormProps) {
 
       {/* Tab: Contact & Location */}
       {activeTab === 'contact' && (
-        <div className="bg-white rounded-3xl border border-espresso/10 p-6 sm:p-8 space-y-6 shadow-xs">
+        <div className="bg-white rounded-lg border border-gray-200 p-6 sm:p-8 space-y-6 shadow-sm">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <FormField label="Resort Physical Address" required>
               <TextInput
@@ -198,9 +198,9 @@ export function SettingsForm({ settings }: SettingsFormProps) {
           </div>
 
           {/* Dynamic Phones */}
-          <div className="space-y-3 pt-2 border-t border-espresso/10">
+          <div className="space-y-3 pt-2 border-t border-gray-200">
             <div className="flex items-center justify-between">
-              <label className="text-xs font-semibold text-espresso uppercase tracking-wider">
+              <label className="text-xs font-semibold text-gray-900 uppercase tracking-wider">
                 Telephone Numbers
               </label>
               <Button type="button" variant="ghost" size="sm" onClick={handleAddPhone}>
@@ -215,7 +215,7 @@ export function SettingsForm({ settings }: SettingsFormProps) {
                     value={phone}
                     onChange={(e) => handlePhoneChange(idx, e.target.value)}
                     placeholder="+977-..."
-                    className="flex-1 px-3.5 py-2 rounded-xl border border-espresso/15 bg-white text-xs text-espresso focus:outline-hidden focus:border-espresso/40"
+                    className="flex-1 px-3.5 py-2 rounded-xl border border-gray-200 bg-white text-xs text-gray-900 focus:outline-hidden focus:border-gray-300/40"
                   />
                   {phones.length > 1 && (
                     <button
@@ -232,9 +232,9 @@ export function SettingsForm({ settings }: SettingsFormProps) {
           </div>
 
           {/* Dynamic Emails */}
-          <div className="space-y-3 pt-2 border-t border-espresso/10">
+          <div className="space-y-3 pt-2 border-t border-gray-200">
             <div className="flex items-center justify-between">
-              <label className="text-xs font-semibold text-espresso uppercase tracking-wider">
+              <label className="text-xs font-semibold text-gray-900 uppercase tracking-wider">
                 Email Addresses
               </label>
               <Button type="button" variant="ghost" size="sm" onClick={handleAddEmail}>
@@ -249,7 +249,7 @@ export function SettingsForm({ settings }: SettingsFormProps) {
                     value={email}
                     onChange={(e) => handleEmailChange(idx, e.target.value)}
                     placeholder="info@..."
-                    className="flex-1 px-3.5 py-2 rounded-xl border border-espresso/15 bg-white text-xs text-espresso focus:outline-hidden focus:border-espresso/40"
+                    className="flex-1 px-3.5 py-2 rounded-xl border border-gray-200 bg-white text-xs text-gray-900 focus:outline-hidden focus:border-gray-300/40"
                   />
                   {emails.length > 1 && (
                     <button
@@ -269,7 +269,7 @@ export function SettingsForm({ settings }: SettingsFormProps) {
 
       {/* Tab: Links & Booking */}
       {activeTab === 'links' && (
-        <div className="bg-white rounded-3xl border border-espresso/10 p-6 sm:p-8 space-y-6 shadow-xs">
+        <div className="bg-white rounded-lg border border-gray-200 p-6 sm:p-8 space-y-6 shadow-sm">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <FormField label="Direct Booking Engine URL">
               <TextInput
@@ -288,7 +288,7 @@ export function SettingsForm({ settings }: SettingsFormProps) {
             </FormField>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 border-t border-espresso/10">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 border-t border-gray-200">
             <FormField label="Facebook URL">
               <TextInput
                 name="facebook"
@@ -314,7 +314,7 @@ export function SettingsForm({ settings }: SettingsFormProps) {
             </FormField>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 border-t border-espresso/10">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 border-t border-gray-200">
             <FormField label="Booking.com Listing">
               <TextInput
                 name="bookingCom"
@@ -344,8 +344,8 @@ export function SettingsForm({ settings }: SettingsFormProps) {
 
       {/* Tab: Page Header Banners */}
       {activeTab === 'banners' && (
-        <div className="bg-white rounded-3xl border border-espresso/10 p-6 sm:p-8 space-y-6 shadow-xs">
-          <p className="text-xs text-espresso/60 mb-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-6 sm:p-8 space-y-6 shadow-sm">
+          <p className="text-xs text-gray-500 mb-2">
             Assign hero background imagery displayed at the top of each public page.
           </p>
 

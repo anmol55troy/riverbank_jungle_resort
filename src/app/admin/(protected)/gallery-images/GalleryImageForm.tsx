@@ -55,12 +55,12 @@ export function GalleryImageForm({ item }: GalleryImageFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-3xl border border-espresso/10 p-6 sm:p-8 space-y-6 shadow-xs max-w-2xl">
+    <form onSubmit={handleSubmit} className="bg-white rounded-lg border border-gray-200 p-6 sm:p-8 space-y-6 shadow-sm max-w-2xl">
       {error && <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-800">{error}</div>}
 
       <div className="space-y-4">
         <div>
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-espresso/80 mb-2">Image File</h3>
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-600 mb-2">Image File</h3>
           <MediaPicker name="image" defaultValue={item?.image as any} label="Select Image" />
         </div>
 

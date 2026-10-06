@@ -17,7 +17,7 @@ export function Pagination({ currentPage, totalPages, totalItems }: PaginationPr
 
   if (totalPages <= 1) {
     return (
-      <div className="text-xs text-espresso/60 py-2">
+      <div className="text-xs text-gray-500 py-2">
         Showing all {totalItems} {totalItems === 1 ? 'record' : 'records'}
       </div>
     )
@@ -30,10 +30,10 @@ export function Pagination({ currentPage, totalPages, totalItems }: PaginationPr
   }
 
   return (
-    <div className="flex items-center justify-between py-3 border-t border-espresso/10">
-      <div className="text-xs text-espresso/60">
-        Page <span className="font-semibold text-espresso">{currentPage}</span> of{' '}
-        <span className="font-semibold text-espresso">{totalPages}</span> ({totalItems} total)
+    <div className="flex items-center justify-between py-3 border-t border-gray-200">
+      <div className="text-xs text-gray-500">
+        Page <span className="font-semibold text-gray-900">{currentPage}</span> of{' '}
+        <span className="font-semibold text-gray-900">{totalPages}</span> ({totalItems} total)
       </div>
 
       <div className="flex items-center gap-2">

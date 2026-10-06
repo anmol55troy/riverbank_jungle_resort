@@ -16,17 +16,17 @@ export default async function EditExperiencePage(props: {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-2 text-xs text-espresso/60">
-        <Link href="/admin/experiences" className="hover:text-espresso">
+      <div className="flex items-center gap-2 text-xs text-gray-500">
+        <Link href="/admin/experiences" className="hover:text-gray-900">
           Experiences
         </Link>
         <span>/</span>
-        <span className="text-espresso font-medium">{exp.title}</span>
+        <span className="text-gray-900 font-medium">{exp.title}</span>
       </div>
 
       <div>
-        <h1 className="font-serif text-2xl font-light text-espresso">Edit Experience</h1>
-        <p className="text-xs text-espresso/60 mt-0.5 font-mono">ID: {exp.id}</p>
+        <h1 className="font-serif text-2xl font-light text-gray-900">Edit Experience</h1>
+        <p className="text-xs text-gray-500 mt-0.5 font-mono">ID: {exp.id}</p>
       </div>
 
       <ExperienceForm experience={exp} />

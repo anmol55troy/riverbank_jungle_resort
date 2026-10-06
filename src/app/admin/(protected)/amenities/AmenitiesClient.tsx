@@ -95,10 +95,10 @@ export function AmenitiesClient({ initialAmenities }: AmenitiesClientProps) {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Filter amenities..."
-            className="w-full px-3.5 py-2 pl-9 rounded-xl border border-espresso/15 bg-white text-xs text-espresso placeholder:text-espresso/40 focus:outline-hidden focus:border-espresso/40"
+            className="w-full px-3.5 py-2 pl-9 rounded-xl border border-gray-200 bg-white text-xs text-gray-900 placeholder:text-gray-900/40 focus:outline-hidden focus:border-gray-300/40"
           />
           <svg
-            className="w-4 h-4 text-espresso/40 absolute left-3 top-2.5"
+            className="w-4 h-4 text-gray-900/40 absolute left-3 top-2.5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -116,30 +116,30 @@ export function AmenitiesClient({ initialAmenities }: AmenitiesClientProps) {
       </div>
 
       {/* Amenities Grid/Table */}
-      <div className="bg-white rounded-3xl border border-espresso/10 overflow-hidden shadow-xs">
+      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
         {filtered.length === 0 ? (
-          <div className="py-16 text-center text-espresso/40 text-xs">
+          <div className="py-16 text-center text-gray-900/40 text-xs">
             {search ? 'No amenities match your filter.' : 'No amenities yet. Click "Add Amenity" to create one.'}
           </div>
         ) : (
           <div className="divide-y divide-espresso/5">
-            <div className="grid grid-cols-12 px-6 py-3 bg-cream/30 text-[11px] font-medium uppercase tracking-wider text-espresso/50">
+            <div className="grid grid-cols-12 px-6 py-3 bg-gray-50 text-[11px] font-medium uppercase tracking-wider text-gray-400">
               <div className="col-span-8">Amenity Name</div>
               <div className="col-span-4 text-right">Actions</div>
             </div>
             {filtered.map((amenity) => (
               <div
                 key={amenity.id}
-                className="grid grid-cols-12 items-center px-6 py-3.5 hover:bg-cream/10 transition-colors"
+                className="grid grid-cols-12 items-center px-6 py-3.5 hover:bg-gray-100/10 transition-colors"
               >
                 <div className="col-span-8 flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-forest/60" />
-                  <span className="text-sm font-medium text-espresso">{amenity.name}</span>
+                  <span className="text-sm font-medium text-gray-900">{amenity.name}</span>
                 </div>
                 <div className="col-span-4 flex items-center justify-end gap-2">
                   <button
                     onClick={() => openEditModal(amenity)}
-                    className="px-2.5 py-1 text-xs text-espresso/70 hover:text-espresso rounded-lg hover:bg-espresso/5 transition-colors cursor-pointer"
+                    className="px-2.5 py-1 text-xs text-gray-500 hover:text-gray-900 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
                   >
                     Edit
                   </button>
@@ -164,14 +164,14 @@ export function AmenitiesClient({ initialAmenities }: AmenitiesClientProps) {
       >
         <form onSubmit={handleSave} className="space-y-4">
           <div>
-            <label className="block text-xs font-medium text-espresso mb-1.5">Amenity Name</label>
+            <label className="block text-xs font-medium text-gray-900 mb-1.5">Amenity Name</label>
             <input
               type="text"
               required
               value={nameInput}
               onChange={(e) => setNameInput(e.target.value)}
               placeholder="e.g. Riverfront Balcony, Air Conditioning, Free Wi-Fi"
-              className="w-full px-3.5 py-2.5 rounded-xl border border-espresso/15 bg-white text-xs text-espresso placeholder:text-espresso/40 focus:outline-hidden focus:border-espresso/40"
+              className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 bg-white text-xs text-gray-900 placeholder:text-gray-900/40 focus:outline-hidden focus:border-gray-300/40"
               autoFocus
             />
           </div>

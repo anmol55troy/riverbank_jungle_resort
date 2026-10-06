@@ -17,8 +17,8 @@ export default async function AdminMediaPage(props: {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-serif text-2xl font-light text-espresso">Media Library</h1>
-          <p className="text-xs text-espresso/60 mt-0.5">
+          <h1 className="font-serif text-2xl font-light text-gray-900">Media Library</h1>
+          <p className="text-xs text-gray-500 mt-0.5">
             Manage resort photography, room imagery, and banner assets hosted on the server
           </p>
         </div>

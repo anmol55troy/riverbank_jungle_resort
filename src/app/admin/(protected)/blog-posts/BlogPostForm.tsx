@@ -98,7 +98,7 @@ export function BlogPostForm({ post, roomsList, experiencesList }: BlogPostFormP
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-3xl border border-espresso/10 p-6 sm:p-8 space-y-6 shadow-xs">
+    <form onSubmit={handleSubmit} className="bg-white rounded-lg border border-gray-200 p-6 sm:p-8 space-y-6 shadow-sm">
       {error && <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-800">{error}</div>}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -142,24 +142,24 @@ export function BlogPostForm({ post, roomsList, experiencesList }: BlogPostFormP
         <RichTextEditor name="body" defaultValue={post?.body} />
       </FormField>
 
-      <div className="pt-4 border-t border-espresso/10">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-espresso/80 mb-2">Featured Cover Image</h3>
+      <div className="pt-4 border-t border-gray-200">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-600 mb-2">Featured Cover Image</h3>
         <MediaPicker name="coverImage" defaultValue={post?.coverImage as any} label="Select Cover Image" />
       </div>
 
       {/* Cross-linking: Related Rooms & Experiences */}
-      <div className="pt-4 border-t border-espresso/10 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-espresso/80">Cross-Link Rooms (SEO)</h3>
-          <p className="text-[11px] text-espresso/60 mb-2">Select rooms featured in or relevant to this article.</p>
-          <div className="space-y-1.5 max-h-48 overflow-y-auto p-2 border border-espresso/15 rounded-xl bg-ivory/30">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-600">Cross-Link Rooms (SEO)</h3>
+          <p className="text-[11px] text-gray-500 mb-2">Select rooms featured in or relevant to this article.</p>
+          <div className="space-y-1.5 max-h-48 overflow-y-auto p-2 border border-gray-200 rounded-xl bg-gray-50">
             {roomsList.map((r) => {
               const checked = selectedRooms.has(r.id)
               return (
                 <label
                   key={r.id}
                   className={`flex items-center gap-2 p-2 rounded-lg text-xs cursor-pointer border transition-colors ${
-                    checked ? 'bg-espresso text-ivory border-espresso font-medium' : 'bg-white text-espresso border-espresso/10 hover:bg-cream/40'
+                    checked ? 'bg-gray-900 text-white border-gray-300 font-medium' : 'bg-white text-gray-900 border-gray-200 hover:bg-gray-50'
                   }`}
                 >
                   <input type="checkbox" checked={checked} onChange={() => toggleRoom(r.id)} className="sr-only" />
@@ -171,16 +171,16 @@ export function BlogPostForm({ post, roomsList, experiencesList }: BlogPostFormP
         </div>
 
         <div className="space-y-2">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-espresso/80">Cross-Link Experiences (SEO)</h3>
-          <p className="text-[11px] text-espresso/60 mb-2">Select experiences featured in or relevant to this article.</p>
-          <div className="space-y-1.5 max-h-48 overflow-y-auto p-2 border border-espresso/15 rounded-xl bg-ivory/30">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-600">Cross-Link Experiences (SEO)</h3>
+          <p className="text-[11px] text-gray-500 mb-2">Select experiences featured in or relevant to this article.</p>
+          <div className="space-y-1.5 max-h-48 overflow-y-auto p-2 border border-gray-200 rounded-xl bg-gray-50">
             {experiencesList.map((e) => {
               const checked = selectedExps.has(e.id)
               return (
                 <label
                   key={e.id}
                   className={`flex items-center gap-2 p-2 rounded-lg text-xs cursor-pointer border transition-colors ${
-                    checked ? 'bg-espresso text-ivory border-espresso font-medium' : 'bg-white text-espresso border-espresso/10 hover:bg-cream/40'
+                    checked ? 'bg-gray-900 text-white border-gray-300 font-medium' : 'bg-white text-gray-900 border-gray-200 hover:bg-gray-50'
                   }`}
                 >
                   <input type="checkbox" checked={checked} onChange={() => toggleExp(e.id)} className="sr-only" />

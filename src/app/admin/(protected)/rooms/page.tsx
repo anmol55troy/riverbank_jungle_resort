@@ -22,12 +22,12 @@ export default async function AdminRoomsPage(props: {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="font-serif text-2xl font-light text-espresso">Rooms & Suites</h1>
-          <p className="text-xs text-espresso/60">Manage resort guest rooms, pricing, features, and photography.</p>
+          <h1 className="font-serif text-2xl font-light text-gray-900">Rooms & Suites</h1>
+          <p className="text-xs text-gray-500">Manage resort guest rooms, pricing, features, and photography.</p>
         </div>
         <Link
           href="/admin/rooms/new"
-          className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold rounded-lg bg-espresso text-ivory hover:bg-espresso-light shadow-xs"
+          className="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md bg-gray-900 text-white hover:bg-gray-800 transition-colors"
         >
           + Add New Room
         </Link>
@@ -39,12 +39,12 @@ export default async function AdminRoomsPage(props: {
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-3xl border border-espresso/10 p-5 shadow-xs">
+      <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
         {rooms.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="text-espresso/50 uppercase tracking-wider text-[10px] border-b border-espresso/10">
+                <tr className="text-gray-400 uppercase tracking-wider text-[10px] border-b border-gray-200">
                   <th className="pb-3 font-semibold">Image</th>
                   <th className="pb-3 font-semibold">Title</th>
                   <th className="pb-3 font-semibold">Slug</th>
@@ -59,9 +59,9 @@ export default async function AdminRoomsPage(props: {
                   const thumb = firstGalleryImg?.thumbnailURL || firstGalleryImg?.url
 
                   return (
-                    <tr key={room.id} className="hover:bg-cream/20 transition-colors">
+                    <tr key={room.id} className="hover:bg-gray-50 transition-colors">
                       <td className="py-3 pr-4">
-                        <div className="relative w-12 h-9 rounded-lg overflow-hidden bg-cream border border-espresso/10">
+                        <div className="relative w-12 h-9 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
                           {thumb && (
                             <Image
                               src={thumb}
@@ -74,18 +74,18 @@ export default async function AdminRoomsPage(props: {
                           )}
                         </div>
                       </td>
-                      <td className="py-3 font-medium text-espresso max-w-xs truncate">{room.title}</td>
-                      <td className="py-3 text-espresso/60 font-mono text-[11px]">{room.slug}</td>
-                      <td className="py-3 text-espresso/80">
+                      <td className="py-3 font-medium text-gray-900 max-w-xs truncate">{room.title}</td>
+                      <td className="py-3 text-gray-500 font-mono text-[11px]">{room.slug}</td>
+                      <td className="py-3 text-gray-600">
                         {room.priceFrom?.amount
                           ? `${room.priceFrom.currency === 'USD' ? '$' : 'Rs. '}${room.priceFrom.amount}`
                           : '—'}
                       </td>
-                      <td className="py-3 text-espresso/70">{room.order ?? 0}</td>
+                      <td className="py-3 text-gray-500">{room.order ?? 0}</td>
                       <td className="py-3 text-right">
                         <Link
                           href={`/admin/rooms/${room.id}`}
-                          className="font-semibold text-gold-dark hover:underline"
+                          className="font-semibold text-blue-600 hover:underline"
                         >
                           Edit Room
                         </Link>
@@ -97,7 +97,7 @@ export default async function AdminRoomsPage(props: {
             </table>
           </div>
         ) : (
-          <div className="py-12 text-center text-xs text-espresso/60">
+          <div className="py-12 text-center text-xs text-gray-500">
             No rooms found. Click &quot;Add New Room&quot; to create one.
           </div>
         )}

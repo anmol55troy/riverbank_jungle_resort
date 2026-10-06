@@ -46,6 +46,7 @@ export function MediaBrowserModal({
     if (isOpen) {
       loadMedia(search)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen])
 
   const uploadFormRef = useRef<HTMLFormElement>(null)
@@ -83,14 +84,14 @@ export function MediaBrowserModal({
     <Modal isOpen={isOpen} onClose={onClose} title={title} maxWidth="4xl">
       <div className="space-y-4">
         {/* Tabs */}
-        <div className="flex border-b border-espresso/15 gap-4">
+        <div className="flex border-b border-gray-200 gap-4">
           <button
             type="button"
             onClick={() => setActiveTab('browse')}
             className={`pb-2 text-sm font-semibold border-b-2 transition-colors cursor-pointer ${
               activeTab === 'browse'
-                ? 'border-espresso text-espresso'
-                : 'border-transparent text-espresso/60 hover:text-espresso'
+                ? 'border-gray-300 text-gray-900'
+                : 'border-transparent text-gray-500 hover:text-gray-900'
             }`}
           >
             Browse Library
@@ -100,8 +101,8 @@ export function MediaBrowserModal({
             onClick={() => setActiveTab('upload')}
             className={`pb-2 text-sm font-semibold border-b-2 transition-colors cursor-pointer ${
               activeTab === 'upload'
-                ? 'border-espresso text-espresso'
-                : 'border-transparent text-espresso/60 hover:text-espresso'
+                ? 'border-gray-300 text-gray-900'
+                : 'border-transparent text-gray-500 hover:text-gray-900'
             }`}
           >
             Upload New
@@ -119,14 +120,14 @@ export function MediaBrowserModal({
                   setSearch(e.target.value)
                   loadMedia(e.target.value)
                 }}
-                className="flex-1 rounded-lg border border-espresso/20 px-3.5 py-1.5 text-xs text-espresso bg-white focus:outline-none focus:border-espresso"
+                className="flex-1 rounded-lg border border-gray-300 px-3.5 py-1.5 text-xs text-gray-900 bg-white focus:outline-none focus:border-gray-300"
               />
             </div>
 
             {loading ? (
-              <div className="py-16 text-center text-xs text-espresso/60">Loading media...</div>
+              <div className="py-16 text-center text-xs text-gray-500">Loading media...</div>
             ) : mediaList.length === 0 ? (
-              <div className="py-16 text-center text-xs text-espresso/60">No media found.</div>
+              <div className="py-16 text-center text-xs text-gray-500">No media found.</div>
             ) : (
               <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-3 max-h-[50vh] overflow-y-auto p-1">
                 {mediaList.map((item) => {
@@ -136,7 +137,7 @@ export function MediaBrowserModal({
                       key={item.id}
                       type="button"
                       onClick={() => onSelect(item)}
-                      className="group relative aspect-4/3 rounded-lg overflow-hidden border border-espresso/15 hover:border-espresso hover:ring-2 hover:ring-espresso/20 transition-all bg-cream/50 cursor-pointer text-left"
+                      className="group relative aspect-4/3 rounded-lg overflow-hidden border border-gray-200 hover:border-gray-300 hover:ring-2 hover:ring-espresso/20 transition-all bg-gray-50 cursor-pointer text-left"
                     >
                       {thumb && (
                         <Image
@@ -148,7 +149,7 @@ export function MediaBrowserModal({
                           unoptimized
                         />
                       )}
-                      <div className="absolute inset-x-0 bottom-0 bg-espresso/80 text-ivory text-[10px] p-1 truncate opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="absolute inset-x-0 bottom-0 bg-gray-900/80 text-white text-[10px] p-1 truncate opacity-0 group-hover:opacity-100 transition-opacity">
                         {item.alt || item.filename}
                       </div>
                     </button>
@@ -162,35 +163,35 @@ export function MediaBrowserModal({
             {uploadError && <div className="p-3 text-xs text-rose-700 bg-rose-50 border border-rose-200 rounded-lg">{uploadError}</div>}
             
             <div>
-              <label className="block text-xs font-semibold text-espresso mb-1">Choose Image File</label>
+              <label className="block text-xs font-semibold text-gray-900 mb-1">Choose Image File</label>
               <input
                 type="file"
                 name="file"
                 accept="image/*"
                 required
-                className="block w-full text-xs text-espresso/80 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-cream file:text-espresso hover:file:bg-sage/40 file:cursor-pointer cursor-pointer border border-espresso/20 rounded-lg p-2 bg-white"
+                className="block w-full text-xs text-gray-600 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-gray-100 file:text-gray-900 hover:file:bg-sage/40 file:cursor-pointer cursor-pointer border border-gray-300 rounded-lg p-2 bg-white"
               />
             </div>
 
             {requireAltAndCaption && (
               <>
                 <div>
-                  <label className="block text-xs font-semibold text-espresso mb-1">Alt Text (for SEO and accessibility)</label>
+                  <label className="block text-xs font-semibold text-gray-900 mb-1">Alt Text (for SEO and accessibility)</label>
                   <input
                     type="text"
                     name="alt"
                     placeholder="Describe the image, e.g. View of Rapti River at sunset"
-                    className="w-full text-xs border border-espresso/20 rounded-lg px-3 py-2 bg-white focus:outline-none focus:border-espresso"
+                    className="w-full text-xs border border-gray-300 rounded-lg px-3 py-2 bg-white focus:outline-none focus:border-gray-300"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-espresso mb-1">Caption (optional)</label>
+                  <label className="block text-xs font-semibold text-gray-900 mb-1">Caption (optional)</label>
                   <input
                     type="text"
                     name="caption"
                     placeholder="Optional caption"
-                    className="w-full text-xs border border-espresso/20 rounded-lg px-3 py-2 bg-white focus:outline-none focus:border-espresso"
+                    className="w-full text-xs border border-gray-300 rounded-lg px-3 py-2 bg-white focus:outline-none focus:border-gray-300"
                   />
                 </div>
               </>

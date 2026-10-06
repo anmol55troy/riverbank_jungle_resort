@@ -27,7 +27,7 @@ export async function getAdminDiningVenues(options?: {
   }
 
   const [docs, total] = await Promise.all([
-    DiningVenueModel.find(query).sort({ order: 1, createdAt: -1 }).skip(skip).limit(limit).lean(),
+    DiningVenueModel.find(query).sort({ order: 1, createdAt: -1 }).skip(skip).limit(limit).populate('image').lean(),
     DiningVenueModel.countDocuments(query),
   ])
 

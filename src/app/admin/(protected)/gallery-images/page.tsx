@@ -28,12 +28,12 @@ export default async function AdminGalleryPage(props: {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="font-serif text-2xl font-light text-espresso">Resort Photo Gallery</h1>
-          <p className="text-xs text-espresso/60">Manage resort image showcase categorized by rooms, wildlife, culture, and dining.</p>
+          <h1 className="font-serif text-2xl font-light text-gray-900">Resort Photo Gallery</h1>
+          <p className="text-xs text-gray-500">Manage resort image showcase categorized by rooms, wildlife, culture, and dining.</p>
         </div>
         <Link
           href="/admin/gallery-images/new"
-          className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold rounded-lg bg-espresso text-ivory hover:bg-espresso-light shadow-xs"
+          className="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md bg-gray-900 text-white hover:bg-gray-800 transition-colors"
         >
           + Add Gallery Image
         </Link>
@@ -43,7 +43,7 @@ export default async function AdminGalleryPage(props: {
         <SearchBar placeholder="Search captions..." />
       </div>
 
-      <div className="bg-white rounded-3xl border border-espresso/10 p-5 shadow-xs">
+      <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
         {images.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {images.map((item) => {
@@ -54,9 +54,9 @@ export default async function AdminGalleryPage(props: {
                 <Link
                   key={item.id}
                   href={`/admin/gallery-images/${item.id}`}
-                  className="group relative rounded-2xl overflow-hidden border border-espresso/15 hover:border-espresso hover:shadow-card bg-cream/40 transition-all flex flex-col"
+                  className="group relative rounded-lg overflow-hidden border border-gray-200 hover:border-gray-300 hover:shadow-sm bg-gray-50 transition-all flex flex-col"
                 >
-                  <div className="relative aspect-4/3 w-full bg-cream">
+                  <div className="relative aspect-4/3 w-full bg-gray-100">
                     {thumb && (
                       <Image
                         src={thumb}
@@ -69,14 +69,14 @@ export default async function AdminGalleryPage(props: {
                     )}
                   </div>
                   <div className="p-3 flex-1 flex flex-col justify-between space-y-1">
-                    <p className="text-xs font-medium text-espresso line-clamp-1">
+                    <p className="text-xs font-medium text-gray-900 line-clamp-1">
                       {item.caption || 'No caption'}
                     </p>
                     <div className="flex items-center justify-between pt-1">
                       <Badge variant="default" size="sm">
                         {item.category}
                       </Badge>
-                      <span className="text-[10px] text-espresso/50">Order {item.order ?? 0}</span>
+                      <span className="text-[10px] text-gray-400">Order {item.order ?? 0}</span>
                     </div>
                   </div>
                 </Link>
@@ -84,7 +84,7 @@ export default async function AdminGalleryPage(props: {
             })}
           </div>
         ) : (
-          <div className="py-12 text-center text-xs text-espresso/60">
+          <div className="py-12 text-center text-xs text-gray-500">
             No gallery images found.
           </div>
         )}

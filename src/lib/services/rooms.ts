@@ -27,7 +27,7 @@ export async function getAdminRooms(options?: {
   }
 
   const [docs, total] = await Promise.all([
-    RoomModel.find(query).sort({ order: 1, createdAt: -1 }).skip(skip).limit(limit).lean(),
+    RoomModel.find(query).sort({ order: 1, createdAt: -1 }).skip(skip).limit(limit).populate('gallery.image').lean(),
     RoomModel.countDocuments(query),
   ])
 

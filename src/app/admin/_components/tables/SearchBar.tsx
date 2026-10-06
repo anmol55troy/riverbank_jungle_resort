@@ -49,9 +49,9 @@ export function SearchBar({
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-xl border border-espresso/20 bg-white py-2 pl-9 pr-8 text-xs text-espresso placeholder:text-espresso/40 focus:outline-none focus:border-espresso focus:ring-1 focus:ring-espresso"
+        className="w-full rounded-xl border border-gray-300 bg-white py-2 pl-9 pr-8 text-xs text-gray-900 placeholder:text-gray-900/40 focus:outline-none focus:border-gray-300 focus:ring-1 focus:ring-espresso"
       />
-      <div className="absolute left-3 text-espresso/40">
+      <div className="absolute left-3 text-gray-900/40">
         {isPending ? (
           <svg className="animate-spin h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
@@ -67,7 +67,7 @@ export function SearchBar({
         <button
           type="button"
           onClick={handleClear}
-          className="absolute right-2.5 text-espresso/40 hover:text-espresso p-0.5 cursor-pointer"
+          className="absolute right-2.5 text-gray-900/40 hover:text-gray-900 p-0.5 cursor-pointer"
         >
           <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

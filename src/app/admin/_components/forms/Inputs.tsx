@@ -1,10 +1,10 @@
 import React from 'react'
 
 const getBaseInputClasses = (error?: boolean, className = '') => {
-  return `w-full rounded-lg bg-white px-3.5 py-2 text-sm text-espresso border transition-colors focus:outline-none focus:ring-2 focus:ring-espresso/20 ${
+  return `w-full rounded-lg bg-white px-3.5 py-2 text-sm text-gray-900 border transition-colors focus:outline-none focus:ring-2 focus:ring-espresso/20 ${
     error
       ? 'border-rose-400 focus:border-rose-600 focus:ring-rose-200'
-      : 'border-espresso/20 focus:border-espresso'
+      : 'border-gray-300 focus:border-gray-300'
   } ${className}`.trim()
 }
 
@@ -88,11 +88,11 @@ export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElemen
 export function Checkbox({ label, className = '', id, ...props }: CheckboxProps) {
   const inputId = id || props.name || Math.random().toString(36).substring(7)
   return (
-    <label htmlFor={inputId} className="inline-flex items-center gap-2.5 cursor-pointer text-sm text-espresso">
+    <label htmlFor={inputId} className="inline-flex items-center gap-2.5 cursor-pointer text-sm text-gray-900">
       <input
         type="checkbox"
         id={inputId}
-        className={`rounded border-espresso/30 text-espresso focus:ring-espresso/20 h-4 w-4 transition-colors ${className}`.trim()}
+        className={`rounded border-gray-300/30 text-gray-900 focus:ring-espresso/20 h-4 w-4 transition-colors ${className}`.trim()}
         {...props}
       />
       {label && <span>{label}</span>}

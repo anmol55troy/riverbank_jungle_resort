@@ -149,10 +149,10 @@ export function MediaManagerClient({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by alt or filename..."
-            className="w-full px-3.5 py-2 pl-9 rounded-xl border border-espresso/15 bg-white text-xs text-espresso placeholder:text-espresso/40 focus:outline-hidden focus:border-espresso/40"
+            className="w-full px-3.5 py-2 pl-9 rounded-xl border border-gray-200 bg-white text-xs text-gray-900 placeholder:text-gray-900/40 focus:outline-hidden focus:border-gray-300/40"
           />
           <svg
-            className="w-4 h-4 text-espresso/40 absolute left-3 top-2.5"
+            className="w-4 h-4 text-gray-900/40 absolute left-3 top-2.5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -170,9 +170,9 @@ export function MediaManagerClient({
       </div>
 
       {/* Media Grid */}
-      <div className="bg-white rounded-3xl border border-espresso/10 p-6 shadow-xs">
+      <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
         {initialDocs.length === 0 ? (
-          <div className="py-20 text-center text-espresso/40 text-xs">
+          <div className="py-20 text-center text-gray-900/40 text-xs">
             {searchQuery ? 'No images match your search.' : 'No media uploaded yet.'}
           </div>
         ) : (
@@ -181,9 +181,9 @@ export function MediaManagerClient({
               <div
                 key={item.id}
                 onClick={() => handleOpenEdit(item)}
-                className="group relative flex flex-col rounded-2xl border border-espresso/10 overflow-hidden bg-cream/20 hover:border-gold transition-all cursor-pointer hover:shadow-md"
+                className="group relative flex flex-col rounded-lg border border-gray-200 overflow-hidden bg-gray-50 hover:border-gold transition-all cursor-pointer hover:shadow-md"
               >
-                <div className="aspect-square relative w-full bg-cream/40 overflow-hidden">
+                <div className="aspect-square relative w-full bg-gray-50 overflow-hidden">
                   <Image
                     src={(item.thumbnailURL || item.url) || ''}
                     alt={item.alt || ''}
@@ -193,10 +193,10 @@ export function MediaManagerClient({
                   />
                 </div>
                 <div className="p-2.5 space-y-1">
-                  <p className="text-[11px] font-medium text-espresso truncate" title={item.alt}>
+                  <p className="text-[11px] font-medium text-gray-900 truncate" title={item.alt}>
                     {item.alt || item.filename}
                   </p>
-                  <p className="text-[9px] text-espresso/50 font-mono truncate">
+                  <p className="text-[9px] text-gray-400 font-mono truncate">
                     {item.width && item.height ? `${item.width}×${item.height}px` : ''}{' '}
                     {item.filesize ? `• ${Math.round(item.filesize / 1024)}KB` : ''}
                   </p>
@@ -218,7 +218,7 @@ export function MediaManagerClient({
       >
         <form onSubmit={handleUploadSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs font-medium text-espresso mb-1.5">Image File</label>
+            <label className="block text-xs font-medium text-gray-900 mb-1.5">Image File</label>
             <input
               type="file"
               required
@@ -230,30 +230,30 @@ export function MediaManagerClient({
                   setUploadAlt(f.name.replace(/\.[^/.]+$/, ''))
                 }
               }}
-              className="w-full text-xs text-espresso/70 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-espresso file:text-ivory hover:file:bg-espresso-light cursor-pointer"
+              className="w-full text-xs text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-gray-900 file:text-white hover:file:bg-gray-800 cursor-pointer"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-espresso mb-1.5">Alt Text / Description (SEO)</label>
+            <label className="block text-xs font-medium text-gray-900 mb-1.5">Alt Text / Description (SEO)</label>
             <input
               type="text"
               required
               value={uploadAlt}
               onChange={(e) => setUploadAlt(e.target.value)}
               placeholder="Descriptive text for accessibility and SEO..."
-              className="w-full px-3.5 py-2.5 rounded-xl border border-espresso/15 bg-white text-xs text-espresso placeholder:text-espresso/40 focus:outline-hidden focus:border-espresso/40"
+              className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 bg-white text-xs text-gray-900 placeholder:text-gray-900/40 focus:outline-hidden focus:border-gray-300/40"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-espresso mb-1.5">Caption (optional)</label>
+            <label className="block text-xs font-medium text-gray-900 mb-1.5">Caption (optional)</label>
             <input
               type="text"
               value={uploadCaption}
               onChange={(e) => setUploadCaption(e.target.value)}
               placeholder="e.g. Deluxe Balcony Suite view over Rapti river"
-              className="w-full px-3.5 py-2.5 rounded-xl border border-espresso/15 bg-white text-xs text-espresso placeholder:text-espresso/40 focus:outline-hidden focus:border-espresso/40"
+              className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 bg-white text-xs text-gray-900 placeholder:text-gray-900/40 focus:outline-hidden focus:border-gray-300/40"
             />
           </div>
 
@@ -277,7 +277,7 @@ export function MediaManagerClient({
       >
         {selectedMedia && (
           <div className="space-y-6">
-            <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-espresso/5 border border-espresso/10">
+            <div className="relative aspect-video w-full rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
               <Image
                 src={selectedMedia.url || ''}
                 alt={selectedMedia.alt || ''}
@@ -286,27 +286,27 @@ export function MediaManagerClient({
               />
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-3.5 rounded-xl bg-cream/40 border border-espresso/5 text-xs">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-3.5 rounded-xl bg-gray-50 border border-gray-300/5 text-xs">
               <div>
-                <span className="block text-[10px] text-espresso/50 uppercase">Dimensions</span>
-                <span className="font-mono text-espresso font-medium">{selectedMedia.width} × {selectedMedia.height}px</span>
+                <span className="block text-[10px] text-gray-400 uppercase">Dimensions</span>
+                <span className="font-mono text-gray-900 font-medium">{selectedMedia.width} × {selectedMedia.height}px</span>
               </div>
               <div>
-                <span className="block text-[10px] text-espresso/50 uppercase">File Size</span>
-                <span className="font-mono text-espresso font-medium">
+                <span className="block text-[10px] text-gray-400 uppercase">File Size</span>
+                <span className="font-mono text-gray-900 font-medium">
                   {selectedMedia.filesize ? `${Math.round(selectedMedia.filesize / 1024)} KB` : '—'}
                 </span>
               </div>
               <div>
-                <span className="block text-[10px] text-espresso/50 uppercase">Format</span>
-                <span className="font-mono text-espresso font-medium uppercase">{selectedMedia.mimeType?.split('/')[1] || 'WEBP'}</span>
+                <span className="block text-[10px] text-gray-400 uppercase">Format</span>
+                <span className="font-mono text-gray-900 font-medium uppercase">{selectedMedia.mimeType?.split('/')[1] || 'WEBP'}</span>
               </div>
               <div>
-                <span className="block text-[10px] text-espresso/50 uppercase">Action</span>
+                <span className="block text-[10px] text-gray-400 uppercase">Action</span>
                 <button
                   type="button"
                   onClick={() => copyUrl(selectedMedia.url || '')}
-                  className="text-gold-dark hover:underline font-medium text-[11px]"
+                  className="text-blue-600 hover:underline font-medium text-[11px]"
                 >
                   Copy URL
                 </button>
@@ -315,27 +315,27 @@ export function MediaManagerClient({
 
             <form onSubmit={handleSaveEdit} className="space-y-4">
               <div>
-                <label className="block text-xs font-medium text-espresso mb-1.5">Alt Text</label>
+                <label className="block text-xs font-medium text-gray-900 mb-1.5">Alt Text</label>
                 <input
                   type="text"
                   required
                   value={editAlt}
                   onChange={(e) => setEditAlt(e.target.value)}
-                  className="w-full px-3.5 py-2 rounded-xl border border-espresso/15 bg-white text-xs text-espresso focus:outline-hidden focus:border-espresso/40"
+                  className="w-full px-3.5 py-2 rounded-xl border border-gray-200 bg-white text-xs text-gray-900 focus:outline-hidden focus:border-gray-300/40"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-espresso mb-1.5">Caption</label>
+                <label className="block text-xs font-medium text-gray-900 mb-1.5">Caption</label>
                 <input
                   type="text"
                   value={editCaption}
                   onChange={(e) => setEditCaption(e.target.value)}
-                  className="w-full px-3.5 py-2 rounded-xl border border-espresso/15 bg-white text-xs text-espresso focus:outline-hidden focus:border-espresso/40"
+                  className="w-full px-3.5 py-2 rounded-xl border border-gray-200 bg-white text-xs text-gray-900 focus:outline-hidden focus:border-gray-300/40"
                 />
               </div>
 
-              <div className="flex items-center justify-between pt-3 border-t border-espresso/10">
+              <div className="flex items-center justify-between pt-3 border-t border-gray-200">
                 <Button
                   variant="danger"
                   type="button"

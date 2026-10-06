@@ -77,7 +77,7 @@ export function RoomForm({ room, amenitiesList }: RoomFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-3xl border border-espresso/10 p-6 sm:p-8 space-y-6 shadow-xs">
+    <form onSubmit={handleSubmit} className="bg-white rounded-lg border border-gray-200 p-6 sm:p-8 space-y-6 shadow-sm">
       {error && (
         <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-800">
           {error}
@@ -103,7 +103,7 @@ export function RoomForm({ room, amenitiesList }: RoomFormProps) {
       </FormField>
 
       {/* Pricing and Display Order */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-espresso/10">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-gray-200">
         <FormField label="Price From (Amount)" description="Leave blank to hide price">
           <NumberInput name="priceAmount" defaultValue={room?.priceFrom?.amount ?? ''} placeholder="e.g. 150" />
         </FormField>
@@ -125,26 +125,26 @@ export function RoomForm({ room, amenitiesList }: RoomFormProps) {
       </div>
 
       {/* Features Array */}
-      <div className="pt-4 border-t border-espresso/10 space-y-2">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-espresso/80">
+      <div className="pt-4 border-t border-gray-200 space-y-2">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-600">
           Key Features & Specifications
         </h3>
-        <p className="text-xs text-espresso/60 mb-3">Add key facts such as room size, occupancy limits, bed configurations.</p>
+        <p className="text-xs text-gray-500 mb-3">Add key facts such as room size, occupancy limits, bed configurations.</p>
         <FeaturesArray name="features" defaultValue={room?.features} />
       </div>
 
       {/* Amenities Multi-Select */}
-      <div className="pt-4 border-t border-espresso/10 space-y-2">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-espresso/80">Room Amenities</h3>
-        <p className="text-xs text-espresso/60 mb-3">Select the amenities available in this room.</p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 max-h-56 overflow-y-auto p-2 border border-espresso/15 rounded-xl bg-ivory/30">
+      <div className="pt-4 border-t border-gray-200 space-y-2">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-600">Room Amenities</h3>
+        <p className="text-xs text-gray-500 mb-3">Select the amenities available in this room.</p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 max-h-56 overflow-y-auto p-2 border border-gray-200 rounded-xl bg-gray-50">
           {amenitiesList.map((a) => {
             const checked = selectedAmenities.has(a.id)
             return (
               <label
                 key={a.id}
                 className={`flex items-center gap-2 p-2 rounded-lg text-xs cursor-pointer border transition-colors ${
-                  checked ? 'bg-espresso text-ivory border-espresso font-medium' : 'bg-white text-espresso border-espresso/10 hover:bg-cream/40'
+                  checked ? 'bg-gray-900 text-white border-gray-300 font-medium' : 'bg-white text-gray-900 border-gray-200 hover:bg-gray-50'
                 }`}
               >
                 <input
@@ -161,9 +161,9 @@ export function RoomForm({ room, amenitiesList }: RoomFormProps) {
       </div>
 
       {/* Gallery Images */}
-      <div className="pt-4 border-t border-espresso/10 space-y-2">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-espresso/80">Room Photo Gallery</h3>
-        <p className="text-xs text-espresso/60 mb-3">Upload or select images. The first image will be used as the primary card cover.</p>
+      <div className="pt-4 border-t border-gray-200 space-y-2">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-600">Room Photo Gallery</h3>
+        <p className="text-xs text-gray-500 mb-3">Upload or select images. The first image will be used as the primary card cover.</p>
         <GalleryPicker name="gallery" defaultValue={room?.gallery as any} />
       </div>
 

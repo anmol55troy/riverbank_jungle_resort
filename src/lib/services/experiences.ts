@@ -27,7 +27,7 @@ export async function getAdminExperiences(options?: {
   }
 
   const [docs, total] = await Promise.all([
-    ExperienceModel.find(query).sort({ order: 1, createdAt: -1 }).skip(skip).limit(limit).lean(),
+    ExperienceModel.find(query).sort({ order: 1, createdAt: -1 }).skip(skip).limit(limit).populate('image').lean(),
     ExperienceModel.countDocuments(query),
   ])
 

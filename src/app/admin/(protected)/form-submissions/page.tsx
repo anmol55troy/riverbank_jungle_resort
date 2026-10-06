@@ -23,8 +23,8 @@ export default async function AdminFormSubmissionsPage(props: {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-serif text-2xl font-light text-espresso">Form Inquiries</h1>
-          <p className="text-xs text-espresso/60 mt-0.5">
+          <h1 className="font-serif text-2xl font-light text-gray-900">Form Inquiries</h1>
+          <p className="text-xs text-gray-500 mt-0.5">
             Incoming contact messages, wedding & event booking inquiries from website visitors
           </p>
         </div>

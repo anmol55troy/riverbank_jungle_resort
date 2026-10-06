@@ -56,7 +56,7 @@ export function ExperienceForm({ experience }: ExperienceFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-3xl border border-espresso/10 p-6 sm:p-8 space-y-6 shadow-xs">
+    <form onSubmit={handleSubmit} className="bg-white rounded-lg border border-gray-200 p-6 sm:p-8 space-y-6 shadow-sm">
       {error && <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-800">{error}</div>}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -77,7 +77,7 @@ export function ExperienceForm({ experience }: ExperienceFormProps) {
         <RichTextEditor name="description" defaultValue={experience?.description} />
       </FormField>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-espresso/10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-gray-200">
         <FormField label="Duration" description="e.g. 3–4 hours, Half day, Full day">
           <TextInput name="duration" defaultValue={experience?.duration || ''} placeholder="e.g. 3–4 hours" />
         </FormField>
@@ -87,8 +87,8 @@ export function ExperienceForm({ experience }: ExperienceFormProps) {
         </FormField>
       </div>
 
-      <div className="pt-4 border-t border-espresso/10">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-espresso/80 mb-2">Featured Image</h3>
+      <div className="pt-4 border-t border-gray-200">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-600 mb-2">Featured Image</h3>
         <MediaPicker name="image" defaultValue={experience?.image as any} label="Select Featured Image" />
       </div>
 

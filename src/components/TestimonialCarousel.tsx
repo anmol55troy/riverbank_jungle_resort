@@ -22,6 +22,7 @@ const SOURCE_LABELS: Record<string, string> = {
   booking: 'Booking.com',
   expedia: 'Expedia',
   tripcom: 'Trip.com',
+  makemytrip: 'MakeMyTrip.com',
 }
 
 export function TestimonialCarousel({ items }: { items: TestimonialItem[] }) {
@@ -53,9 +54,8 @@ export function TestimonialCarousel({ items }: { items: TestimonialItem[] }) {
           {items.map((item, i) => (
             <div
               key={item.id}
-              className={`min-w-0 flex-[0_0_100%] px-4 transition-opacity duration-700 md:flex-[0_0_70%] lg:flex-[0_0_55%] ${
-                i === selected ? 'opacity-100' : 'opacity-30'
-              }`}
+              className={`min-w-0 flex-[0_0_100%] px-4 transition-opacity duration-700 md:flex-[0_0_70%] lg:flex-[0_0_55%] ${i === selected ? 'opacity-100' : 'opacity-30'
+                }`}
             >
               <figure className="mx-auto max-w-2xl text-center">
                 <div className="mb-5 flex justify-center gap-1 text-gold" aria-label={`${item.rating} out of 5 stars`}>
@@ -92,9 +92,8 @@ export function TestimonialCarousel({ items }: { items: TestimonialItem[] }) {
             type="button"
             onClick={() => emblaApi?.scrollTo(i)}
             aria-label={`Go to review ${i + 1}`}
-            className={`h-2 w-2 rounded-full transition-all duration-300 ${
-              i === selected ? 'w-6 bg-gold' : 'bg-ivory/30 hover:bg-ivory/60'
-            }`}
+            className={`h-2 w-2 rounded-full transition-all duration-300 ${i === selected ? 'w-6 bg-gold' : 'bg-ivory/30 hover:bg-ivory/60'
+              }`}
           />
         ))}
       </div>

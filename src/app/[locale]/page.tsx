@@ -376,7 +376,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       {testimonials.length > 0 && (
         <section className="relative overflow-hidden bg-espresso py-20 sm:py-24 lg:py-32">
           <Image
-            src={PLACEHOLDER.sunset}
+            src="/media/DJI_0069-HDR.jpg"
             alt=""
             fill
             sizes="100vw"

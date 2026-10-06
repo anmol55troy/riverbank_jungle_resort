@@ -56,9 +56,17 @@ export default async function AdminTestimonialsPage(props: {
                     <td className="py-3 text-gray-500">{t.country || '—'}</td>
                     <td className="py-3 text-gray-600 max-w-sm truncate">{t.quote}</td>
                     <td className="py-3">
-                      <Badge variant="default" size="sm">
-                        {t.source}
-                      </Badge>
+                      {t.sourceUrl ? (
+                        <a href={t.sourceUrl} target="_blank" rel="noopener noreferrer" title="View source review">
+                          <Badge variant="default" size="sm" className="hover:bg-gray-200 transition-colors">
+                            {t.source}
+                          </Badge>
+                        </a>
+                      ) : (
+                        <Badge variant="default" size="sm">
+                          {t.source}
+                        </Badge>
+                      )}
                     </td>
                     <td className="py-3 text-amber-600 font-semibold">{'★'.repeat(t.rating)}</td>
                     <td className="py-3 text-right">

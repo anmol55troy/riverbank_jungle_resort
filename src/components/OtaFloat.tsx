@@ -8,16 +8,26 @@ type Props = {
   bookingUrl: string
   tripadvisorUrl: string
   makemytripUrl: string
+  agodaUrl?: string
+  expediaUrl?: string
 }
 
 const OTA_ITEMS = [
   { key: 'booking', label: 'Booking.com', icon: '/awards/booking-icon.webp', className: 'bg-[#123f91]' },
   { key: 'tripadvisor', label: 'TripAdvisor', icon: '/awards/tripadvisor-icon.svg', className: 'bg-white' },
   { key: 'makemytrip', label: 'MakeMyTrip', icon: '/awards/makemytrip-icon.webp', className: 'bg-white' },
+  { key: 'agoda', label: 'Agoda', icon: '/media/agoda-logo.svg', className: 'bg-[#28292c]' },
+  { key: 'expedia', label: 'Expedia', icon: '/media/expedia-logo_brandlogos.net_jivv9.png', className: 'bg-white' },
 ] as const
 
-export function OtaFloat({ bookingUrl, tripadvisorUrl, makemytripUrl }: Props) {
-  const urls = { booking: bookingUrl, tripadvisor: tripadvisorUrl, makemytrip: makemytripUrl }
+export function OtaFloat({ bookingUrl, tripadvisorUrl, makemytripUrl, agodaUrl, expediaUrl }: Props) {
+  const urls = {
+    booking: bookingUrl,
+    tripadvisor: tripadvisorUrl,
+    makemytrip: makemytripUrl,
+    agoda: agodaUrl || 'https://www.agoda.com/river-bank-jungle-resort/hotel/chitwan-np.html?ds=nN5OhaZ1D55gnN3P',
+    expedia: expediaUrl || 'https://www.expedia.co.in/River-Bank-Jungle-Resort.h100514483.Hotel-Information'
+  }
   const [isOpen, setIsOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 
@@ -34,8 +44,8 @@ export function OtaFloat({ bookingUrl, tripadvisorUrl, makemytripUrl }: Props) {
   return (
     <div ref={menuRef} className="fixed bottom-20 right-4 z-40 flex flex-col items-center gap-2 md:bottom-24 md:right-6" aria-label="Online reservations">
       <div
-        className={`flex flex-col gap-2 transition-all duration-300 md:flex-col md:opacity-100 md:translate-y-0 ${
-          isOpen ? 'translate-y-0 opacity-100 pointer-events-auto' : 'translate-y-4 opacity-0 pointer-events-none md:pointer-events-auto'
+        className={`flex flex-col gap-2 transition-all duration-300 ${
+          isOpen ? 'translate-y-0 opacity-100 pointer-events-auto' : 'translate-y-4 opacity-0 pointer-events-none'
         }`}
       >
         {OTA_ITEMS.map((item) => (
@@ -61,7 +71,7 @@ export function OtaFloat({ bookingUrl, tripadvisorUrl, makemytripUrl }: Props) {
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Toggle booking options"
         aria-expanded={isOpen}
-        className="flex h-13 w-13 items-center justify-center rounded-full bg-forest text-ivory shadow-card transition-all duration-300 hover:bg-forest-dark focus:outline-none md:hidden"
+        className="flex h-13 w-13 items-center justify-center rounded-full bg-forest text-ivory shadow-card transition-all duration-300 hover:bg-forest-dark focus:outline-none"
       >
         {isOpen ? <CloseIcon className="h-6 w-6" /> : (
           <div className="flex flex-col items-center justify-center">

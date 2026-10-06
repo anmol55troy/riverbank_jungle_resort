@@ -181,7 +181,7 @@ const testimonialSchema = new Schema(
     country: String,
     source: {
       type: String,
-      enum: ['tripadvisor', 'booking', 'expedia', 'tripcom'],
+      enum: ['tripadvisor', 'booking', 'expedia', 'tripcom', 'makemytrip'],
       required: true,
     },
     rating: { type: Number, min: 1, max: 5, default: 5, required: true },

@@ -79,6 +79,7 @@ export function TestimonialForm({ testimonial }: TestimonialFormProps) {
               { label: 'Booking.com', value: 'booking' },
               { label: 'Expedia', value: 'expedia' },
               { label: 'Trip.com', value: 'tripcom' },
+              { label: 'MakeMyTrip', value: 'makemytrip' },
             ]}
           />
         </FormField>

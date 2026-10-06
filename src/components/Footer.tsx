@@ -34,6 +34,8 @@ export async function Footer({ settings, logoUrl = '/logo.png' }: Props) {
     { href: settings?.bookingCom || DEFAULTS.bookingCom, label: 'Booking.com' },
     { href: settings?.tripadvisor || DEFAULTS.tripadvisor, label: 'TripAdvisor' },
     { href: settings?.makemytrip || DEFAULTS.makemytrip, label: 'MakeMyTrip' },
+    { href: 'https://www.agoda.com/river-bank-jungle-resort/hotel/chitwan-np.html?ds=nN5OhaZ1D55gnN3P', label: 'Agoda', image: '/media/agoda-logo.svg' },
+    { href: 'https://www.expedia.co.in/River-Bank-Jungle-Resort.h100514483.Hotel-Information', label: 'Expedia' },
   ]
 
   return (
@@ -147,8 +149,8 @@ export async function Footer({ settings, logoUrl = '/logo.png' }: Props) {
             <h3 className="mb-4 mt-10 text-[11px] font-semibold uppercase tracking-[0.2em] text-ivory">
               Online Reservations
             </h3>
-            <div className="flex gap-2">
-              {otas.map(({ href, label }) => (
+            <div className="grid grid-cols-3 gap-2">
+              {otas.map(({ href, label, image }) => (
                 <a
                   key={label}
                   href={href}
@@ -159,10 +161,24 @@ export async function Footer({ settings, logoUrl = '/logo.png' }: Props) {
                       ? 'bg-[#003b95] text-white'
                       : label === 'TripAdvisor'
                         ? 'bg-[#34e0a1] text-black'
-                        : 'bg-white text-black'
+                        : label === 'MakeMyTrip'
+                          ? 'bg-white text-black'
+                          : label === 'Agoda'
+                            ? 'bg-[#28292c] text-white'
+                            : label === 'Expedia'
+                              ? 'bg-[#0000a0] text-white'
+                              : 'bg-white text-black'
                   }`}
                 >
-                  {label === 'MakeMyTrip' ? (
+                  {image ? (
+                    <Image
+                      src={image}
+                      alt={label}
+                      width={80}
+                      height={32}
+                      className="object-contain h-8 w-auto"
+                    />
+                  ) : label === 'MakeMyTrip' ? (
                     <span className="text-[11px]">
                       <span className="text-[#246bb3]">make</span>
                       <span className="text-[#ed1c24]">MY</span>
@@ -170,6 +186,8 @@ export async function Footer({ settings, logoUrl = '/logo.png' }: Props) {
                     </span>
                   ) : label === 'TripAdvisor' ? (
                     <span className="tracking-tight">tripadvisor</span>
+                  ) : label === 'Expedia' ? (
+                    <span className="tracking-tight text-[11px]">Expedia</span>
                   ) : (
                     label
                   )}
